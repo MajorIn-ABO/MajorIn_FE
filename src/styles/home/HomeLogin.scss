@@ -1,0 +1,40 @@
+.login-container {
+  width: 80%;
+  height: 50vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .login {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    input {
+      width: 100%;
+      height: 45px;
+      border-radius: 25px;
+      background: #fafafa;
+    }
+
+    input[type="button"] {
+      background: #cccccc;
+      font-weight: 700;
+    }
+  }
+
+  .login-bottom {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+
+    p {
+      font-size: 0.8rem;
+      color: #9b9b9b;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+  }
+}
