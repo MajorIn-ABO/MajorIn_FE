@@ -6,6 +6,7 @@ import StudyApp from "../pages/study/StudyApp";
 import CommunityApp from "../pages/community/CommunityApp";
 import TradeApp from "../pages/trade/TradeApp";
 import MyPageApp from "../pages/mypage/MyPageApp";
+import LoginApp from "../pages/login/LoginApp";
 import Header from "../components/navbar/Header";
 import Navbar from "../components/navbar/Navbar";
 
@@ -26,9 +27,7 @@ const MainLayout = () => {
       <Header />
       <ContentContainer>
         <Navbar />
-        {/* <div> */}
         <Outlet />
-        {/* </div> */}
       </ContentContainer>
     </div>
   );
@@ -46,6 +45,7 @@ const RouterApp = () => {
           <Route path="trade" element={<TradeApp />} />
           <Route path="mypage" element={<MyPageApp />} />
         </Route>
+        <Route path="/login" element={<LoginApp />} />
       </Routes>
     </div>
   );
