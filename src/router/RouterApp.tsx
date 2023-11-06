@@ -13,7 +13,7 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   min-width: 1024px;
-  height: 90vh;
+  // height: 90vh;
   margin: 0 auto;
   padding: 30px 20px;
   background: #fafafa;
@@ -26,9 +26,9 @@ const MainLayout = () => {
       <Header />
       <ContentContainer>
         <Navbar />
-        <div>
-          <Outlet />
-        </div>
+        {/* <div> */}
+        <Outlet />
+        {/* </div> */}
       </ContentContainer>
     </div>
   );
