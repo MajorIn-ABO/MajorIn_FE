@@ -54,7 +54,7 @@ const MainStudy = () => {
       </div>
       <div className="study-content">
         {studyData.map((item, index) => (
-          <div className="study-box">
+          <div className="study-box" key={index}>
             <div className="study-top">
               <div>
                 <img
