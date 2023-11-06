@@ -47,7 +47,7 @@ const MainEmploy = () => {
       </div>
       <div className="employ-content">
         {employData.map((item, index) => (
-          <div className="employ-box">
+          <div className="employ-box" key={index}>
             <div className="employ-top">
               <img
                 src="https://t1.kakaocdn.net/kakaocorp/corp_thumbnail/Kakao.png"

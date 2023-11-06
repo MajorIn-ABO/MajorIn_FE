@@ -1,0 +1,63 @@
+@import "../_font";
+@include font-face("GMarketSans", "../assets/fonts/GmarketSansTTFBold.ttf");
+
+.login-container {
+  width: 60%;
+  max-width: 550px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    font-family: "GMarketSans", sans-serif;
+    color: #1b1c3a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 30px;
+    h1 {
+      font-size: 1.3rem;
+    }
+    h3 {
+      font-size: 0.7rem;
+    }
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    input[type="text"],
+    input[type="password"],
+    input[type="button"] {
+      border-radius: 15px;
+      background: #d9d9d9;
+      width: 370px;
+      height: 6vh;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #777;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    input[type="button"] {
+      background: #1b1c3a;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+  }
+
+  .login-bottom {
+    p {
+      &:nth-child(3) {
+        color: #1b1c3a;
+      }
+    }
+  }
+}
