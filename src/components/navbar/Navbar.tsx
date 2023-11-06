@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "../../styles/navbar/Navbar.scss";
 import { ReactComponent as HomeIcon } from "../../assets/icon/home.svg";
@@ -25,6 +25,11 @@ const StyledLink = styled(Link)`
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const goLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="navbar">
@@ -33,7 +38,7 @@ const Navbar = () => {
           커뮤니티 이용을 위해 <br />
           로그인이 필요합니다.
         </p>
-        <button>로그인</button>
+        <button onClick={goLogin}>로그인</button>
         <button>회원가입</button>
       </div>
       <div className="menu-list">
