@@ -1,0 +1,65 @@
+.study-content {
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 20px 10px;
+  margin-top: 10px;
+
+  .study-box {
+    width: 100%;
+    border-bottom: 0.7px solid #c5c5c5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px 5px 10px 5px;
+
+    .study-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+        p {
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+      }
+      p {
+        color: #1b1c3a;
+        font-size: 0.8rem;
+      }
+    }
+
+    .study-middle {
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    .study-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #1b1c3a;
+      font-size: 0.9rem;
+      font-weight: 700;
+
+      .study-deadline {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .study-numbers {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+    }
+  }
+}
