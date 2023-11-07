@@ -1,0 +1,25 @@
+.agree-content {
+  margin: 10px 0 30px 0;
+  font-size: 0.9rem;
+  .agree-all {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  .agree-first,
+  .agree-second,
+  .agree-third {
+    margin-bottom: 30px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  span {
+    color: #ff4a4a;
+  }
+
+  .choice {
+    color: #a8a8a8;
+  }
+}

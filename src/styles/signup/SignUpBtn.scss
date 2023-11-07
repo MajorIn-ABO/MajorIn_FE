@@ -1,0 +1,16 @@
+.signup-button {
+  width: 30%;
+  height: 5vh;
+  border-radius: 5px;
+  background: #1b1c3a;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.before-button {
+  @extend .signup-button;
+  border: 1px solid #1b1c3a;
+  color: #1b1c3a;
+  background: #ffffff;
+}
