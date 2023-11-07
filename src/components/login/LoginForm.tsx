@@ -1,7 +1,12 @@
 import { ReactComponent as LogoIcon } from "../../assets/icon/logo2.svg";
 import "../../styles/login/LoginForm.scss";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const goSignUp = () => {
+    navigate("/signup");
+  };
   return (
     <div className="login-container">
       <div className="logo">
@@ -21,7 +26,9 @@ const LoginForm = () => {
       <div className="login-bottom">
         <p>아이디 찾기</p>
         <p>패스워드 찾기</p>
-        <p>회원가입</p>
+        <p onClick={goSignUp} className="signup">
+          회원가입
+        </p>
       </div>
     </div>
   );

@@ -54,10 +54,9 @@
   }
 
   .login-bottom {
-    p {
-      &:nth-child(3) {
-        color: #1b1c3a;
-      }
+    .signup {
+      color: #1b1c3a;
+      cursor: pointer;
     }
   }
 }

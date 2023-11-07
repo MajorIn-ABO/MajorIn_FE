@@ -1,0 +1,62 @@
+.certify-content {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+  border: 1px solid #f3f3f3;
+  padding: 20px 20px;
+  margin-top: 15px;
+
+  p {
+    color: #777;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .certify-img {
+    width: 100%;
+    height: 28vh;
+    background: #f3f3f3;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    p {
+      color: #1b1c3a;
+    }
+  }
+  .filebox {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    background: #f3f3f3;
+
+    label {
+      width: 25%;
+      height: 5vh;
+      border-radius: 5px;
+      background: #1b1c3a;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
+  }
+}

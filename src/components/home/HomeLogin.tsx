@@ -1,6 +1,11 @@
 import "../../styles/home/HomeLogin.scss";
+import { useNavigate } from "react-router-dom";
 
 const HomeLogin = () => {
+  const navigate = useNavigate();
+  const goSignUp = () => {
+    navigate("/signup");
+  };
   return (
     <div className="login-container">
       <div className="logo">
@@ -14,7 +19,7 @@ const HomeLogin = () => {
       <div className="login-bottom">
         <p>아이디 찾기</p>
         <p>패스워드 찾기</p>
-        <p>회원가입</p>
+        <p onClick={goSignUp}>회원가입</p>
       </div>
     </div>
   );
