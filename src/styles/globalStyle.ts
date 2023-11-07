@@ -20,7 +20,7 @@ li{
     list-style: none;
 }
 
-button, input, textarea{
+button, input, textarea, select{
     outline: none;
     border: none;
     background: none;
