@@ -7,6 +7,7 @@ import CommunityApp from "../pages/community/CommunityApp";
 import TradeApp from "../pages/trade/TradeApp";
 import MyPageApp from "../pages/mypage/MyPageApp";
 import LoginApp from "../pages/login/LoginApp";
+import SignUpApp from "../pages/signup/SignUpApp";
 import Header from "../components/navbar/Header";
 import Navbar from "../components/navbar/Navbar";
 
@@ -46,6 +47,7 @@ const RouterApp = () => {
           <Route path="mypage" element={<MyPageApp />} />
         </Route>
         <Route path="/login" element={<LoginApp />} />
+        <Route path="/signup" element={<SignUpApp />} />
       </Routes>
     </div>
   );
