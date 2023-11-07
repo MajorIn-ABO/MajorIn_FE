@@ -31,6 +31,10 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const goSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-login">
@@ -39,7 +43,7 @@ const Navbar = () => {
           로그인이 필요합니다.
         </p>
         <button onClick={goLogin}>로그인</button>
-        <button>회원가입</button>
+        <button onClick={goSignUp}>회원가입</button>
       </div>
       <div className="menu-list">
         <ul>
