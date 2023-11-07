@@ -11,6 +11,9 @@ const Header = () => {
   const goLogin = () => {
     navigate("/login");
   };
+  const goSignUp = () => {
+    navigate("/signup");
+  };
   return (
     <div className="header">
       <div className="header-container">
@@ -28,7 +31,7 @@ const Header = () => {
           </div>
           <div className="header-login">
             <button onClick={goLogin}>로그인</button>
-            <button>회원가입</button>
+            <button onClick={goSignUp}>회원가입</button>
           </div>
         </div>
       </div>
