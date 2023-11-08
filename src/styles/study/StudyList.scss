@@ -1,0 +1,77 @@
+.study-list-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 15px 0 15px 0;
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #dadada;
+
+  ul {
+    display: flex;
+    gap: 15px;
+    color: #a8a8a8;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .selected {
+    color: #1b1c3a;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background: #1b1c3a;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    gap: 7px;
+  }
+}
+.study-list {
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  background: #ffffff;
+  padding: 15px;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+
+  .recruiting {
+    border-radius: 15px;
+    background: #1b1c3a;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 15px;
+  }
+
+  .completed {
+    @extend .recruiting;
+    background: #cccccc;
+  }
+
+  p {
+    color: #5e5e5e;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    .bottom-left,
+    .bottom-right {
+      display: flex;
+      gap: 5px;
+      margin-bottom: -15px;
+    }
+  }
+}
