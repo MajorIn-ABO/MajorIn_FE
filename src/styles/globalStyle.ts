@@ -18,6 +18,7 @@ ul{
 
 li{
     list-style: none;
+    cursor: pointer;
 }
 
 button, input, textarea, select{
