@@ -1,0 +1,68 @@
+.study-sesarch-container {
+  width: 100%;
+
+  .filtering-deadline {
+    ul {
+      display: flex;
+      gap: 15px;
+      color: #777;
+      font-size: 1rem;
+      font-weight: 600;
+
+      .selected {
+        color: #1b1c3a;
+        border-bottom: 2.5px solid #1b1c3a;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+  .study-search {
+    width: 100%;
+    height: 5vh;
+    border-radius: 5px;
+    background: #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 0;
+    margin: 20px 0;
+    input {
+      width: 90%;
+    }
+  }
+
+  .recent-search {
+    h2 {
+      color: #5e5e5e;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    p {
+      color: #9b9b9b;
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .search-list {
+      ul {
+        display: flex;
+        gap: 15px;
+
+        li {
+          border-radius: 15px;
+          border: 1px solid #dadada;
+          padding: 5px 15px;
+
+          span {
+            color: #dadada;
+            font-weight: 700;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
