@@ -1,0 +1,32 @@
+.trade-all-container {
+  .trade-filtering {
+    border-bottom: 0.7px solid #ccc;
+    ul {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0 10px 0;
+      li {
+        border-radius: 15px;
+        background: #ccc;
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+      .selected {
+        background: #1b1c3a;
+      }
+    }
+  }
+  .book-content {
+    border: none;
+    background: none;
+    border-bottom: 0.7px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    .img {
+      width: 30%;
+    }
+  }
+}
