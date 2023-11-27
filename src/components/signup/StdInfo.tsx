@@ -5,7 +5,7 @@ const StdInfo = () => {
     <div>
       <h1>기본 정보</h1>
       <form className="signup-form">
-        <label htmlFor="id">이름</label>
+        <label htmlFor="id">아이디</label>
         <input type="text" id="id" />
         <label htmlFor="pw">비밀번호</label>
         <input type="password" id="pw" />
