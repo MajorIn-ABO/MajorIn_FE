@@ -4,7 +4,7 @@ import MainStudy from "../../components/main/MainStudy";
 import styled from "styled-components";
 
 const MainContainer = styled.div`
-  width: 100%;
+  width: 90%;
   // background: grey;
   display: grid;
   grid-template-columns: 1fr 1fr;
