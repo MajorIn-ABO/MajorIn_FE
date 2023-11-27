@@ -2,8 +2,16 @@ import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
 import { useState } from "react";
 import "../../styles/study/StudySearch.scss";
 
-const StudySearch = () => {
-  const [selectedFilter, setSelectedFilter] = useState("all");
+interface StudySearchProps {
+  selectedFilter: string;
+  onFilterChange: (filter: string) => void;
+}
+
+const StudySearch: React.FC<StudySearchProps> = ({
+  selectedFilter,
+  onFilterChange,
+}) => {
+  // const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchText, setSearchText] = useState<string>("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
@@ -28,8 +36,8 @@ const StudySearch = () => {
     setRecentSearches([]);
   };
 
-  const handleFilterChange = (filter: any) => {
-    setSelectedFilter(filter);
+  const handleFilterChange = (filter: string) => {
+    onFilterChange(filter);
   };
 
   return (
@@ -43,14 +51,14 @@ const StudySearch = () => {
             전체보기
           </li>
           <li
-            className={selectedFilter === "recruiting" ? "selected" : ""}
-            onClick={() => handleFilterChange("recruiting")}
+            className={selectedFilter === "모집중" ? "selected" : ""}
+            onClick={() => handleFilterChange("모집중")}
           >
             모집중
           </li>
           <li
-            className={selectedFilter === "completed" ? "selected" : ""}
-            onClick={() => handleFilterChange("completed")}
+            className={selectedFilter === "모집완료" ? "selected" : ""}
+            onClick={() => handleFilterChange("모집완료")}
           >
             모집완료
           </li>

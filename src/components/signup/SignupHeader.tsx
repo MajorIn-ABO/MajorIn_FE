@@ -6,10 +6,13 @@ const SignupHeader = () => {
   const goLogin = () => {
     navigate("/login");
   };
+  const goHome = () => {
+    navigate("/home");
+  };
   return (
     <div className="header">
       <div className="header-container">
-        <div className="header-left">
+        <div className="header-left" onClick={goHome}>
           <Logo />
           <div className="header-name">
             <p>메이저인</p>

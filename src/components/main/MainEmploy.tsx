@@ -65,7 +65,9 @@ const MainEmploy = () => {
               </div>
             </div>
             <div className="employ-bottom">
-              <p>자세히보기</p>
+              <p>
+                자세히보기 <span>&gt;</span>
+              </p>
             </div>
           </div>
         ))}

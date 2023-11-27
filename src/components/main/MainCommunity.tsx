@@ -7,6 +7,7 @@ import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
 import { ReactComponent as StarIcon } from "../../assets/icon/star-color.svg";
 import "../../styles/main/MainCommunity.scss";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -57,6 +58,10 @@ const data = [
 // 데이터의 아이콘 컴포넌트 배열
 
 const MainCommunity = () => {
+  const navigate = useNavigate();
+  const goCommunity = () => {
+    navigate("/community");
+  };
   return (
     <div>
       <div className="title">
@@ -64,7 +69,9 @@ const MainCommunity = () => {
           <MedalIcon />
           <h1>커뮤니티 인기글</h1>
         </div>
-        <p>전체보기</p>
+        <p onClick={goCommunity}>
+          전체보기 <span>&gt;</span>
+        </p>
       </div>
       <div className="content">
         {data.map((item, index) => (

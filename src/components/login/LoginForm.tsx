@@ -7,9 +7,12 @@ const LoginForm = () => {
   const goSignUp = () => {
     navigate("/signup");
   };
+  const goHome = () => {
+    navigate("/home");
+  };
   return (
     <div className="login-container">
-      <div className="logo">
+      <div className="logo" onClick={goHome}>
         <LogoIcon />
         <h1>메이저인</h1>
         <h3>MajorIn</h3>

@@ -5,7 +5,7 @@ import TradePrice from "../../components/trade/TradePrice";
 import styled from "styled-components";
 
 const TradeContainer = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   gap: 30px;
 `;
