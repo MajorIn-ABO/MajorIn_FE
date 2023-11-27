@@ -40,10 +40,20 @@ const studyData = [
   },
 ];
 
-const StudyList = () => {
-  const [selectedFilter, setSelectedFilter] = useState("recent");
+interface StudySearchProps {
+  selectedFilter: string;
+}
+
+const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
+  const filteredStudyData = studyData.filter(
+    (item) =>
+      selectedFilter === "all" ||
+      item.recruiting.toLowerCase() === selectedFilter
+  );
+
+  const [selectedFilter2, setSelectedFilter2] = useState("recent");
   const handleFilterChange = (filter: any) => {
-    setSelectedFilter(filter);
+    setSelectedFilter2(filter);
   };
 
   return (
@@ -51,19 +61,19 @@ const StudyList = () => {
       <div className="study-list-top">
         <ul>
           <li
-            className={selectedFilter === "recent" ? "selected" : ""}
+            className={selectedFilter2 === "recent" ? "selected" : ""}
             onClick={() => handleFilterChange("recent")}
           >
             최신순
           </li>
           <li
-            className={selectedFilter === "like" ? "selected" : ""}
+            className={selectedFilter2 === "like" ? "selected" : ""}
             onClick={() => handleFilterChange("like")}
           >
             좋아요순
           </li>
           <li
-            className={selectedFilter === "popular" ? "selected" : ""}
+            className={selectedFilter2 === "popular" ? "selected" : ""}
             onClick={() => handleFilterChange("popular")}
           >
             인기순
@@ -74,7 +84,7 @@ const StudyList = () => {
           글쓰기
         </button>
       </div>
-      {studyData.map((item, index) => (
+      {filteredStudyData.map((item, index) => (
         <div key={index} className="study-list">
           <h1>
             <span
