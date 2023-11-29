@@ -4,7 +4,7 @@ import "../../styles/signup/SchoolInfo.scss";
 const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
   moveToNextStep,
 }) => {
-  const [selection, setSelection] = useState(""); // State to hold the radio button selection
+  const [selection, setSelection] = useState("");
 
   const handleSelectionChange = (event: any) => {
     setSelection(event.target.value);
@@ -31,19 +31,23 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
       <section className="school-content">
         <div>
           <p>이름</p>
-          <p>장**</p>
+          {/* <p></p> */}
+          <p>김**</p>
         </div>
         <div>
           <p>학교</p>
+          {/* <p></p> */}
           <p>단국대학교</p>
         </div>
         <div>
           <p>학과</p>
+          {/* <p></p> */}
           <p>소프트웨어학과</p>
         </div>
         <div>
           <p>학번</p>
-          <p>32203928</p>
+          {/* <p></p> */}
+          <p>32200852</p>
         </div>
       </section>
       <div className="match">
