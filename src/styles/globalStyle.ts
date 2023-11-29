@@ -28,6 +28,7 @@ button, input, textarea, select{
     cursor: pointer;
     margin: 8px 0;
     padding: 0 20px;
+    resize: none;
 }
 
 h1{
@@ -54,6 +55,37 @@ h1{
 .color-scrap{
     color: #ffe920;
 }
+
+.filebox {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    background: #f3f3f3;
+
+    label {
+      width: 25%;
+      height: 5vh;
+      border-radius: 5px;
+      background: #1b1c3a;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
+  }
 `;
 
 export default GlobalStyle;
