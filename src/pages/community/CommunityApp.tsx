@@ -1,6 +1,8 @@
 import CommunityMain from "../../components/community/CommunityMain";
+import CommunityWrite from "../../components/community/CommunityWrite";
 import PopularCommunity from "../../components/community/PopularCommunity";
 import styled from "styled-components";
+import { useState } from "react";
 
 const CommunityContainer = styled.div`
   width: 90%;
@@ -10,10 +12,30 @@ const CommunityContainer = styled.div`
 `;
 
 const CommunityApp = () => {
+  const [isWriting, setIsWriting] = useState(false);
+
+  const handleWriteButtonClick = () => {
+    setIsWriting(true);
+  };
+
+  const handleBackToMain = () => {
+    setIsWriting(false);
+  };
   return (
     <CommunityContainer>
-      <CommunityMain />
-      <PopularCommunity />
+      {isWriting ? (
+        <>
+          <CommunityWrite onBackToMain={handleBackToMain} />
+          <PopularCommunity />
+        </>
+      ) : (
+        <>
+          <CommunityMain onWriteButtonClick={handleWriteButtonClick} />
+          <PopularCommunity />
+        </>
+      )}
+      {/* <CommunityMain />
+      <PopularCommunity /> */}
     </CommunityContainer>
   );
 };
