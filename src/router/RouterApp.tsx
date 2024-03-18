@@ -4,6 +4,7 @@ import HomeApp from "../pages/home/HomeApp";
 import MainApp from "../pages/main/MainApp";
 import StudyApp from "../pages/study/StudyApp";
 import CommunityApp from "../pages/community/CommunityApp";
+import CommunityDetail from "../components/community/CommunityDetail";
 import TradeApp from "../pages/trade/TradeApp";
 import MyPageApp from "../pages/mypage/MyPageApp";
 import LoginApp from "../pages/login/LoginApp";
@@ -42,7 +43,9 @@ const RouterApp = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<MainApp />} />
           <Route path="study" element={<StudyApp />} />
-          <Route path="community" element={<CommunityApp />} />
+          <Route path="community/*" element={<CommunityApp />}>
+            <Route path=":contentId" element={<CommunityDetail />} />
+          </Route>
           <Route path="trade" element={<TradeApp />} />
           <Route path="mypage" element={<MyPageApp />} />
         </Route>
