@@ -12,6 +12,7 @@ const StyledLink = styled(Link)`
   color: #9b9b9b;
   font-weight: 700;
   display: flex;
+  align-items: center;
   margin: 5px 0;
   padding: 10px 0 10px 15px;
   gap: 10px;
