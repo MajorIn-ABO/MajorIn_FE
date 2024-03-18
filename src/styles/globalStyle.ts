@@ -44,16 +44,17 @@ h1{
     font-weight: 600;
     padding: 5px 10px;
     margin-right: 10px;
+    text-align: center;
 }
 
 .color-chat{
-    color: #44b0ff;
+    color: #66BB6A;
 }
 .color-like{
     color: #ff8181;
 }
 .color-scrap{
-    color: #ffe920;
+    color: #E8BF89;
 }
 
 .filebox {
