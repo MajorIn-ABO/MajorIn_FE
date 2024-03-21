@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HomeApp from "../pages/home/HomeApp";
 import MainApp from "../pages/main/MainApp";
 import StudyApp from "../pages/study/StudyApp";
+import StudyDetail from "../components/study/StudyDetail";
 import CommunityApp from "../pages/community/CommunityApp";
 import CommunityDetail from "../components/community/CommunityDetail";
 import TradeApp from "../pages/trade/TradeApp";
@@ -42,7 +43,9 @@ const RouterApp = () => {
         <Route path="/home" element={<HomeApp />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<MainApp />} />
-          <Route path="study" element={<StudyApp />} />
+          <Route path="study/*" element={<StudyApp />}>
+            <Route path=":studyId" element={<StudyDetail />} />
+          </Route>
           <Route path="community/*" element={<CommunityApp />}>
             <Route path=":contentId" element={<CommunityDetail />} />
           </Route>
