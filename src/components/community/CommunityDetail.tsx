@@ -126,7 +126,7 @@ const CommunityDetail = () => {
             <div className="comment-content">
               <div className="top">
                 <div className="top-left">
-                  <UserIcon />
+                  <UserIcon width="24" height="24" />
                   <div>
                     <p>{comment.writer}</p>
                     <p>{comment.date}</p>
@@ -146,7 +146,7 @@ const CommunityDetail = () => {
         <button onClick={goCommunity}>목록으로</button>
         <div>
           <input type="text" placeholder="댓글을 입력하세요." />
-          <SendIcon />
+          <SendIcon stroke="#ffffff" />
         </div>
       </div>
     </div>
