@@ -2,50 +2,16 @@ import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/study/StudyList.scss";
-
-const studyData = [
-  {
-    recruiting: "모집중",
-    title: "리액트 JS, 타입스크립트 스터디 모집",
-    description:
-      "안녕하세요. 웹 프론트엔드 스터디원 구합니다. 스터디 주제: 리액트 JS, 타입스크립트  스터디 진행 방..",
-    hashtags: ["서울", "프론트엔드", "React JS"],
-    school: "단국대학교 소프트웨어학과 20학번",
-    date: "10분전",
-    chat: 10,
-    like: 7,
-  },
-  {
-    recruiting: "모집완료",
-    title: "리액트 JS, 타입스크립트 스터디 모집",
-    description:
-      "안녕하세요. 웹 프론트엔드 스터디원 구합니다. 스터디 주제: 리액트 JS, 타입스크립트  스터디 진행 방..",
-    hashtags: ["프론트엔드", "React JS"],
-    school: "단국대학교 소프트웨어학과 20학번",
-    date: "10분전",
-    chat: 10,
-    like: 7,
-  },
-  {
-    recruiting: "모집중",
-    title: "리액트 JS, 타입스크립트 스터디 모집",
-    description:
-      "안녕하세요. 웹 프론트엔드 스터디원 구합니다. 스터디 주제: 리액트 JS, 타입스크립트  스터디 진행 방..",
-    hashtags: [],
-    school: "단국대학교 소프트웨어학과 20학번",
-    date: "10분전",
-    chat: 10,
-    like: 7,
-  },
-];
+import data, { StudyData } from "../../data/StudyData";
 
 interface StudySearchProps {
   selectedFilter: string;
 }
 
 const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
-  const filteredStudyData = studyData.filter(
+  const filteredStudyData: StudyData[] = data.filter(
     (item) =>
       selectedFilter === "all" ||
       item.recruiting.toLowerCase() === selectedFilter
@@ -54,6 +20,12 @@ const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
   const [selectedFilter2, setSelectedFilter2] = useState("recent");
   const handleFilterChange = (filter: any) => {
     setSelectedFilter2(filter);
+  };
+
+  const navigate = useNavigate();
+
+  const handleItemClick = (studyId: number) => {
+    navigate(`/study/${studyId}`);
   };
 
   return (
@@ -85,7 +57,11 @@ const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
         </button>
       </div>
       {filteredStudyData.map((item, index) => (
-        <div key={index} className="study-list">
+        <div
+          key={index}
+          className="study-list"
+          onClick={() => handleItemClick(item.studyId)}
+        >
           <h1>
             <span
               className={`${
