@@ -11,7 +11,7 @@ const TradeContainer = styled.div`
 `;
 
 const TradeContent = styled.div`
-  width: 80%;
+  width: 75%;
 `;
 
 const TradeApp = () => {

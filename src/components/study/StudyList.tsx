@@ -28,6 +28,10 @@ const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
     navigate(`/study/${studyId}`);
   };
 
+  const handleStudyWrite = () => {
+    navigate("/study/write");
+  };
+
   return (
     <div>
       <div className="study-list-top">
@@ -51,7 +55,7 @@ const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
             인기순
           </li>
         </ul>
-        <button>
+        <button onClick={handleStudyWrite}>
           <PencilIcon />
           글쓰기
         </button>

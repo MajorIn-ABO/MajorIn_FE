@@ -17,11 +17,15 @@ const StudyWriter = () => {
     navigate("/study");
   };
 
+  const goWrite = () => {
+    navigate("/study/write");
+  };
+
   return (
     <div className="comment-writer-container">
       <div className="top">
         <button onClick={goBack}>뒤로가기</button>
-        <button>
+        <button onClick={goWrite}>
           <PencilIcon />
           글쓰기
         </button>
