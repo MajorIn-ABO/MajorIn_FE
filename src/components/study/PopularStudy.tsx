@@ -26,7 +26,7 @@ const data = [
 const PopularStudy = () => {
   return (
     <div className="popular-study-container">
-      <h1>✏️ 주간 인기 스터디</h1>
+      <h1>🔥 주간 인기 스터디</h1>
       <ul>
         {data.map((item, index) => (
           <li key={index}>
