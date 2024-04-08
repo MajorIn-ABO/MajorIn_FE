@@ -2,6 +2,8 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import HomeApp from "../pages/home/HomeApp";
 import MainApp from "../pages/main/MainApp";
+import EmployApp from "../pages/employ/EmployApp";
+import EmployDetail from "../components/employ/EmployDetail";
 import StudyApp from "../pages/study/StudyApp";
 import StudyDetail from "../components/study/StudyDetail";
 import CommunityApp from "../pages/community/CommunityApp";
@@ -43,6 +45,9 @@ const RouterApp = () => {
         <Route path="/home" element={<HomeApp />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<MainApp />} />
+          <Route path="employ/*" element={<EmployApp />}>
+            <Route path=":employId" element={<EmployDetail />} />
+          </Route>
           <Route path="study/*" element={<StudyApp />}>
             <Route path=":studyId" element={<StudyDetail />} />
           </Route>

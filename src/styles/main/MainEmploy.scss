@@ -12,6 +12,8 @@
     height: 30vh;
     border-radius: 5px;
     border: 0.8px solid #dadada;
+    padding-bottom: 10px;
+    cursor: pointer;
 
     .employ-top {
       width: 100%;
@@ -45,8 +47,8 @@
     .employ-bottom {
       float: right;
       color: #1b1c3a;
-      font-size: 0.4rem;
-      padding: 10px 5px;
+      font-size: 0.6rem;
+      padding: 0 5px;
     }
   }
 }
