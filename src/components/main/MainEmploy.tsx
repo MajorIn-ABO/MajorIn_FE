@@ -1,58 +1,37 @@
 import "../../styles/main/MainEmploy.scss";
-
-const employData = [
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-  {
-    recruit: "모짐 마감",
-    deadline: "23.09.31",
-    company: "카카오(KaKao)",
-    info: "신규 서비스 플랫폼 기획자(경력) 채용",
-  },
-];
+import { useNavigate, useLocation } from "react-router-dom";
+import data, { EmployData } from "../../data/EmployData";
 
 const MainEmploy = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goEmployAll = () => {
+    navigate("/employ");
+  };
+  const goEmployItemClick = (employId: number) => {
+    navigate(`/employ/${employId}`);
+  };
+  const isEmployPath = location.pathname !== "/employ";
+
   return (
     <div>
-      <div className="title">
-        <h1>🏢 취업 정보</h1>
-      </div>
+      {isEmployPath && (
+        <div className="title">
+          <h1>🏢 취업 정보</h1>
+          <p onClick={goEmployAll}>
+            전체보기 <span>&gt;</span>
+          </p>
+        </div>
+      )}
       <div className="employ-content">
-        {employData.map((item, index) => (
-          <div className="employ-box" key={index}>
+        {data.map((item, index) => (
+          <div
+            className="employ-box"
+            key={index}
+            onClick={() => goEmployItemClick(item.employId)}
+          >
             <div className="employ-top">
-              <img
-                src="https://t1.kakaocdn.net/kakaocorp/corp_thumbnail/Kakao.png"
-                alt="img"
-              />
+              <img src={item.img} alt="img" />
             </div>
             <div className="employ-middle">
               <div>
