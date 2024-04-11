@@ -9,6 +9,7 @@ import StudyDetail from "../components/study/StudyDetail";
 import CommunityApp from "../pages/community/CommunityApp";
 import CommunityDetail from "../components/community/CommunityDetail";
 import TradeApp from "../pages/trade/TradeApp";
+import TradeDetail from "../components/trade/TradeDetail";
 import MyPageApp from "../pages/mypage/MyPageApp";
 import LoginApp from "../pages/login/LoginApp";
 import SignUpApp from "../pages/signup/SignUpApp";
@@ -54,7 +55,9 @@ const RouterApp = () => {
           <Route path="community/*" element={<CommunityApp />}>
             <Route path=":contentId" element={<CommunityDetail />} />
           </Route>
-          <Route path="trade" element={<TradeApp />} />
+          <Route path="trade/*" element={<TradeApp />}>
+            <Route path=":tradeId" element={<TradeDetail />} />
+          </Route>
           <Route path="mypage" element={<MyPageApp />} />
         </Route>
         <Route path="/login" element={<LoginApp />} />
