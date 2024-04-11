@@ -1,0 +1,79 @@
+.trade-detail-container {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  border-top: 1px solid #1b1c3a;
+  box-shadow: 2px 2px 4px 0px #00000040;
+  .top {
+    margin: 10px 0 20px 0;
+    span {
+      border-radius: 15px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 5px 15px;
+    }
+    .selling {
+      background: #1b1c3a;
+    }
+    .sold-out {
+      background: #cccccc;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    gap: 20px;
+    .img {
+      width: 20%;
+      min-width: 150px;
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 80%;
+      h1 {
+        font-size: 1.4rem;
+        margin-bottom: -10px;
+      }
+
+      p {
+        color: #777777;
+        font-weight: 600;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      li {
+        color: #1b1c3a;
+        display: flex;
+        gap: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+      .info {
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      .posting {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        p {
+          &:nth-child(3) {
+            margin-left: -5px;
+          }
+        }
+      }
+    }
+  }
+}
