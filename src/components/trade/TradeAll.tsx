@@ -2,54 +2,9 @@ import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
 import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/trade/TradeAll.scss";
-
-const bookData = [
-  {
-    img: "https://media.wiley.com/product_data/coverImage300/66/11198003/1119800366.jpg",
-    sale: true,
-    title: "Operating System Concepts",
-    author: "Silberschatz, Avraham, PETER BAER GALVIN, GREG GAGNE 저자(글)",
-    publish: "John Wiley & Sons Inc",
-    price: "10,000",
-    saler: "단국대학교 소프트웨어학과 20학번",
-    posting: "35분전",
-    chat: 5,
-  },
-  {
-    img: "https://media.wiley.com/product_data/coverImage300/66/11198003/1119800366.jpg",
-    sale: false,
-    title: "Operating System Concepts",
-    author: "Silberschatz, Avraham, PETER BAER GALVIN, GREG GAGNE 저자(글)",
-    publish: "John Wiley & Sons Inc",
-    price: "10,000",
-    saler: "단국대학교 소프트웨어학과 20학번",
-    posting: "35분전",
-    chat: 5,
-  },
-  {
-    img: "https://media.wiley.com/product_data/coverImage300/66/11198003/1119800366.jpg",
-    sale: true,
-    title: "Operating System Concepts",
-    author: "Silberschatz, Avraham, PETER BAER GALVIN, GREG GAGNE 저자(글)",
-    publish: "John Wiley & Sons Inc",
-    price: "10,000",
-    saler: "단국대학교 소프트웨어학과 20학번",
-    posting: "35분전",
-    chat: 5,
-  },
-  {
-    img: "https://media.wiley.com/product_data/coverImage300/66/11198003/1119800366.jpg",
-    sale: true,
-    title: "Operating System Concepts",
-    author: "Silberschatz, Avraham, PETER BAER GALVIN, GREG GAGNE 저자(글)",
-    publish: "John Wiley & Sons Inc",
-    price: "10,000",
-    saler: "단국대학교 소프트웨어학과 20학번",
-    posting: "35분전",
-    chat: 5,
-  },
-];
+import data, { TradeData } from "../../data/TradeData";
 
 const TradeAll = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -58,10 +13,15 @@ const TradeAll = () => {
   };
   const bookDataFiltered =
     selectedFilter === "all"
-      ? bookData
-      : bookData.filter((item) =>
+      ? data
+      : data.filter((item) =>
           selectedFilter === "selling" ? item.sale : !item.sale
         );
+
+  const navigate = useNavigate();
+  const goTradeItemClick = (tradeId: number) => {
+    navigate(`/trade/${tradeId}`);
+  };
 
   return (
     <div className="trade-all-container">
@@ -89,7 +49,11 @@ const TradeAll = () => {
         </ul>
       </div>
       {bookDataFiltered.map((item, index) => (
-        <div key={index} className="book-content">
+        <div
+          key={index}
+          className="book-content"
+          onClick={() => goTradeItemClick(item.tradeId)}
+        >
           <div className="img">
             <img src={item.img} alt="img" />
           </div>
@@ -102,7 +66,7 @@ const TradeAll = () => {
             <p className="publish">{item.publish}</p>
             <div>
               <PriceIcon />
-              <p className="price">{item.price}원</p>
+              <p className="price">{item.price.toLocaleString()}원</p>
             </div>
             <div>
               <SalerIcon />
