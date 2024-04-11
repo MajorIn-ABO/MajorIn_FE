@@ -1,5 +1,6 @@
-.study-container {
-  width: 75%;
+.study-container,
+.trade-container {
+  width: 100%;
   .study-detail-container {
     width: 100%;
     background: #ffffff;
@@ -45,7 +46,8 @@
     }
   }
 
-  .study-detail-comment {
+  .study-detail-comment,
+  .trade-detail-comment {
     width: 100%;
     h1 {
       margin: 40px 0;
