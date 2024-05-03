@@ -6,13 +6,13 @@ import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/community/CommunityMain.scss";
-import data, { CommunityData } from "../../data/CommunityData";
+import comdata, { CommunityData } from "../../data/CommunityData";
 
 const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
   onWriteButtonClick,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체보기");
-  const filteredData: CommunityData[] = data.filter(
+  const filteredData: CommunityData[] = comdata.filter(
     (item) =>
       selectedCategory === "전체보기" || item.category === selectedCategory
   );

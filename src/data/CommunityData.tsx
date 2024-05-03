@@ -19,7 +19,7 @@ export interface CommentData {
   like: number;
 }
 
-const data: CommunityData[] = [
+const comdata: CommunityData[] = [
   {
     contentId: 1,
     category: "전공질문",
@@ -144,4 +144,4 @@ const data: CommunityData[] = [
   },
 ];
 
-export default data;
+export default comdata;
