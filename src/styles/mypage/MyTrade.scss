@@ -1,0 +1,63 @@
+.mytrade-container {
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .mytrade {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 100%;
+    padding: 15px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      margin-top: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #d9d9d9;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #1b1c3a;
+      border-radius: 5px;
+    }
+
+    .book-content {
+      width: 100%;
+      min-height: 30vh;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #dadada;
+
+      .img {
+        width: 30%;
+        min-width: 180px;
+      }
+
+      footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        button {
+          height: 4vh;
+          border-radius: 5px;
+          color: #ffffff;
+          font-weight: 700;
+
+          .sold-out {
+            background: #cccccc;
+          }
+
+          .selling {
+            background: #1b1c3a;
+          }
+        }
+      }
+    }
+  }
+}

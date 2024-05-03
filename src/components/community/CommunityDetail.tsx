@@ -7,7 +7,7 @@ import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
 import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
 import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
 import "../../styles/community/CommunityDetail.scss";
-import data, { CommunityData } from "../../data/CommunityData";
+import comdata, { CommunityData } from "../../data/CommunityData";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,7 +15,9 @@ const CommunityDetail = () => {
   const navigate = useNavigate();
   const { contentId } = useParams();
   const parsedContentId = contentId ? parseInt(contentId) : undefined;
-  const selectedData = data.find((item) => item.contentId === parsedContentId);
+  const selectedData = comdata.find(
+    (item) => item.contentId === parsedContentId
+  );
   // 각 댓글의 좋아요/싫어요 상태를 관리하는 객체
   const [commentReactions, setCommentReactions] = useState<{
     [key: number]: {
