@@ -1,0 +1,88 @@
+.mypost-container {
+  h1 {
+    margin-bottom: 20px;
+  }
+  ul {
+    display: flex;
+    gap: 15px;
+    color: #a8a8a8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+    .selected {
+      color: #1b1c3a;
+      border-bottom: 2.5px solid #1b1c3a;
+      padding-bottom: 2px;
+    }
+  }
+
+  .post-container {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 100%;
+    padding: 15px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      margin-top: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #d9d9d9;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #1b1c3a;
+      border-radius: 5px;
+    }
+
+    .study-list {
+      padding: 15px 0;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        h1 {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .community-content {
+      border-bottom: 1px solid #dadada;
+      margin-bottom: 20px;
+
+      .content-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        p {
+          color: #5e5e5e;
+          font-size: 0.8rem;
+        }
+      }
+
+      .content-middle {
+        margin-bottom: 20px;
+        h1 {
+          font-size: 1rem;
+          margin-bottom: 5px;
+        }
+        p {
+          font-size: 0.9rem;
+          color: #5e5e5e;
+        }
+      }
+    }
+  }
+}
+
+.modify {
+  display: flex;
+  gap: 3px;
+  cursor: pointer;
+}
