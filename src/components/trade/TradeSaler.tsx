@@ -8,6 +8,9 @@ const TradeSaler = () => {
   const goBack = () => {
     navigate("/trade");
   };
+  const goWrite = () => {
+    navigate("/trade/write");
+  };
   return (
     <div className="trade-saler-container">
       <h1>💬 판매자와 채팅하기</h1>
@@ -28,7 +31,7 @@ const TradeSaler = () => {
       </div>
       <div className="top">
         <button onClick={goBack}>뒤로가기</button>
-        <button>
+        <button onClick={goWrite}>
           <PencilIcon />책 판매하기
         </button>
       </div>
