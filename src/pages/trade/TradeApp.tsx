@@ -4,6 +4,7 @@ import TradeAll from "../../components/trade/TradeAll";
 import TradePrice from "../../components/trade/TradePrice";
 import TradeDetail from "../../components/trade/TradeDetail";
 import TradeSaler from "../../components/trade/TradeSaler";
+import TradeWrite from "../../components/trade/TradeWrite";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
@@ -42,6 +43,17 @@ const TradeApp = () => {
               <TradeDetail />
             </TradeContent>
             <TradeSaler />
+          </TradeContainer>
+        }
+      />
+      <Route
+        path="/write"
+        element={
+          <TradeContainer>
+            <TradeContent>
+              <TradeWrite />
+            </TradeContent>
+            <TradePrice />
           </TradeContainer>
         }
       />

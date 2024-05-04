@@ -1,6 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const SearchBox = styled.div`
   width: 100%;
@@ -27,13 +28,17 @@ const RegisterBtn = styled.button`
 `;
 
 const TradeSearch = () => {
+  const navigate = useNavigate();
+  const goWrite = () => {
+    navigate("/trade/write");
+  };
   return (
     <div>
       <SearchBox>
         <input type="text" placeholder="제목, 저자, 출판사" />
         <SearchIcon />
       </SearchBox>
-      <RegisterBtn>
+      <RegisterBtn onClick={goWrite}>
         <PencilIcon />책 판매하기
       </RegisterBtn>
     </div>
