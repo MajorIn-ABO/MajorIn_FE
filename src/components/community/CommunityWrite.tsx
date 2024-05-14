@@ -17,9 +17,9 @@ const CommunityWrite: React.FC<{ onBackToMain: () => void }> = ({
         <div>
           <label>카테고리 선택</label>
           <select>
-            <option value="전공질문">전공질문</option>
+            <option value="전공질문">학과질문</option>
             <option value="잡담/수다">잡담/수다</option>
-            <option value="인턴후기">인턴후기</option>
+            <option value="인턴후기">인턴리뷰</option>
             <option value="대외활동">대외활동</option>
             <option value="우리학교는">우리학교는</option>
           </select>

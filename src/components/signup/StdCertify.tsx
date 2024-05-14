@@ -2,18 +2,38 @@
 import { useState, ChangeEvent } from "react";
 import { ReactComponent as ImgIcon } from "../../assets/icon/img-search.svg";
 import "../../styles/signup/StdCertify.scss";
+import { postStudentCard } from "../../api/postStudentCard";
+import { useSetRecoilState } from "recoil";
+import { studentDataState } from "../../data/recoilAtoms";
 
 const StdCertify = () => {
   const [selectedImage, setSelectedImage] = useState<
     string | ArrayBuffer | null
   >(null);
+  const setStudentInfo = useSetRecoilState(studentDataState);
 
-  const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         setSelectedImage(reader.result);
+
+        const responseData = await postStudentCard(file);
+        console.log(responseData);
+        if (responseData.is_student_id_card) {
+          const { user_name, major_name, student_id, school_name } =
+            responseData;
+          setStudentInfo((prevData) => ({
+            ...prevData,
+            user_name,
+            major_name,
+            student_id,
+            school_name,
+          }));
+        } else {
+          alert("학생증 인식에 실패했습니다. 다시 업로드해주세요.");
+        }
       };
       reader.readAsDataURL(file);
     }
@@ -24,7 +44,7 @@ const StdCertify = () => {
       <h1>학생증 인증</h1>
       <div className="certify-content">
         <p>
-          카드 또는 모바일 학생증을 스캔하거나 사진으로 찍어 첨부해주세요.
+          학생증 카드를 수평을 맞춰서 학생증을 업로드 해주세요.
           <br />
           대학교, 이름, 학과, 학번이 필수적으로 기입되어 있어야 하며, 이를
           제외한 정보는

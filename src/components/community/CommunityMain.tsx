@@ -3,19 +3,32 @@ import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
 import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
 import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../../styles/community/CommunityMain.scss";
-import comdata, { CommunityData } from "../../data/CommunityData";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchData } from "../../api/fetchData";
+import { CommunityData } from "../../types/Types";
 
 const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
   onWriteButtonClick,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체보기");
-  const filteredData: CommunityData[] = comdata.filter(
+  const [communityData, setCommunityData] = useState<CommunityData[]>([]);
+
+  useEffect(() => {
+    const fetchCommunityData = async () => {
+      const data = await fetchData("/boards/posts/");
+      setCommunityData(data);
+    };
+
+    fetchCommunityData();
+  }, []);
+
+  const filteredData: CommunityData[] = communityData.filter(
     (item) =>
-      selectedCategory === "전체보기" || item.category === selectedCategory
+      selectedCategory === "전체보기" || item.category_name === selectedCategory
   );
+
   const navigate = useNavigate();
 
   const handleItemClick = (contentId: number) => {
@@ -37,10 +50,10 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
             전체보기
           </li>
           <li
-            onClick={() => setSelectedCategory("전공질문")}
-            className={selectedCategory === "전공질문" ? "selected" : ""}
+            onClick={() => setSelectedCategory("학과질문")}
+            className={selectedCategory === "학과질문" ? "selected" : ""}
           >
-            전공질문
+            학과질문
           </li>
           <li
             onClick={() => setSelectedCategory("잡담/수다")}
@@ -49,10 +62,10 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
             잡담/수다
           </li>
           <li
-            onClick={() => setSelectedCategory("인턴후기")}
-            className={selectedCategory === "인턴후기" ? "selected" : ""}
+            onClick={() => setSelectedCategory("인턴리뷰")}
+            className={selectedCategory === "인턴리뷰" ? "selected" : ""}
           >
-            인턴후기
+            인턴리뷰
           </li>
           <li
             onClick={() => setSelectedCategory("대외활동")}
@@ -76,25 +89,33 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
         <div
           key={index}
           className="community-content"
-          onClick={() => handleItemClick(item.contentId)}
+          onClick={() => handleItemClick(item.id)}
         >
           <div className="content-top">
-            <span className="category">{item.category}</span>
-            <p>{item.date}</p>
+            <span className="category">{item.category_name}</span>
+            <p>
+              {new Date(item.post_date).toLocaleString("ko-KR", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })}
+            </p>
           </div>
           <div className="content-middle">
             <h1>{item.title}</h1>
-            <p>{item.content}</p>
+            <p>{item.contents}</p>
           </div>
           <div className="content-bottom">
-            <p className="writer">{item.writer}</p>
+            <p className="writer">
+              {item.school_name} {item.major_name}{" "}
+              {String(item.admission_date).slice(-2)}학번
+            </p>
             <div className="content-numbers">
               <ChatIcon stroke="#66BB6A" />
-              <p className="color-chat">{item.chat}</p>
+              <p className="color-chat">{item.comment}</p>
               <LikeIcon stroke="#FF8181" />
               <p className="color-like">{item.like}</p>
               <ScrapIcon />
-              <p className="color-scrap">{item.scrap}</p>
+              <p className="color-scrap">{item.keep}</p>
             </div>
           </div>
         </div>
