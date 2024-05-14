@@ -34,13 +34,16 @@
 }
 
 .match {
-  display: flex;
-  justify-content: space-between;
-
   div {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
+
+    span {
+      color: #777;
+      font-size: 0.8rem;
+    }
   }
 }
 
