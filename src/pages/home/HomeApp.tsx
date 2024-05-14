@@ -11,10 +11,11 @@ const HomeContainer = styled.div`
 
 const HomeLeft = styled.div`
   width: 40%;
-  height: 100vh;
+  min-height: 100vh;
   max-width: 400px;
   min-width: 350px;
   background: #1b1c3a;
+  overflow: auto;
 `;
 
 const HomeRight = styled.div`

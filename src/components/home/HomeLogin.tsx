@@ -7,7 +7,7 @@ const HomeLogin = () => {
     navigate("/signup");
   };
   return (
-    <div className="login-container">
+    <div className="home-login-container">
       <div className="logo">
         <img src={require("../../assets/img/appLogo.png")} alt="logo" />
       </div>
