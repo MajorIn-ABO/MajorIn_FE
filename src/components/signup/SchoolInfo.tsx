@@ -1,26 +1,52 @@
 import { useState } from "react";
+import { postData } from "../../api/postData";
+import { useRecoilState } from "recoil";
+import { studentDataState } from "../../data/recoilAtoms";
 import "../../styles/signup/SchoolInfo.scss";
 
 const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
   moveToNextStep,
 }) => {
-  const [selection, setSelection] = useState("");
+  const [studentData, setStudentData] = useRecoilState(studentDataState);
 
-  const handleSelectionChange = (event: any) => {
-    setSelection(event.target.value);
+  const [major, setMajor] = useState({
+    major: studentData.major_name,
+    major_category_name: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setMajor((prevMajor) => {
+      const updatedMajor = {
+        ...prevMajor,
+        major_category_name: e.target.value,
+      };
+      console.log(updatedMajor);
+      return updatedMajor;
+    });
   };
 
-  let textToShow = "";
-  let textColor = "";
-  if (selection === "yes") {
-    textToShow =
-      '학적 정보가 일치하다면 “다음으로" 버튼으로 회원가입을 이어서 진행해주세요.';
-    textColor = "#0FA958";
-  } else if (selection === "no") {
-    textToShow =
-      "학적 정보가 일치하지 않다면 파일 선택 후 다시 한 번 학생증을 업로드해주세요.";
-    textColor = "#FF8181";
-  }
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!major.major_category_name) {
+      alert("학과를 선택해주세요.");
+      return;
+    }
+    const responseData = await postData("/check_major/", major);
+    if (responseData.message) {
+      const { major_id } = responseData;
+      setStudentData((prevData) => ({
+        ...prevData,
+        major_id,
+      }));
+      console.log(studentData);
+      moveToNextStep();
+    } else {
+      alert(
+        "해당 학과에 대해 선택된 게시판을 이용할 수 없습니다. 다시 선택해주세요."
+      );
+    }
+  };
+
   return (
     <div>
       <h1>학적 정보</h1>
@@ -31,48 +57,37 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
       <section className="school-content">
         <div>
           <p>이름</p>
-          {/* <p></p> */}
-          <p>김**</p>
+          <p>{studentData.user_name}</p>
         </div>
         <div>
           <p>학교</p>
-          {/* <p></p> */}
-          <p>단국대학교</p>
+          <p>{studentData.school_name}</p>
         </div>
         <div>
           <p>학과</p>
-          {/* <p></p> */}
-          <p>소프트웨어학과</p>
+          <p>{studentData.major_name}</p>
         </div>
         <div>
           <p>학번</p>
-          {/* <p></p> */}
-          <p>32200852</p>
+          <p>{studentData.student_id}</p>
         </div>
       </section>
       <div className="match">
-        <p>입력된 학적 정보가 일치한가요?</p>
+        <h1>학과 게시판 선택</h1>
         <div>
-          <input
-            type="radio"
-            id="yes"
-            value="yes"
-            checked={selection === "yes"}
-            onChange={handleSelectionChange}
-          />
-          <label htmlFor="yes">예</label>
-          <input
-            type="radio"
-            id="no"
-            value="no"
-            checked={selection === "no"}
-            onChange={handleSelectionChange}
-          />
-          <label htmlFor="no">아니오</label>
+          <span>학과에 맞는 게시판을 선택하세요.</span>
+          <select
+            required
+            value={major.major_category_name}
+            onChange={handleChange}
+          >
+            <option value="">-- 카테고리를 선택하세요 --</option>
+            <option value="IT">IT</option>
+            <option value="경영">경영</option>
+          </select>
         </div>
       </div>
-      <p style={{ color: textColor, fontSize: "0.8rem" }}>{textToShow}</p>
-      <button className="next-button" onClick={moveToNextStep}>
+      <button className="next-button" onClick={(e) => handleSubmit(e)}>
         다음으로
       </button>
     </div>
