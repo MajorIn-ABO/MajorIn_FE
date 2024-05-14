@@ -1,20 +1,31 @@
-import { useParams } from "react-router-dom";
-import data, { StudyData } from "../../data/StudyData";
+// import data, { StudyData } from "../../data/StudyData";
 import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
 import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
 import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
 import "../../styles/study/StudyDetail.scss";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { StudyData } from "../../types/Types";
+import { fetchData } from "../../api/fetchData";
 
 const StudyDetail = () => {
   const { studyId } = useParams();
   const parsedStudyId = studyId ? parseInt(studyId) : undefined;
-  const selectedData = data.find((item) => item.studyId === parsedStudyId);
-  const hashTags = selectedData?.hashtags;
+
+  const [selectedData, setSelectedData] = useState<StudyData>();
+  useEffect(() => {
+    const fetchStudyData = async () => {
+      const data = await fetchData(`/studys/posts/${parsedStudyId}/`);
+      setSelectedData(data);
+    };
+
+    fetchStudyData();
+  }, [parsedStudyId]);
 
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
-  const commentData = selectedData?.comments || [];
+  // const commentData = selectedData?.comments || [];
 
   return (
     <div className="study-container">
@@ -23,21 +34,29 @@ const StudyDetail = () => {
           <div>
             <h1>{selectedData.title}</h1>
             <p>
-              {selectedData.school}
-              <span> ・ {selectedData.date}</span>
+              {selectedData.school_name} {selectedData.major_name}{" "}
+              {String(selectedData.admission_date).slice(-2)}학번 ·{" "}
+              <span>
+                {" "}
+                ・{" "}
+                {new Date(selectedData.post_date).toLocaleString("ko-KR", {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}
+              </span>
             </p>
           </div>
           <div
             className={`${
-              selectedData.recruiting === "모집중" ? "recruiting" : "completed"
+              selectedData.is_recruited === false ? "recruiting" : "recruited"
             }`}
           >
-            {selectedData.recruiting}
+            {selectedData.is_recruited === false ? "모집중" : "모집완료"}
           </div>
         </div>
-        <div className="middle">{selectedData.description}</div>
+        <div className="middle">{selectedData.contents}</div>
         <div className="bottom">
-          {hashTags?.map((item, index) => (
+          {selectedData.hashtags.map((item, index) => (
             <span key={index} className="category">
               #{item}
             </span>
@@ -53,7 +72,7 @@ const StudyDetail = () => {
             <SendIcon stroke="#1b1c3a" />
           </div>
         </form>
-        {commentData?.map((comment, index) => {
+        {/* {commentData?.map((comment, index) => {
           return (
             <div key={index} className="comment-container">
               <div className="info">
@@ -72,7 +91,7 @@ const StudyDetail = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

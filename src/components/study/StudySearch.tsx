@@ -11,7 +11,6 @@ const StudySearch: React.FC<StudySearchProps> = ({
   selectedFilter,
   onFilterChange,
 }) => {
-  // const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchText, setSearchText] = useState<string>("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
@@ -51,14 +50,14 @@ const StudySearch: React.FC<StudySearchProps> = ({
             전체보기
           </li>
           <li
-            className={selectedFilter === "모집중" ? "selected" : ""}
-            onClick={() => handleFilterChange("모집중")}
+            className={selectedFilter === "recruiting" ? "selected" : ""}
+            onClick={() => handleFilterChange("recruiting")}
           >
             모집중
           </li>
           <li
-            className={selectedFilter === "모집완료" ? "selected" : ""}
-            onClick={() => handleFilterChange("모집완료")}
+            className={selectedFilter === "recruited" ? "selected" : ""}
+            onClick={() => handleFilterChange("recruited")}
           >
             모집완료
           </li>
