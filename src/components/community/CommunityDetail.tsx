@@ -1,23 +1,33 @@
 import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
 import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
-import { ReactComponent as GoodIcon } from "../../assets/icon/good.svg";
-import { ReactComponent as BadIcon } from "../../assets/icon/bad.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
+// import { ReactComponent as GoodIcon } from "../../assets/icon/good.svg";
+// import { ReactComponent as BadIcon } from "../../assets/icon/bad.svg";
+// import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
+// import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
 import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
 import "../../styles/community/CommunityDetail.scss";
-import comdata, { CommunityData } from "../../data/CommunityData";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { CommunityData } from "../../types/Types";
+import { fetchData } from "../../api/fetchData";
 
 const CommunityDetail = () => {
   const navigate = useNavigate();
   const { contentId } = useParams();
   const parsedContentId = contentId ? parseInt(contentId) : undefined;
-  const selectedData = comdata.find(
-    (item) => item.contentId === parsedContentId
-  );
+
+  const [selectedData, setSelectedData] = useState<CommunityData>();
+
+  useEffect(() => {
+    const fetchCommunityData = async () => {
+      const data = await fetchData(`/boards/posts/${parsedContentId}/`);
+      setSelectedData(data);
+    };
+
+    fetchCommunityData();
+  }, [parsedContentId]);
+
   // 각 댓글의 좋아요/싫어요 상태를 관리하는 객체
   const [commentReactions, setCommentReactions] = useState<{
     [key: number]: {
@@ -31,47 +41,47 @@ const CommunityDetail = () => {
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
-  const commentData = selectedData?.comments || [];
+  // const commentData = selectedData?.comments || [];
 
   // 좋아요 클릭 시 색상 변경 함수
-  const handleLikeClick = (commentId: number) => {
-    setCommentReactions((prevReactions) => {
-      const originalLikeCount =
-        commentData.find((comment) => comment.commentId === commentId)?.like ||
-        0;
-      const newLikeCount = originalLikeCount + 1;
-      return {
-        ...prevReactions,
-        [commentId]: {
-          ...prevReactions[commentId],
-          likeColor: "#FF4A4A",
-          dislikeColor: "#BBBBBB",
-          currentColor: "#FF4A4A",
-          like: newLikeCount,
-        },
-      };
-    });
-  };
+  // const handleLikeClick = (commentId: number) => {
+  //   setCommentReactions((prevReactions) => {
+  //     const originalLikeCount =
+  //       commentData.find((comment) => comment.commentId === commentId)?.like ||
+  //       0;
+  //     const newLikeCount = originalLikeCount + 1;
+  //     return {
+  //       ...prevReactions,
+  //       [commentId]: {
+  //         ...prevReactions[commentId],
+  //         likeColor: "#FF4A4A",
+  //         dislikeColor: "#BBBBBB",
+  //         currentColor: "#FF4A4A",
+  //         like: newLikeCount,
+  //       },
+  //     };
+  //   });
+  // };
 
   // 싫어요 클릭 시 색상 변경 함수
-  const handleDislikeClick = (commentId: number) => {
-    setCommentReactions((prevReactions) => {
-      const originalLikeCount =
-        commentData.find((comment) => comment.commentId === commentId)?.like ||
-        0;
-      const newLikeCount = originalLikeCount - 1;
-      return {
-        ...prevReactions,
-        [commentId]: {
-          ...prevReactions[commentId],
-          likeColor: "#BBBBBB",
-          dislikeColor: "#44B0FF",
-          currentColor: "#44B0FF",
-          like: newLikeCount,
-        },
-      };
-    });
-  };
+  // const handleDislikeClick = (commentId: number) => {
+  //   setCommentReactions((prevReactions) => {
+  //     const originalLikeCount =
+  //       commentData.find((comment) => comment.commentId === commentId)?.like ||
+  //       0;
+  //     const newLikeCount = originalLikeCount - 1;
+  //     return {
+  //       ...prevReactions,
+  //       [commentId]: {
+  //         ...prevReactions[commentId],
+  //         likeColor: "#BBBBBB",
+  //         dislikeColor: "#44B0FF",
+  //         currentColor: "#44B0FF",
+  //         like: newLikeCount,
+  //       },
+  //     };
+  //   });
+  // };
 
   const goCommunity = () => {
     navigate("/community");
@@ -81,28 +91,36 @@ const CommunityDetail = () => {
     <div className="community-container">
       <div className="community-detail-container">
         <div className="detail-top">
-          <span className="category">{selectedData.category}</span>
+          <span className="category">{selectedData.category_name}</span>
           <div>
-            <p>{selectedData.date}</p>
-            <p>{selectedData.writer}</p>
+            <p>
+              {new Date(selectedData.post_date).toLocaleString("ko-KR", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })}
+            </p>
+            <p>
+              {selectedData.school_name} {selectedData.major_name}{" "}
+              {String(selectedData.admission_date).slice(-2)}학번
+            </p>
           </div>
         </div>
         <div className="detail-middle">
           <h1>{selectedData.title}</h1>
-          <p>{selectedData.content}</p>
+          <p>{selectedData.contents}</p>
         </div>
         <div className="detail-bottom">
           <div className="content-numbers">
             <ChatIcon stroke="#66BB6A" />
-            <p className="color-chat">{selectedData.chat}</p>
+            <p className="color-chat">{selectedData.comment}</p>
             <LikeIcon stroke="#FF8181" />
             <p className="color-like">{selectedData.like}</p>
             <ScrapIcon />
-            <p className="color-scrap">{selectedData.scrap}</p>
+            <p className="color-scrap">{selectedData.keep}</p>
           </div>
         </div>
       </div>
-      {commentData?.map((comment, index) => {
+      {/* {commentData?.map((comment, index) => {
         const { likeColor, dislikeColor, currentColor, like } =
           commentReactions[comment.commentId] || {
             likeColor: "#BBBBBB",
@@ -143,7 +161,7 @@ const CommunityDetail = () => {
             </div>
           </div>
         );
-      })}
+      })} */}
       <div className="community-comment-write">
         <button onClick={goCommunity}>목록으로</button>
         <div>
