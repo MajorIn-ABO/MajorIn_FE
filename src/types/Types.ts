@@ -41,3 +41,15 @@ export interface StudyData {
   major_name: string;
   admission_date: number;
 }
+
+export interface BookSearchData {
+  title: string;
+  link: string;
+  image: string;
+  author: string;
+  discount: string;
+  publisher: string;
+  pubdate: string;
+  isbn: string;
+  description: string;
+}
