@@ -17,3 +17,12 @@ export const studentDataState = atom<StudentData>({
     admission_date: 0,
   },
 });
+
+export const loginState = atom({
+  key: "loginState",
+  default: {
+    isLoggedIn: false,
+    access_token: null as string | null,
+    refresh_token: null as string | null,
+  },
+});
