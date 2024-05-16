@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 
   .logo {
     font-family: "GMarketSans", sans-serif;
@@ -55,6 +56,13 @@
   }
 
   .login-bottom {
+    display: flex;
+    gap: 25px;
+    font-size: 0.8rem;
+    color: #9b9b9b;
+    font-weight: 600;
+    margin-top: 10px;
+    // cursor: pointer;
     .signup {
       color: #1b1c3a;
       cursor: pointer;
