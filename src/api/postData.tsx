@@ -20,7 +20,6 @@ export const postTokenData = async (endpoint: string, formData: FormData) => {
   const userId = auth ? auth.user_id : null;
 
   formData.append("user_id", userId);
-  const imgfile = formData.get("imgfile");
 
   if (!accessToken) {
     throw new Error("Access token is not available");
@@ -33,7 +32,6 @@ export const postTokenData = async (endpoint: string, formData: FormData) => {
       },
     });
 
-    // console.log("서버로부터의 응답:", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -43,12 +41,8 @@ export const postTokenData = async (endpoint: string, formData: FormData) => {
 export const postSignUpData = async (endpoint: string, data: any) => {
   try {
     const response = await axios.post(`${API_BASE_URL}${endpoint}`, data);
-    console.log("서버로부터의 응답:", response.data);
     return "성공";
-    // return response.data;
   } catch (error: any) {
-    // console.log(error);
-    // console.log(error.request.response);
     return "실패";
   }
 };
