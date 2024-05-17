@@ -2,12 +2,20 @@ import { ReactComponent as ImgIcon } from "../../assets/icon/img-search.svg";
 import BookSearch from "./BookSearch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { bookState } from "../../data/recoilAtoms";
+import { useRecoilState } from "recoil";
+import { postTokenData } from "../../api/postData";
 
 const TradeWrite: React.FC = () => {
   const [damage, setDamage] = useState<string>("");
+  const [book, setBook] = useRecoilState(bookState);
 
   const handleDamageChange = (value: string) => {
     setDamage(value);
+    setBook((prevBook) => ({
+      ...prevBook,
+      damage_level: value,
+    }));
   };
 
   const imgBoxes = [1, 2, 3, 4];
@@ -32,6 +40,50 @@ const TradeWrite: React.FC = () => {
         setImgPreviews(updatedPreviews); // 이미지 미리보기 URL 배열 업데이트
       };
       reader.readAsDataURL(file); // 파일을 읽어서 URL로 변환
+      setBook((prevBook) => ({
+        ...prevBook,
+        imgfile: file, // 파일을 Recoil 상태에 저장
+      }));
+    }
+  };
+
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBook((prevBook) => ({
+      ...prevBook,
+      price: event.target.value,
+    }));
+  };
+
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setBook((prevBook) => ({
+      ...prevBook,
+      description: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", book.title);
+    formData.append("author", book.author);
+    formData.append("publisher", book.publisher);
+    formData.append("origin_imgfile", book.origin_imgfile);
+    formData.append("price", book.price);
+    formData.append("description", book.description);
+    formData.append("damage_level", book.damage_level);
+    if (book.imgfile) {
+      formData.append("imgfile", book.imgfile);
+    }
+
+    const responseData = await postTokenData(
+      "/usedbooktrades/book/create/",
+      formData
+    );
+    if (responseData) {
+      alert("글 등록이 완료되었습니다.");
+      navigate("/trade");
     }
   };
 
@@ -71,7 +123,12 @@ const TradeWrite: React.FC = () => {
         </div>
         <div className="additional-info">
           <label htmlFor="price">판매 가격</label>
-          <input type="number" id="price" placeholder="단위 (원)" />
+          <input
+            type="number"
+            id="price"
+            placeholder="단위 (원)"
+            onChange={handlePriceChange}
+          />
         </div>
         <div className="additional-info">
           <label>실제 사진</label>
@@ -96,11 +153,11 @@ const TradeWrite: React.FC = () => {
         </div>
         <div className="additional-info">
           <label htmlFor="info">추가 정보</label>
-          <input type="text" id="info" />
+          <input type="text" id="info" onChange={handleDescriptionChange} />
         </div>
         <div className="button-zip">
           <button onClick={goBack}>취소</button>
-          <button>등록</button>
+          <button onClick={handleSubmit}>등록</button>
         </div>
       </form>
     </div>

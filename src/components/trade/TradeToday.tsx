@@ -1,12 +1,22 @@
 import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
 import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { useNavigate } from "react-router-dom";
 import "../../styles/trade/TradeToday.scss";
-import data, { TradeData } from "../../data/TradeData";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { fetchData } from "../../api/fetchData";
+import { BookData } from "../../types/Types";
 
 const TradeToday = () => {
   const navigate = useNavigate();
+  const [bookData, setBookData] = useState<BookData[]>([]);
+  useEffect(() => {
+    const fetchBookData = async () => {
+      const data = await fetchData("/usedbooktrades/posts/");
+      setBookData(data);
+    };
+    fetchBookData();
+  }, []);
   const goTradeItemClick = (tradeId: number) => {
     navigate(`/trade/${tradeId}`);
   };
@@ -15,34 +25,43 @@ const TradeToday = () => {
     <div className="trade-today-container">
       <h1>📚 오늘 등록된 교재</h1>
       <div className="book-container">
-        {data.map((item, index) => (
+        {bookData.map((item, index) => (
           <div
             key={index}
             className="book-content"
-            onClick={() => goTradeItemClick(item.tradeId)}
+            onClick={() => goTradeItemClick(item.id)}
           >
             <div className="img">
-              <img src={item.img} alt="img" />
+              <img src={item.origin_imgfile} alt="img" />
             </div>
             <div className="description">
-              <span className={item.sale ? "selling" : "sold-out"}>
-                {item.sale ? "판매중" : "판매완료"}
+              <span className={item.is_sold ? "sold-out" : "selling"}>
+                {item.is_sold ? "판매완료" : "판매중"}
               </span>
               <h1>{item.title}</h1>
               <p className="author">{item.author}</p>
-              <p className="publish">{item.publish}</p>
+              <p className="publish">{item.publisher}</p>
               <div>
                 <PriceIcon />
                 <p className="price">{item.price.toLocaleString()}원</p>
               </div>
               <div>
                 <SalerIcon />
-                <p className="saler">{item.saler}</p>
+                <p className="saler">
+                  {item.school_name} {item.major_name}{" "}
+                  {String(item.admission_date).slice(-2)}학번
+                </p>
               </div>
               <footer>
-                <p>{item.posting}</p>
+                <p>
+                  {" "}
+                  {new Date(item.post_date).toLocaleString("ko-KR", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
+                </p>
                 <ChatIcon stroke="#9B9B9B" />
-                <p>{item.chat}</p>
+                <p>{item.comment}</p>
               </footer>
             </div>
           </div>

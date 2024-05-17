@@ -14,22 +14,37 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체보기");
   const [communityData, setCommunityData] = useState<CommunityData[]>([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCommunityData = async () => {
-      const data = await fetchData("/boards/posts/");
+      let endpoint = "/boards/posts/";
+      if (isSearching && searchKeyword) {
+        endpoint = `/boards/posts/search/?keyword=${searchKeyword}`;
+      }
+      const data = await fetchData(endpoint);
       setCommunityData(data);
     };
 
     fetchCommunityData();
-  }, []);
+  }, [selectedCategory, searchKeyword, isSearching]);
 
   const filteredData: CommunityData[] = communityData.filter(
     (item) =>
       selectedCategory === "전체보기" || item.category_name === selectedCategory
   );
 
-  const navigate = useNavigate();
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchKeyword(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    setIsSearching(true);
+  };
 
   const handleItemClick = (contentId: number) => {
     navigate(`/community/${contentId}`);
@@ -38,8 +53,13 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
   return (
     <div className="community-container">
       <div className="search">
-        <input type="text" placeholder="검색어를 입력해주세요" />
-        <SearchIcon />
+        <input
+          type="text"
+          placeholder="검색어를 입력해주세요"
+          value={searchKeyword}
+          onChange={handleSearchInputChange}
+        />
+        <SearchIcon onClick={handleSearchClick} />
       </div>
       <div className="community-filtering">
         <ul>

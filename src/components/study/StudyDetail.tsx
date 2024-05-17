@@ -55,7 +55,7 @@ const StudyDetail = () => {
           </div>
         </div>
         <div className="middle">{selectedData.contents}</div>
-        <div className="bottom">
+        <div className="study-bottom">
           {selectedData.hashtags.map((item, index) => (
             <span key={index} className="category">
               #{item}

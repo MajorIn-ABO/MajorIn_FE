@@ -50,6 +50,25 @@ export interface StudyData {
   admission_date: number;
 }
 
+export interface BookData {
+  id: number;
+  title: string;
+  author: string;
+  seller: number;
+  publisher: string;
+  price: string;
+  origin_imgfile: string;
+  imgfile: string;
+  description: string;
+  damage_level: string;
+  post_date: string;
+  comment: number;
+  is_sold: boolean;
+  school_name: string;
+  major_name: string;
+  admission_date: number;
+}
+
 export interface BookSearchData {
   title: string;
   link: string;
@@ -60,4 +79,16 @@ export interface BookSearchData {
   pubdate: string;
   isbn: string;
   description: string;
+}
+
+export interface BookWriteData {
+  title: string;
+  author: string;
+  seller: number;
+  publisher: string;
+  origin_imgfile: string;
+  price: string;
+  imgfile: File | null;
+  description: string;
+  damage_level: string;
 }
