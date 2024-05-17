@@ -101,8 +101,15 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
             </p>
           </div>
           <div className="content-middle">
-            <h1>{item.title}</h1>
-            <p>{item.contents}</p>
+            <div>
+              <h1>{item.title}</h1>
+              <p>{item.contents}</p>
+            </div>
+            {item.imgfile && (
+              <div className="content-img">
+                <img src={item.imgfile} alt="" />
+              </div>
+            )}
           </div>
           <div className="content-bottom">
             <p className="writer">
