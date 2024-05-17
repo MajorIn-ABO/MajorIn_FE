@@ -10,19 +10,27 @@ import { StudyData } from "../../types/Types";
 
 interface StudySearchProps {
   selectedFilter: string;
+  searchText: string;
 }
 
-const StudyList: React.FC<StudySearchProps> = ({ selectedFilter }) => {
+const StudyList: React.FC<StudySearchProps> = ({
+  selectedFilter,
+  searchText,
+}) => {
   const [studyData, setStudyData] = useState<StudyData[]>([]);
 
   useEffect(() => {
     const fetchStudyData = async () => {
-      const data = await fetchData("/studys/posts/");
+      let endpoint = "/studys/posts/";
+      if (searchText.trim() !== "") {
+        endpoint = `/studys/posts/search/?hashtag=${searchText}&keyword=${searchText}`;
+      }
+      const data = await fetchData(endpoint);
       setStudyData(data);
     };
 
     fetchStudyData();
-  }, []);
+  }, [searchText]);
 
   const filteredStudyData: StudyData[] = studyData.filter(
     (item) =>

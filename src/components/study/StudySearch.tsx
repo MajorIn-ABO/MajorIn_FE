@@ -4,12 +4,15 @@ import "../../styles/study/StudySearch.scss";
 
 interface StudySearchProps {
   selectedFilter: string;
+  searchText: string;
   onFilterChange: (filter: string) => void;
+  onSearchChange: (filter: string) => void;
 }
 
 const StudySearch: React.FC<StudySearchProps> = ({
   selectedFilter,
   onFilterChange,
+  onSearchChange,
 }) => {
   const [searchText, setSearchText] = useState<string>("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -21,6 +24,7 @@ const StudySearch: React.FC<StudySearchProps> = ({
   const handleSearch = () => {
     if (searchText.trim() !== "") {
       setRecentSearches([searchText, ...recentSearches]);
+      onSearchChange(searchText);
     }
     setSearchText("");
   };

@@ -21,6 +21,7 @@ const StudyContent = styled.div`
 
 const StudyApp = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [searchText, setSearchText] = useState("");
   return (
     <StudyContainer>
       <Routes>
@@ -31,9 +32,14 @@ const StudyApp = () => {
               <StudyContent>
                 <StudySearch
                   selectedFilter={selectedFilter}
+                  searchText={searchText}
+                  onSearchChange={setSearchText}
                   onFilterChange={setSelectedFilter}
                 />
-                <StudyList selectedFilter={selectedFilter} />
+                <StudyList
+                  selectedFilter={selectedFilter}
+                  searchText={searchText}
+                />
               </StudyContent>
               <PopularStudy />
             </>
