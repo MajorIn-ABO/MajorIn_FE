@@ -6,6 +6,7 @@ import TradeDetail from "../../components/trade/TradeDetail";
 import TradeSaler from "../../components/trade/TradeSaler";
 import TradeWrite from "../../components/trade/TradeWrite";
 import styled from "styled-components";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 const TradeContainer = styled.div`
@@ -20,6 +21,7 @@ const TradeContent = styled.div`
 `;
 
 const TradeApp = () => {
+  const [searchText, setSearchText] = useState("");
   return (
     <Routes>
       <Route
@@ -27,9 +29,12 @@ const TradeApp = () => {
         element={
           <TradeContainer>
             <TradeContent>
-              <TradeSearch />
+              <TradeSearch
+                searchText={searchText}
+                onSearchChange={setSearchText}
+              />
               <TradeToday />
-              <TradeAll />
+              <TradeAll searchText={searchText} />
             </TradeContent>
             <TradePrice />
           </TradeContainer>
