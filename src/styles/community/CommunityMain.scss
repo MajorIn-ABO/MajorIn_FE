@@ -63,6 +63,8 @@
 
     .content-middle {
       margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
       h1 {
         font-size: 1rem;
         margin-bottom: 5px;
@@ -70,6 +72,17 @@
       p {
         font-size: 0.9rem;
         color: #5e5e5e;
+      }
+
+      .content-img {
+        width: 70px;
+        height: 50px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
       }
     }
 

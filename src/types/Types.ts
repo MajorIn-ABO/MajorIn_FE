@@ -18,6 +18,7 @@ export interface CommunityData {
   category_name: string;
   title: string;
   contents: string;
+  imgfile: string;
   post_date: string;
   comment: number;
   like: number;
@@ -25,6 +26,13 @@ export interface CommunityData {
   school_name: string;
   major_name: string;
   admission_date: number;
+}
+
+export interface CommunityWriteData {
+  title: string;
+  contents: string;
+  category_name: string;
+  imgfile: File;
 }
 
 export interface StudyData {

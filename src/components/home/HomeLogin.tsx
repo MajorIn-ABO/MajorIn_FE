@@ -30,7 +30,15 @@ const HomeLogin = () => {
 
     if (response) {
       const data = await response.token;
-      login(data.access, data.refresh);
+      login(
+        data.access,
+        data.refresh,
+        data.user_name,
+        data.school_name,
+        data.major_name,
+        data.admission_date,
+        data.user_id
+      );
       alert("로그인에 성공하였습니다.");
       navigate("/");
     }

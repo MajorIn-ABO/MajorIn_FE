@@ -108,6 +108,11 @@ const CommunityDetail = () => {
         <div className="detail-middle">
           <h1>{selectedData.title}</h1>
           <p>{selectedData.contents}</p>
+          {selectedData.imgfile && (
+            <div className="content-img">
+              <img src={selectedData.imgfile} alt="" />
+            </div>
+          )}
         </div>
         <div className="detail-bottom">
           <div className="content-numbers">
