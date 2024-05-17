@@ -22,7 +22,7 @@
     }
   }
 
-  .bottom {
+  .middle {
     display: flex;
     gap: 20px;
     .img {
@@ -64,15 +64,35 @@
         font-weight: 500;
         font-size: 0.9rem;
       }
-      .posting {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        p {
-          &:nth-child(3) {
-            margin-left: -5px;
-          }
-        }
+    }
+  }
+}
+.bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 40px;
+
+  .img-zip {
+    h1 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 5px;
+    }
+  }
+  .posting {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    p {
+      &:nth-child(3) {
+        margin-left: -5px;
       }
     }
   }
