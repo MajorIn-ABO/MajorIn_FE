@@ -1,7 +1,8 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
 import "../../styles/study/StudyWrite.scss";
+import { useState } from "react";
+import { postTextData } from "../../api/postData";
 
 const StudyWrite = () => {
   const modules = {
@@ -9,7 +10,7 @@ const StudyWrite = () => {
       [{ header: [1, 2, 3, false] }],
       ["bold", "italic", "underline", "strike"],
       [{ list: "ordered" }, { list: "bullet" }],
-      ["blockquote", "link", "image"],
+      ["blockquote", "link"],
       [{ align: [] }, { color: [] }, { background: [] }],
     ],
   };
@@ -24,12 +25,13 @@ const StudyWrite = () => {
     "bullet",
     "blockquote",
     "link",
-    "image",
     "align",
     "color",
     "background",
   ];
 
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [currentHashtag, setCurrentHashtag] = useState<string>("");
 
@@ -59,6 +61,21 @@ const StudyWrite = () => {
     setHashtags(updatedHashtags);
   };
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const postData = {
+      title,
+      contents,
+      hashtags,
+    };
+
+    console.log(postData);
+    const response = await postTextData("/studys/posts/create/", postData);
+    if (response) {
+      console.log("성공");
+    }
+  };
+
   return (
     <div className="study-write-container">
       <h1>✏️ 스터디 모집 글 작성</h1>
@@ -68,8 +85,15 @@ const StudyWrite = () => {
           className="title"
           type="text"
           placeholder="제목의 핵심 내용을 요약해주세요."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <ReactQuill modules={modules} formats={formats} />
+        <ReactQuill
+          modules={modules}
+          formats={formats}
+          value={contents}
+          onChange={setContents}
+        />
         <div className="hashtags">
           {hashtags.map((tag, index) => (
             <span key={index} className="category">
@@ -92,7 +116,7 @@ const StudyWrite = () => {
         </div>
         <div className="button">
           <button>취소</button>
-          <button>등록</button>
+          <button onClick={handleSubmit}>등록</button>
         </div>
       </form>
     </div>

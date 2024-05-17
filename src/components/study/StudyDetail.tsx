@@ -54,7 +54,10 @@ const StudyDetail = () => {
             {selectedData.is_recruited === false ? "모집중" : "모집완료"}
           </div>
         </div>
-        <div className="middle">{selectedData.contents}</div>
+        <div
+          className="middle"
+          dangerouslySetInnerHTML={{ __html: selectedData.contents }}
+        ></div>
         <div className="study-bottom">
           {selectedData.hashtags.map((item, index) => (
             <span key={index} className="category">
