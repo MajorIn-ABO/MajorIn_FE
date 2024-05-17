@@ -7,7 +7,11 @@
   box-shadow: 2px 2px 4px 0px #00000040;
   .top {
     margin: 10px 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     span {
+      height: 4vh;
       border-radius: 15px;
       color: #ffffff;
       font-size: 1rem;
@@ -19,6 +23,21 @@
     }
     .sold-out {
       background: #cccccc;
+    }
+
+    button {
+      height: 4vh;
+      border-radius: 5px;
+      color: #ffffff;
+      font-weight: 700;
+
+      .sold-out {
+        background: #cccccc;
+      }
+
+      .selling {
+        background: #1b1c3a;
+      }
     }
   }
 

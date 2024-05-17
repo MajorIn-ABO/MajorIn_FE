@@ -54,6 +54,12 @@ const StudyList: React.FC<StudySearchProps> = ({
     navigate("/study/write");
   };
 
+  const stripHtmlTags = (htmlString: string) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlString;
+    return tempDiv.textContent || tempDiv.innerText || "";
+  };
+
   return (
     <div>
       <div className="study-list-top">
@@ -98,7 +104,7 @@ const StudyList: React.FC<StudySearchProps> = ({
             </span>
             {item.title}
           </h1>
-          <p>{item.contents}</p>
+          <p>{stripHtmlTags(item.contents)}</p>
           {item.hashtags.map((hashtag, index) => (
             <span className="category" key={index}>
               # {hashtag}

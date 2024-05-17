@@ -52,6 +52,7 @@ export interface StudyData {
 
 export interface BookData {
   id: number;
+  user_id: number;
   title: string;
   author: string;
   seller: number;

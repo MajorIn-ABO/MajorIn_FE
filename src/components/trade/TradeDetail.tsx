@@ -11,11 +11,15 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BookData } from "../../types/Types";
 import { fetchData } from "../../api/fetchData";
+import { postSold } from "../../api/postData";
 
 const TradeDetail = () => {
   const { tradeId } = useParams();
   const parsedTradeId = tradeId ? parseInt(tradeId) : undefined;
   const [selectedData, setSelectedData] = useState<BookData>();
+  const storedAuth = localStorage.getItem("auth");
+  const auth = storedAuth ? JSON.parse(storedAuth) : null;
+  const userId = auth ? auth.user_id : null;
 
   useEffect(() => {
     const fetchCommunityData = async () => {
@@ -29,6 +33,13 @@ const TradeDetail = () => {
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
+
+  const handleSellBtnClick = async (id: number) => {
+    const response = await postSold(`/usedbooktrades/book/${id}/sold/`);
+    if (response) {
+      alert("판매완료되었습니다.");
+    }
+  };
   // const commentData = selectedData?.comments || [];
 
   return (
@@ -38,6 +49,22 @@ const TradeDetail = () => {
           <span className={selectedData.is_sold ? "sold-out" : "selling"}>
             {selectedData.is_sold ? "판매완료" : "판매중"}
           </span>
+          {selectedData.user_id === userId && !selectedData.is_sold && (
+            <button
+              className="sold-out"
+              onClick={() => handleSellBtnClick(selectedData.id)}
+            >
+              판매완료하기
+            </button>
+          )}
+          {/* {selectedData.user_id === userId && selectedData.is_sold && (
+            <button
+              className="selling"
+              onClick={() => handleSellBtnClick(selectedData.id)}
+            >
+              판매중으로 변경
+            </button>
+          )} */}
         </div>
         <div className="middle">
           <div className="img">

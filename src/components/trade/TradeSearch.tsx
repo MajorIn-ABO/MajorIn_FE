@@ -1,6 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
 import styled from "styled-components";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = styled.div`
@@ -27,16 +28,40 @@ const RegisterBtn = styled.button`
   margin-left: auto;
 `;
 
-const TradeSearch = () => {
+interface TradeSearchProps {
+  searchText: string;
+  onSearchChange: (filter: string) => void;
+}
+
+const TradeSearch: React.FC<TradeSearchProps> = ({ onSearchChange }) => {
+  const [searchText, setSearchText] = useState<string>("");
   const navigate = useNavigate();
+
+  const handleInputChange = (event: any) => {
+    setSearchText(event.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchText.trim() !== "") {
+      onSearchChange(searchText);
+    }
+    setSearchText("");
+  };
   const goWrite = () => {
     navigate("/trade/write");
   };
+
   return (
     <div>
       <SearchBox>
-        <input type="text" placeholder="제목, 저자, 출판사" />
-        <SearchIcon />
+        <input
+          type="text"
+          placeholder="제목, 저자, 출판사"
+          value={searchText}
+          onChange={handleInputChange}
+          onSubmit={handleSearch}
+        />
+        <SearchIcon onClick={handleSearch} />
       </SearchBox>
       <RegisterBtn onClick={goWrite}>
         <PencilIcon />책 판매하기

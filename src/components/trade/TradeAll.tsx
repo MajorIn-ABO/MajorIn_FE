@@ -7,17 +7,25 @@ import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../api/fetchData";
 import { BookData } from "../../types/Types";
 
-const TradeAll = () => {
+interface TradeSearchProps {
+  searchText: string;
+}
+
+const TradeAll: React.FC<TradeSearchProps> = ({ searchText }) => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [bookData, setBookData] = useState<BookData[]>([]);
 
   useEffect(() => {
     const fetchBookData = async () => {
-      const data = await fetchData("/usedbooktrades/posts/");
+      let endpoint = "/usedbooktrades/posts/";
+      if (searchText.trim() !== "") {
+        endpoint = `/usedbooktrades/posts/search/?keyword=${searchText}`;
+      }
+      const data = await fetchData(endpoint);
       setBookData(data);
     };
     fetchBookData();
-  }, []);
+  }, [searchText]);
 
   const handleFilterChange = (filter: any) => {
     setSelectedFilter(filter);
