@@ -1,13 +1,13 @@
 import { atom } from "recoil";
-import { StudentData } from "../types/Types";
+import { StudentData, BookWriteData } from "../types/Types";
 
 export const studentDataState = atom<StudentData>({
   key: "studentDataState", // 상태를 식별하기 위한 고유한 키입니다.
   default: {
-    user_name: "장장장",
-    school_name: "단국대학교",
-    major_name: "소프트웨어학과",
-    student_id: 32203928,
+    user_name: "",
+    school_name: "",
+    major_name: "",
+    student_id: 0,
     major_id: 0,
     home_id: "",
     home_password: "",
@@ -29,5 +29,20 @@ export const loginState = atom({
     major_name: null as string | null,
     admission_date: null as number | null,
     user_id: null as number | null,
+  },
+});
+
+export const bookState = atom<BookWriteData>({
+  key: "bookDataState",
+  default: {
+    title: "",
+    author: "",
+    seller: 0,
+    publisher: "",
+    origin_imgfile: "",
+    price: "",
+    imgfile: null,
+    description: "",
+    damage_level: "",
   },
 });

@@ -5,38 +5,49 @@ import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
 import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
 import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
-import { useParams } from "react-router-dom";
-import data, { TradeData } from "../../data/TradeData";
 import "../../styles/study/StudyDetail.scss";
 import "../../styles/trade/TradeDetail.scss";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BookData } from "../../types/Types";
+import { fetchData } from "../../api/fetchData";
 
 const TradeDetail = () => {
   const { tradeId } = useParams();
-  const parsedStudyId = tradeId ? parseInt(tradeId) : undefined;
-  const selectedData = data.find((item) => item.tradeId === parsedStudyId);
+  const parsedTradeId = tradeId ? parseInt(tradeId) : undefined;
+  const [selectedData, setSelectedData] = useState<BookData>();
+
+  useEffect(() => {
+    const fetchCommunityData = async () => {
+      const data = await fetchData(`/usedbooktrades/posts/${parsedTradeId}/`);
+      setSelectedData(data);
+    };
+
+    fetchCommunityData();
+  }, [parsedTradeId]);
 
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
-  const commentData = selectedData?.comments || [];
+  // const commentData = selectedData?.comments || [];
 
   return (
     <div className="trade-container">
       <div className="trade-detail-container">
         <div className="top">
-          <span className={selectedData.sale ? "selling" : "sold-out"}>
-            {selectedData.sale ? "판매중" : "판매완료"}
+          <span className={selectedData.is_sold ? "sold-out" : "selling"}>
+            {selectedData.is_sold ? "판매완료" : "판매중"}
           </span>
         </div>
-        <div className="bottom">
+        <div className="middle">
           <div className="img">
-            <img src={selectedData.img} alt="img" />
+            <img src={selectedData.origin_imgfile} alt="img" />
           </div>
           <div className="description">
             <h1>{selectedData.title}</h1>
             <div>
               <p>{selectedData.author}</p>
-              <p>{selectedData.publish}</p>
+              <p>{selectedData.publisher}</p>
             </div>
             <ul>
               <li>
@@ -45,7 +56,8 @@ const TradeDetail = () => {
               </li>
               <li>
                 <SalerIcon />
-                {selectedData.saler}
+                {selectedData.school_name} {selectedData.major_name}{" "}
+                {String(selectedData.admission_date).slice(-2)}학번
               </li>
               <li>
                 <DamageIcon />
@@ -53,11 +65,24 @@ const TradeDetail = () => {
               </li>
             </ul>
             <p className="info">{selectedData.description}</p>
-            <div className="posting">
-              <p>{selectedData.posting}</p>
-              <ChatIcon stroke="#9B9B9B" />
-              <p>{selectedData.chat}</p>
+          </div>
+        </div>
+        <div className="bottom">
+          {selectedData.imgfile !== null && (
+            <div className="img-zip">
+              <h1>책 상태 사진</h1>
+              <img src={selectedData.imgfile} alt="" />
             </div>
+          )}
+          <div className="posting">
+            <p>
+              {new Date(selectedData.post_date).toLocaleString("ko-KR", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })}
+            </p>
+            <ChatIcon stroke="#9B9B9B" />
+            <p>{selectedData.comment}</p>
           </div>
         </div>
       </div>
@@ -70,7 +95,7 @@ const TradeDetail = () => {
             <SendIcon stroke="#1b1c3a" />
           </div>
         </form>
-        {commentData?.map((comment, index) => {
+        {/* {commentData?.map((comment, index) => {
           return (
             <div key={index} className="comment-container">
               <div className="info">
@@ -89,7 +114,7 @@ const TradeDetail = () => {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

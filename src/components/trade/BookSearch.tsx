@@ -2,8 +2,9 @@ import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
 import { ReactComponent as BookIcon } from "../../assets/icon/book-search.svg";
 import "../../styles/trade/TradeWrite.scss";
-// import data, { SearchData } from "../../data/SearchData";
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { bookState } from "../../data/recoilAtoms";
 import { fetchData } from "../../api/fetchData";
 import { BookSearchData } from "../../types/Types";
 
@@ -11,6 +12,7 @@ const BookSearch: React.FC = () => {
   const [selectedBook, setSelectedBook] = useState<BookSearchData | null>(null);
   const [searchBook, setSearchBook] = useState<BookSearchData[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
+  const [bookData, setBookData] = useRecoilState(bookState);
 
   const fetchSearchData = async (word: string) => {
     const decodedWord = decodeURIComponent(word);
@@ -40,6 +42,17 @@ const BookSearch: React.FC = () => {
   ) => {
     event.preventDefault();
     setSelectedBook(book);
+    setBookData({
+      title: book.title,
+      author: book.author,
+      seller: 0,
+      publisher: book.publisher,
+      origin_imgfile: book.image,
+      price: "",
+      imgfile: null,
+      description: "",
+      damage_level: "",
+    });
   };
 
   return (
