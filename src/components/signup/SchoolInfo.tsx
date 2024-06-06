@@ -18,6 +18,7 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
     setMajor((prevMajor) => {
       const updatedMajor = {
         ...prevMajor,
+        major: studentData.major_name,
         major_category_name: e.target.value,
       };
       console.log(updatedMajor);
@@ -29,6 +30,12 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
     e.preventDefault();
     if (!major.major_category_name) {
       alert("학과를 선택해주세요.");
+      console.log(major);
+      return;
+    }
+    if (!major.major) {
+      alert("학생증을 인증하세요.");
+      console.log(major);
       return;
     }
     const responseData = await postData("/check_major/", major);
