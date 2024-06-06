@@ -72,12 +72,16 @@
         padding: 0 10px;
 
         input {
+          width: 90%;
           color: #9b9b9b;
           padding: 0 0 0 10px;
           &::placeholder {
             color: #9b9b9b;
           }
         }
+      }
+      button {
+        padding: 0;
       }
     }
   }
