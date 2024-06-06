@@ -25,7 +25,9 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
         endpoint = `/boards/posts/search/?keyword=${searchKeyword}`;
       }
       const data = await fetchData(endpoint);
-      setCommunityData(data);
+      if (data) {
+        setCommunityData(data.sort((a: any, b: any) => b.id - a.id));
+      }
     };
 
     fetchCommunityData();

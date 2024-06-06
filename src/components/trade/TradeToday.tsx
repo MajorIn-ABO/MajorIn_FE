@@ -13,7 +13,9 @@ const TradeToday = () => {
   useEffect(() => {
     const fetchBookData = async () => {
       const data = await fetchData("/usedbooktrades/posts/");
-      setBookData(data);
+      if (data) {
+        setBookData(data.sort((a: any, b: any) => b.id - a.id));
+      }
     };
     fetchBookData();
   }, []);
