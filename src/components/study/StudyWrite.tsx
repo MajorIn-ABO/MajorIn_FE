@@ -2,6 +2,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../../styles/study/StudyWrite.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postTextData } from "../../api/postData";
 
 const StudyWrite = () => {
@@ -34,6 +35,7 @@ const StudyWrite = () => {
   const [contents, setContents] = useState("");
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [currentHashtag, setCurrentHashtag] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleHashtagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentHashtag(event.target.value);
@@ -73,6 +75,8 @@ const StudyWrite = () => {
     const response = await postTextData("/studys/posts/create/", postData);
     if (response) {
       console.log("성공");
+      alert("글 등록에 성공하였습니다.");
+      navigate("/study");
     }
   };
 

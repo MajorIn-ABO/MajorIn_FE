@@ -5,28 +5,59 @@ import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
 import "../../styles/study/StudyDetail.scss";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { StudyData } from "../../types/Types";
+import { StudyData, CommentData } from "../../types/Types";
 import { fetchData } from "../../api/fetchData";
+import { postTextData } from "../../api/postData";
 
 const StudyDetail = () => {
   const { studyId } = useParams();
   const parsedStudyId = studyId ? parseInt(studyId) : undefined;
+  const [comment, setComment] = useState("");
 
   const [selectedData, setSelectedData] = useState<StudyData>();
-  useEffect(() => {
-    const fetchStudyData = async () => {
-      const data = await fetchData(`/studys/posts/${parsedStudyId}/`);
-      setSelectedData(data);
-    };
+  const [commentData, setCommentData] = useState<CommentData[]>([]);
 
-    fetchStudyData();
+  const fetchStudyData = async () => {
+    const data = await fetchData(`/studys/posts/${parsedStudyId}/`);
+    const comments = await fetchData(
+      `/studys/posts/comments-by-postid/${parsedStudyId}/`
+    );
+    setSelectedData(data);
+    if (comments) {
+      setCommentData(comments.sort((a: any, b: any) => b.id - a.id));
+    }
+  };
+
+  useEffect(() => {
+    if (parsedStudyId) {
+      fetchStudyData();
+    }
   }, [parsedStudyId]);
 
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
-  // const commentData = selectedData?.comments || [];
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const postData = {
+      studypost_id: parsedStudyId,
+      contents: comment,
+    };
+
+    const response = await postTextData(
+      "/studys/posts/comments/create/",
+      postData
+    );
+    if (response) {
+      await fetchStudyData();
+      setComment("");
+    }
+  };
   return (
     <div className="study-container">
       <div className="study-detail-container">
@@ -68,25 +99,40 @@ const StudyDetail = () => {
       </div>
       <div className="study-detail-comment">
         <h1>댓글</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <UserIcon width="48" height="48" />
           <div>
-            <input type="text" placeholder="댓글을 입력하세요." />
-            <SendIcon stroke="#1b1c3a" />
+            <input
+              type="text"
+              placeholder="댓글을 입력하세요."
+              value={comment}
+              onChange={handleInputChange}
+            />
+            <button type="submit">
+              <SendIcon stroke="#1b1c3a" />
+            </button>
           </div>
         </form>
-        {/* {commentData?.map((comment, index) => {
+        {commentData?.map((comment, index) => {
           return (
             <div key={index} className="comment-container">
               <div className="info">
                 <UserIcon width="48" height="48" />
                 <div>
-                  <p>{comment.writer}</p>
-                  <span>{comment.date}</span>
+                  <p>
+                    {comment.school_name} {comment.major_name}{" "}
+                    {String(comment.admission_date).slice(-2)}학번{" "}
+                  </p>
+                  <span>
+                    {new Date(comment.comment_date).toLocaleString("ko-KR", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
+                  </span>
                 </div>
               </div>
               <div className="comment">
-                <p>{comment.content}</p>
+                <p>{comment.contents}</p>
                 <div>
                   <ReplyIcon />
                   <span>답글 달기</span>
@@ -94,7 +140,7 @@ const StudyDetail = () => {
               </div>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );

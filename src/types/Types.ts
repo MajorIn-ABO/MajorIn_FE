@@ -93,3 +93,12 @@ export interface BookWriteData {
   description: string;
   damage_level: string;
 }
+
+export interface CommentData {
+  id: number;
+  contents: string;
+  school_name: string;
+  major_name: string;
+  admission_date: number;
+  comment_date: string;
+}

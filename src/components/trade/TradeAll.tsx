@@ -22,7 +22,9 @@ const TradeAll: React.FC<TradeSearchProps> = ({ searchText }) => {
         endpoint = `/usedbooktrades/posts/search/?keyword=${searchText}`;
       }
       const data = await fetchData(endpoint);
-      setBookData(data);
+      if (data) {
+        setBookData(data.sort((a: any, b: any) => b.id - a.id));
+      }
     };
     fetchBookData();
   }, [searchText]);

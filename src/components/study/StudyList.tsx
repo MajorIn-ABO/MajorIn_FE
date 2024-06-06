@@ -26,7 +26,9 @@ const StudyList: React.FC<StudySearchProps> = ({
         endpoint = `/studys/posts/search/?hashtag=${searchText}&keyword=${searchText}`;
       }
       const data = await fetchData(endpoint);
-      setStudyData(data);
+      if (data) {
+        setStudyData(data.sort((a: any, b: any) => b.id - a.id));
+      }
     };
 
     fetchStudyData();
