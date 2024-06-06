@@ -50,7 +50,7 @@ const CommunityWrite: React.FC<{ onBackToMain: () => void }> = ({
     const responseData = await postTokenData("/boards/posts/create/", formData);
     if (responseData) {
       alert("글 등록이 완료되었습니다.");
-      navigate("/community");
+      navigate("/");
     }
   };
 
