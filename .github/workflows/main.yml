@@ -24,5 +24,8 @@ jobs:
       - name: Install Dependencies # 의존 파일 설치
         run: npm install
 
+      - name: Update Browserslist DB
+        run: npx update-browserslist-db@latest
+
       - name: Build # React Build
         run: npm run build
