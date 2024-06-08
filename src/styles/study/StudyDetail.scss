@@ -91,42 +91,101 @@
     border: 1px solid #1b1c3a;
     border-radius: 5px;
     margin: 30px 0;
-    padding: 20px;
 
-    .info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 0.9px solid #9b9b9b;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
+    .parent-comment {
+      width: 100%;
+      padding: 20px;
+      .info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 0.9px solid #9b9b9b;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
 
-      p,
-      span {
+        p,
+        span {
+          color: #5e5e5e;
+          font-size: 0.9rem;
+          font-weight: 700;
+        }
+
+        span {
+          font-weight: 500;
+        }
+      }
+      .comment {
         color: #5e5e5e;
         font-size: 0.9rem;
-        font-weight: 700;
-      }
 
-      span {
-        font-weight: 500;
+        div {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 5px;
+          margin-top: 20px;
+          cursor: pointer;
+          span {
+            color: #44b0ff;
+            font-weight: 700;
+            font-size: 0.8rem;
+          }
+        }
       }
     }
 
-    .comment {
-      color: #5e5e5e;
-      font-size: 0.9rem;
+    .reply-comment-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #f5f5f5;
+      border-radius: 0 0 5px 5px;
 
-      div {
+      form {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
-        gap: 5px;
-        margin-top: 20px;
-        span {
-          color: #44b0ff;
-          font-weight: 700;
-          font-size: 0.8rem;
+        background: #ffffff;
+        border-radius: 5px;
+        padding-right: 10px;
+        input {
+          width: 100%;
+        }
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .reply-comment-container.has-comments {
+        padding: 0 20px 20px 20px;
+        .reply-container {
+          margin: 15px;
+          .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            div {
+              display: flex;
+              align-items: center;
+              font-size: 0.9rem;
+              color: #5e5e5e;
+              font-weight: 550;
+              gap: 5px;
+            }
+            span {
+              font-size: 0.8rem;
+              color: #9b9b9b;
+            }
+          }
+          .comment {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            padding-left: 40px;
+            color: #5e5e5e;
+          }
         }
       }
     }
