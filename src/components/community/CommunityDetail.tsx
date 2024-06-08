@@ -18,6 +18,8 @@ const CommunityDetail = () => {
   const { contentId } = useParams();
   const parsedContentId = contentId ? parseInt(contentId) : undefined;
   const [comment, setComment] = useState("");
+  const [replyComment, setReplyComment] = useState("");
+  const [replyingTo, setReplyingTo] = useState<number | null>(null);
 
   const [selectedData, setSelectedData] = useState<CommunityData>();
   const [commentData, setCommentData] = useState<CommentData[]>([]);
@@ -43,6 +45,12 @@ const CommunityDetail = () => {
     setComment(event.target.value);
   };
 
+  const handleReplyInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setReplyComment(event.target.value);
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const postData = {
@@ -50,7 +58,6 @@ const CommunityDetail = () => {
       contents: comment,
     };
 
-    // console.log(postData);
     const response = await postTextData(
       "/boards/posts/comments/create/",
       postData
@@ -60,6 +67,35 @@ const CommunityDetail = () => {
       setComment("");
     }
   };
+
+  const handleReplySubmit = async (
+    event: React.FormEvent,
+    commentId: number
+  ) => {
+    event.preventDefault();
+
+    const postData = {
+      post_id: parsedContentId,
+      parent_comment: commentId,
+      contents: replyComment,
+    };
+
+    const response = await postTextData(
+      "/boards/posts/comments/create/",
+      postData
+    );
+    if (response) {
+      await fetchCommunityData();
+      setReplyComment("");
+      setReplyingTo(null);
+    }
+  };
+
+  const handleReplyClick = (commentId: number) => {
+    setReplyingTo(commentId);
+    setReplyComment("");
+  };
+
   if (!selectedData) {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
@@ -172,12 +208,15 @@ const CommunityDetail = () => {
               <GoodIcon
                 // onClick={() => handleLikeClick(comment.commentId)}
                 // fill={likeColor}
+                fill="#777777"
                 style={{ cursor: "pointer" }}
               />
               {/* <p style={{ color: currentColor }}>{like}</p> */}
+              <p>5</p>
               <BadIcon
                 // onClick={() => handleDislikeClick(comment.commentId)}
                 // fill={dislikeColor}
+                fill="#777777"
                 style={{ cursor: "pointer" }}
               />
             </div>
@@ -198,12 +237,58 @@ const CommunityDetail = () => {
                     </p>
                   </div>
                 </div>
-                <span>
+                <span onClick={() => handleReplyClick(comment.id)}>
                   <ReplyIcon />
                   답글 달기
                 </span>
               </div>
               <p className="bottom">{comment.contents}</p>
+              <div className="reply-comment-container">
+                {replyingTo === comment.id && ( // replyingTo가 현재 댓글 ID와 같을 때만 입력 폼을 렌더링합니다.
+                  <div style={{ padding: "20px" }}>
+                    <form onSubmit={(e) => handleReplySubmit(e, comment.id)}>
+                      <input
+                        type="text"
+                        placeholder="답글을 입력하세요."
+                        value={replyComment}
+                        onChange={handleReplyInputChange}
+                      />
+                      <button type="submit">
+                        <SendIcon stroke="#1b1c3a" />
+                      </button>
+                    </form>
+                  </div>
+                )}
+                {comment.comments && comment.comments.length > 0 && (
+                  <div className="reply-comment-container has-comments">
+                    {comment.comments?.map((reply) => (
+                      <div key={reply.commentId} className="reply-container">
+                        <div className="info">
+                          <div>
+                            <UserIcon width="32" height="32" />
+                            <p>
+                              {reply.school_name} {reply.major_name}{" "}
+                              {String(reply.admission_date).slice(-2)}학번{" "}
+                            </p>
+                          </div>
+                          <span>
+                            {new Date(reply.comment_date).toLocaleString(
+                              "ko-KR",
+                              {
+                                dateStyle: "medium",
+                                timeStyle: "short",
+                              }
+                            )}
+                          </span>
+                        </div>
+                        <div className="comment">
+                          <p>{reply.contents}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         );
