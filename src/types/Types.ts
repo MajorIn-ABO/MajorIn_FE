@@ -101,4 +101,14 @@ export interface CommentData {
   major_name: string;
   admission_date: number;
   comment_date: string;
+  comments?: ReplyComment[];
+}
+
+export interface ReplyComment {
+  commentId: number;
+  school_name: string;
+  major_name: string;
+  admission_date: number;
+  comment_date: string;
+  contents: string;
 }
