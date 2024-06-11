@@ -22,7 +22,7 @@ export interface CommunityData {
   post_date: string;
   comment: number;
   like: number;
-  keep: number;
+  bookmark: number;
   school_name: string;
   major_name: string;
   admission_date: number;
