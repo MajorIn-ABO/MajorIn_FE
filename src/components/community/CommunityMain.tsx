@@ -144,7 +144,7 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
               <LikeIcon stroke="#FF8181" />
               <p className="color-like">{item.like}</p>
               <ScrapIcon />
-              <p className="color-scrap">{item.keep}</p>
+              <p className="color-scrap">{item.bookmark}</p>
             </div>
           </div>
         </div>

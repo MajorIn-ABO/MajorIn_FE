@@ -10,7 +10,7 @@ import "../../styles/community/CommunityDetail.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CommunityData, CommentData } from "../../types/Types";
-import { fetchData } from "../../api/fetchData";
+import { fetchData, fetchTokenData } from "../../api/fetchData";
 import { postTextData } from "../../api/postData";
 
 const CommunityDetail = () => {
@@ -20,16 +20,20 @@ const CommunityDetail = () => {
   const [comment, setComment] = useState("");
   const [replyComment, setReplyComment] = useState("");
   const [replyingTo, setReplyingTo] = useState<number | null>(null);
+  const [liked, setLiked] = useState(false);
+  const [scrap, setScrap] = useState(false);
 
   const [selectedData, setSelectedData] = useState<CommunityData>();
   const [commentData, setCommentData] = useState<CommentData[]>([]);
 
   const fetchCommunityData = async () => {
-    const data = await fetchData(`/boards/posts/${parsedContentId}/`);
+    const data = await fetchTokenData(`/boards/posts/${parsedContentId}/`);
     const comments = await fetchData(
       `/boards/posts/comments-by-postid/${parsedContentId}/`
     );
     setSelectedData(data);
+    setLiked(data.has_liked);
+    setScrap(data.has_bookmarked);
     if (comments) {
       setCommentData(comments.sort((a: any, b: any) => b.id - a.id));
     }
@@ -94,6 +98,38 @@ const CommunityDetail = () => {
   const handleReplyClick = (commentId: number) => {
     setReplyingTo(commentId);
     setReplyComment("");
+  };
+
+  const handleLikeClick = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const postData = {
+      post_id: parsedContentId,
+    };
+
+    const response = await postTextData(
+      `/boards/posts/likes/create/`,
+      postData
+    );
+    if (response) {
+      await fetchCommunityData();
+      setLiked(!liked);
+    }
+  };
+
+  const handleScrapClick = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const postData = {
+      post_id: parsedContentId,
+    };
+
+    const response = await postTextData(
+      "/boards/posts/bookmarks/create/",
+      postData
+    );
+    if (response) {
+      await fetchCommunityData();
+      setScrap(!scrap);
+    }
   };
 
   if (!selectedData) {
@@ -187,10 +223,37 @@ const CommunityDetail = () => {
           <div className="content-numbers">
             <ChatIcon stroke="#66BB6A" />
             <p className="color-chat">{selectedData.comment}</p>
-            <LikeIcon stroke="#FF8181" />
+            {liked ? (
+              <LikeIcon
+                stroke="#FF8181"
+                fill="#FF8181"
+                style={{ cursor: "pointer" }}
+                onClick={handleLikeClick}
+              />
+            ) : (
+              <LikeIcon
+                stroke="#FF8181"
+                fill="none"
+                style={{ cursor: "pointer" }}
+                onClick={handleLikeClick}
+              />
+            )}
+            {/* <LikeIcon stroke="#FF8181" /> */}
             <p className="color-like">{selectedData.like}</p>
-            <ScrapIcon />
-            <p className="color-scrap">{selectedData.keep}</p>
+            {scrap ? (
+              <ScrapIcon
+                fill="#FFC46E"
+                style={{ cursor: "pointer" }}
+                onClick={handleScrapClick}
+              />
+            ) : (
+              <ScrapIcon
+                fill="none"
+                style={{ cursor: "pointer" }}
+                onClick={handleScrapClick}
+              />
+            )}
+            <p className="color-scrap">{selectedData.bookmark}</p>
           </div>
         </div>
       </div>

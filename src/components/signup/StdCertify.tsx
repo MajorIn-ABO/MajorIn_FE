@@ -4,12 +4,13 @@ import { ReactComponent as ImgIcon } from "../../assets/icon/img-search.svg";
 import "../../styles/signup/StdCertify.scss";
 import { postStudentCard } from "../../api/postStudentCard";
 import { useSetRecoilState } from "recoil";
-import { studentDataState } from "../../data/recoilAtoms";
+import { studentDataState, loadingState } from "../../data/recoilAtoms";
 
 const StdCertify = () => {
   const [selectedImage, setSelectedImage] = useState<
     string | ArrayBuffer | null
   >(null);
+  const setLoading = useSetRecoilState(loadingState);
   const setStudentInfo = useSetRecoilState(studentDataState);
 
   const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -18,9 +19,9 @@ const StdCertify = () => {
       const reader = new FileReader();
       reader.onload = async () => {
         setSelectedImage(reader.result);
-
+        setLoading(true);
         const responseData = await postStudentCard(file);
-        console.log(responseData);
+        // console.log(responseData);
         if (responseData.is_student_id_card) {
           const { user_name, major_name, student_id, school_name } =
             responseData;
@@ -34,6 +35,7 @@ const StdCertify = () => {
         } else {
           alert("학생증 인식에 실패했습니다. 다시 업로드해주세요.");
         }
+        setLoading(false);
       };
       reader.readAsDataURL(file);
     }

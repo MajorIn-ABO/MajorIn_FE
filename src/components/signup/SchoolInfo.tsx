@@ -76,7 +76,7 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
         </div>
         <div>
           <p>학번</p>
-          <p>{studentData.student_id}</p>
+          <p>{studentData.student_id !== 0 ? studentData.student_id : ""}</p>
         </div>
       </section>
       <div className="match">
