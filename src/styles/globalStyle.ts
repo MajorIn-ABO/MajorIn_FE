@@ -54,7 +54,7 @@ h1{
     color: #ff8181;
 }
 .color-scrap{
-    color: #E8BF89;
+    color: #FFC46E;
 }
 
 .filebox {
