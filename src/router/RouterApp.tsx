@@ -13,6 +13,7 @@ import TradeDetail from "../components/trade/TradeDetail";
 import MyPageApp from "../pages/mypage/MyPageApp";
 import LoginApp from "../pages/login/LoginApp";
 import SignUpApp from "../pages/signup/SignUpApp";
+import StdLoading from "../components/signup/StdLoading";
 import Header from "../components/navbar/Header";
 import Navbar from "../components/navbar/Navbar";
 
@@ -42,6 +43,7 @@ const MainLayout = () => {
 const RouterApp = () => {
   return (
     <div>
+      <StdLoading />
       <Routes>
         <Route path="/home" element={<HomeApp />} />
         <Route path="/" element={<MainLayout />}>
