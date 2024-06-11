@@ -46,3 +46,8 @@ export const bookState = atom<BookWriteData>({
     damage_level: "",
   },
 });
+
+export const loadingState = atom({
+  key: "loadingState",
+  default: false,
+});
