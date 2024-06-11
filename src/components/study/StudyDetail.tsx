@@ -1,4 +1,6 @@
 // import data, { StudyData } from "../../data/StudyData";
+import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
+import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
 import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
 import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
 import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
@@ -6,7 +8,7 @@ import "../../styles/study/StudyDetail.scss";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { StudyData, CommentData } from "../../types/Types";
-import { fetchData } from "../../api/fetchData";
+import { fetchData, fetchTokenData } from "../../api/fetchData";
 import { postTextData } from "../../api/postData";
 
 const StudyDetail = () => {
@@ -15,16 +17,18 @@ const StudyDetail = () => {
   const [comment, setComment] = useState("");
   const [replyComment, setReplyComment] = useState("");
   const [replyingTo, setReplyingTo] = useState<number | null>(null); // 어느 댓글에 답근 달고 있는지 추적
+  const [liked, setLiked] = useState(false);
 
   const [selectedData, setSelectedData] = useState<StudyData>();
   const [commentData, setCommentData] = useState<CommentData[]>([]);
 
   const fetchStudyData = async () => {
-    const data = await fetchData(`/studys/posts/${parsedStudyId}/`);
+    const data = await fetchTokenData(`/studys/posts/${parsedStudyId}/`);
     const comments = await fetchData(
       `/studys/posts/comments-by-postid/${parsedStudyId}/`
     );
     setSelectedData(data);
+    setLiked(data.has_liked);
     if (comments) {
       setCommentData(comments.sort((a: any, b: any) => b.id - a.id));
     }
@@ -95,6 +99,22 @@ const StudyDetail = () => {
     setReplyComment("");
   };
 
+  const handleLikeClick = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const postData = {
+      studypost_id: parsedStudyId,
+    };
+
+    const response = await postTextData(
+      `/studys/posts/likes/create/`,
+      postData
+    );
+    if (response) {
+      await fetchStudyData();
+      setLiked(!liked);
+    }
+  };
+
   return (
     <div className="study-container">
       <div className="study-detail-container">
@@ -127,11 +147,33 @@ const StudyDetail = () => {
           dangerouslySetInnerHTML={{ __html: selectedData.contents }}
         ></div>
         <div className="study-bottom">
-          {selectedData.hashtags.map((item, index) => (
-            <span key={index} className="category">
-              #{item}
-            </span>
-          ))}
+          <div>
+            {selectedData.hashtags.map((item, index) => (
+              <span key={index} className="category">
+                #{item}
+              </span>
+            ))}
+          </div>
+          <div className="bottom-right">
+            <ChatIcon stroke="#1B1C3A" />
+            <p>{selectedData.comment}</p>
+            {liked ? (
+              <LikeIcon
+                stroke="#1B1C3A"
+                fill="#1B1C3A"
+                style={{ cursor: "pointer" }}
+                onClick={handleLikeClick}
+              />
+            ) : (
+              <LikeIcon
+                stroke="#1B1C3A"
+                fill="none"
+                style={{ cursor: "pointer" }}
+                onClick={handleLikeClick}
+              />
+            )}
+            <p>{selectedData.like}</p>
+          </div>
         </div>
       </div>
       <div className="study-detail-comment">
