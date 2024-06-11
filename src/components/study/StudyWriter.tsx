@@ -4,7 +4,7 @@ import "../../styles/study/StudyWriter.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { StudyData } from "../../types/Types";
-import { fetchData } from "../../api/fetchData";
+import { fetchTokenData } from "../../api/fetchData";
 // import data, { StudyData } from "../../data/StudyData";
 
 const StudyWriter = () => {
@@ -15,7 +15,7 @@ const StudyWriter = () => {
   const [selectedData, setSelectedData] = useState<StudyData>();
   useEffect(() => {
     const fetchStudyData = async () => {
-      const data = await fetchData(`/studys/posts/${parsedStudyId}/`);
+      const data = await fetchTokenData(`/studys/posts/${parsedStudyId}/`);
       setSelectedData(data);
     };
 
