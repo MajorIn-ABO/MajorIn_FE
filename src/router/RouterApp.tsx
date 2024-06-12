@@ -24,11 +24,12 @@ const ContentContainer = styled.div`
   margin: 0 auto;
   padding: 30px 20px;
   background: #fafafa;
-  // gap: 20px;
+  display: flex;
+  justify-content: center;
 `;
 
 const Content = styled.div`
-  max-width: 2048px;
+  max-width: 1480px;
   min-width: 1024px;
   display: flex;
   gap: 20px;
