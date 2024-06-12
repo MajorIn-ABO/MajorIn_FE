@@ -18,14 +18,21 @@ import Header from "../components/navbar/Header";
 import Navbar from "../components/navbar/Navbar";
 
 const ContentContainer = styled.div`
-  display: flex;
   width: 100%;
   min-width: 1024px;
   // height: 90vh;
   margin: 0 auto;
   padding: 30px 20px;
   background: #fafafa;
+  // gap: 20px;
+`;
+
+const Content = styled.div`
+  max-width: 2048px;
+  min-width: 1024px;
+  display: flex;
   gap: 20px;
+  padding: 0 20px 0 0;
 `;
 
 const MainLayout = () => {
@@ -33,8 +40,10 @@ const MainLayout = () => {
     <div>
       <Header />
       <ContentContainer>
-        <Navbar />
-        <Outlet />
+        <Content>
+          <Navbar />
+          <Outlet />
+        </Content>
       </ContentContainer>
     </div>
   );
