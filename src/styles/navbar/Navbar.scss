@@ -12,6 +12,13 @@
     justify-content: center;
     align-items: center;
 
+    p {
+      &:nth-child(2) {
+        font-size: 0.8rem;
+        text-align: center;
+      }
+    }
+
     button {
       width: 153px;
       height: 28px;
