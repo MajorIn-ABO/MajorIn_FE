@@ -112,3 +112,21 @@ export interface ReplyComment {
   comment_date: string;
   contents: string;
 }
+
+export interface UserInfo {
+  id: number;
+  major_id: number;
+  user_name: string;
+  school_name: string;
+  major_name: string;
+  student_id: number;
+  home_id: string;
+  email: string;
+  phonenumber: string;
+  admission_date: number;
+  registration_date: string;
+  user_status: string;
+  user_post_count: number;
+  user_comment_count: number;
+  user_bookmark_count: number;
+}

@@ -4,8 +4,26 @@ import { ReactComponent as PersonIcon } from "../../assets/icon/user2.svg";
 import { ReactComponent as SchoolIcon } from "../../assets/icon/school.svg";
 import { ReactComponent as EmailIcon } from "../../assets/icon/email.svg";
 import "../../styles/mypage/MyInfo.scss";
+import { useState, useEffect } from "react";
+import { fetchTokenData } from "../../api/fetchData";
+import { UserInfo } from "../../types/Types";
 
 const MyInfo = () => {
+  const [userData, setUserData] = useState<UserInfo | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const storedAuth = localStorage.getItem("auth");
+      const auth = storedAuth ? JSON.parse(storedAuth) : null;
+      const userId = auth ? auth.user_id : null;
+      const data = await fetchTokenData(`/profile/users/${userId}/`);
+      if (data) {
+        setUserData(data);
+      }
+    };
+    fetchUserData();
+  }, []);
+
   return (
     <div className="myinfo-container">
       <div className="myinfo-modify">
@@ -15,40 +33,49 @@ const MyInfo = () => {
       <div className="user-img">
         <UserIcon width="128" height="128" />
       </div>
-      <div className="info-container">
-        <h1>장현정님</h1>
-        <div className="field-container">
-          <div className="field-info">
-            <PersonIcon />
-            <p>id</p>
+      {userData ? (
+        <>
+          <div className="info-container">
+            <h1>{userData.user_name}님</h1>
+            <div className="field-container">
+              <div className="field-info">
+                <PersonIcon />
+                <p>{userData.home_id}</p>
+              </div>
+              <div className="field-info">
+                <SchoolIcon />
+                <p>
+                  {userData.school_name} {userData.major_name}{" "}
+                  {String(userData.admission_date).slice(-2)}학번
+                </p>
+              </div>
+              <div className="field-info">
+                <EmailIcon />
+                <p>{userData.email}</p>
+              </div>
+            </div>
           </div>
-          <div className="field-info">
-            <SchoolIcon />
-            <p>단국대 죽전캠 . 소프트웨어학과 . 20학번</p>
+          <div className="mypost-count">
+            <div className="count">
+              <p>
+                작성한 게시글 <span>{userData.user_post_count}</span>
+              </p>
+            </div>
+            <div className="count">
+              <p>
+                작성한 댓글 <span>{userData.user_comment_count}</span>
+              </p>
+            </div>
+            <div className="count">
+              <p>
+                스크랩 <span>{userData.user_bookmark_count}</span>
+              </p>
+            </div>
           </div>
-          <div className="field-info">
-            <EmailIcon />
-            <p>32200000@dankook.ac.kr</p>
-          </div>
-        </div>
-      </div>
-      <div className="mypost-count">
-        <div className="count">
-          <p>
-            작성한 게시글 <span>5</span>
-          </p>
-        </div>
-        <div className="count">
-          <p>
-            작성한 댓글 <span>5</span>
-          </p>
-        </div>
-        <div className="count">
-          <p>
-            스크랩 <span>24</span>
-          </p>
-        </div>
-      </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
