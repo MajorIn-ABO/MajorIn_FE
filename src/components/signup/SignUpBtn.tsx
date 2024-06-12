@@ -1,6 +1,6 @@
 import "../../styles/signup/SignUpBtn.scss";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { studentDataState } from "../../data/recoilAtoms";
 import { postSignUpData } from "../../api/postData";
 import { useState } from "react";
@@ -17,6 +17,7 @@ const SignUpBtn: React.FC<{ moveToBeforeStep: () => void }> = ({
   moveToBeforeStep,
 }) => {
   const studentData = useRecoilValue(studentDataState);
+  const resetStudentData = useResetRecoilState(studentDataState);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -26,6 +27,7 @@ const SignUpBtn: React.FC<{ moveToBeforeStep: () => void }> = ({
     const responseData = await postSignUpData("/users/register/", studentData);
     if (responseData === "성공") {
       setModalMessage("회원가입 성공");
+      resetStudentData();
     } else {
       setModalMessage("회원가입 실패");
     }
