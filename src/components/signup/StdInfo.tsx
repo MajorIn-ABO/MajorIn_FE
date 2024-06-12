@@ -36,6 +36,10 @@ const StdInfo = () => {
           onChange={handleChange}
         />
         <label htmlFor="pw">비밀번호</label>
+        <p className="caution">
+          숫자, 대문자, 소문자, 특수문자 등을 조합하여 8자리 이상으로 비밀번호를
+          설정해주세요.
+        </p>
         <input
           required
           type="password"
