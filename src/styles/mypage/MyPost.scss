@@ -77,12 +77,27 @@
           color: #5e5e5e;
         }
       }
+      .content-bottom {
+        display: flex;
+        justify-content: space-between;
+        .writer {
+          font-size: 0.8rem;
+          color: #5e5e5e;
+        }
+        .content-numbers {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+        }
+      }
     }
   }
 }
 
 .modify {
   display: flex;
+  justify-content: flex-end;
   gap: 3px;
   cursor: pointer;
 }

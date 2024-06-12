@@ -1,9 +1,11 @@
 import { useRecoilState } from "recoil";
 import { loginState } from "../data/recoilAtoms";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
   const [auth, setAuth] = useRecoilState(loginState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedAuth = localStorage.getItem("auth");
@@ -63,6 +65,8 @@ export const useAuth = () => {
     localStorage.removeItem("school_name");
     localStorage.removeItem("major_name");
     localStorage.removeItem("user_id");
+    alert("로그아웃 되었습니다.");
+    navigate("/login");
   };
 
   return { auth, login, logout };

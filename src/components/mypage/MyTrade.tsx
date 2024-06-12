@@ -3,39 +3,93 @@ import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
 import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import "../../styles/mypage/MyTrade.scss";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchTokenData } from "../../api/fetchData";
+import { BookData } from "../../types/Types";
+import { postSold } from "../../api/postData";
 
 const MyTrade = () => {
+  const [tradeData, setTradeData] = useState<BookData[]>([]);
+  const storedAuth = localStorage.getItem("auth");
+  const auth = storedAuth ? JSON.parse(storedAuth) : null;
+  const userId = auth ? auth.user_id : null;
+
+  const fetchUserData = async () => {
+    const storedAuth = localStorage.getItem("auth");
+    const auth = storedAuth ? JSON.parse(storedAuth) : null;
+    const userId = auth ? auth.user_id : null;
+    const data = await fetchTokenData(`/profile/usedbooktrades/${userId}/`);
+    if (data) {
+      setTradeData(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+  const handleSellBtnClick = async (id: number) => {
+    const response = await postSold(`/usedbooktrades/book/${id}/sold/`);
+    if (response) {
+      alert("판매완료되었습니다.");
+      fetchUserData();
+    }
+  };
+
+  const navigate = useNavigate();
+  const goTradeItemClick = (tradeId: number) => {
+    navigate(`/trade/${tradeId}`);
+  };
+
   return (
     <div className="mytrade-container">
       <h1>중고거래 현황</h1>
       <div className="mytrade">
-        {data.map((item, index) => (
-          <div key={index} className="book-content">
+        {tradeData.map((item, index) => (
+          <div
+            key={index}
+            className="book-content"
+            onClick={() => goTradeItemClick(item.id)}
+          >
             <div className="img">
-              <img src={item.img} alt="img" />
+              <img src={item.origin_imgfile} alt="img" />
             </div>
             <div className="description">
-              <span className={item.sale ? "selling" : "sold-out"}>
-                {item.sale ? "판매중" : "판매완료"}
+              <span className={item.is_sold ? "sold-out" : "selling"}>
+                {item.is_sold ? "판매완료" : "판매중"}
               </span>
               <h1>{item.title}</h1>
               <p className="author">{item.author}</p>
-              <p className="publish">{item.publish}</p>
+              <p className="publish">{item.publisher}</p>
               <div>
                 <PriceIcon />
                 <p className="price">{item.price.toLocaleString()}원</p>
               </div>
               <div>
                 <SalerIcon />
-                <p className="saler">{item.saler}</p>
+                <p className="saler">
+                  {item.school_name} {item.major_name}{" "}
+                  {String(item.admission_date).slice(-2)}학번
+                </p>
               </div>
               <footer>
-                <p>{item.posting}</p>
+                <p>
+                  {" "}
+                  {new Date(item.post_date).toLocaleString("ko-KR", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
+                </p>
                 <ChatIcon stroke="#9B9B9B" />
-                <p>{item.chat}</p>
-                <button className={item.sale ? "sold-out" : "selling"}>
-                  {item.sale ? "판매완료하기" : "판매중으로 변경"}
-                </button>
+                <p>{item.comment}</p>
+                {item.user_id === userId && !item.is_sold && (
+                  <button
+                    className="sold-out"
+                    onClick={() => handleSellBtnClick(item.id)}
+                  >
+                    판매완료하기
+                  </button>
+                )}
               </footer>
             </div>
           </div>

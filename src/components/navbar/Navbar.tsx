@@ -64,7 +64,9 @@ const Navbar = () => {
               <UserIcon width="48" height="48" />
             </p>
             <p>
-              {userInfo.school_name} {userInfo.major_name}
+              {userInfo.school_name}
+              <br />
+              {userInfo.major_name}
             </p>
             <h1>{userInfo.user_name}님</h1>
             <button onClick={logout} className="logout-btn">
