@@ -45,12 +45,14 @@
 
   .community-content {
     width: 100%;
+    min-width: 100%;
     border-bottom: 1px solid #dadada;
     margin-bottom: 30px;
     padding-bottom: 10px;
     cursor: pointer;
 
     .content-top {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
