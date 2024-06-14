@@ -67,6 +67,7 @@ export const useAuth = () => {
     localStorage.removeItem("user_id");
     alert("로그아웃 되었습니다.");
     navigate("/login");
+    window.location.reload();
   };
 
   return { auth, login, logout };
