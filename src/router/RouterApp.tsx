@@ -53,7 +53,7 @@ const MainLayout = () => {
 
 const RouterApp = () => {
   const authString = localStorage.getItem("auth");
-  const auth = authString ? JSON.parse(authString) : null;
+  const auth = authString ? JSON.parse(authString) : { isLoggedIn: false };
 
   return (
     <div>
