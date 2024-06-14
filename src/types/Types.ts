@@ -26,6 +26,7 @@ export interface CommunityData {
   school_name: string;
   major_name: string;
   admission_date: number;
+  user_name: string;
 }
 
 export interface CommunityWriteData {
