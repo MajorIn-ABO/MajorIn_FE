@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import HomeApp from "../pages/home/HomeApp";
 import MainApp from "../pages/main/MainApp";
@@ -29,11 +29,12 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
+  width: 100%;
   max-width: 1480px;
   min-width: 1024px;
   display: flex;
   gap: 20px;
-  padding: 0 20px 0 0;
+  padding: 0 10px 0 0;
 `;
 
 const MainLayout = () => {
@@ -51,6 +52,9 @@ const MainLayout = () => {
 };
 
 const RouterApp = () => {
+  const authString = localStorage.getItem("auth");
+  const auth = authString ? JSON.parse(authString) : null;
+
   return (
     <div>
       <StdLoading />
@@ -58,22 +62,27 @@ const RouterApp = () => {
         <Route path="/home" element={<HomeApp />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<MainApp />} />
-          <Route path="employ/*" element={<EmployApp />}>
-            <Route path=":employId" element={<EmployDetail />} />
-          </Route>
-          <Route path="study/*" element={<StudyApp />}>
-            <Route path=":studyId" element={<StudyDetail />} />
-          </Route>
-          <Route path="community/*" element={<CommunityApp />}>
-            <Route path=":contentId" element={<CommunityDetail />} />
-          </Route>
-          <Route path="trade/*" element={<TradeApp />}>
-            <Route path=":tradeId" element={<TradeDetail />} />
-          </Route>
-          <Route path="mypage" element={<MyPageApp />} />
+          {auth.isLoggedIn ? (
+            <>
+              <Route path="employ/*" element={<EmployApp />}>
+                <Route path=":employId" element={<EmployDetail />} />
+              </Route>
+              <Route path="study/*" element={<StudyApp />}>
+                <Route path=":studyId" element={<StudyDetail />} />
+              </Route>
+              <Route path="community/*" element={<CommunityApp />}>
+                <Route path=":contentId" element={<CommunityDetail />} />
+              </Route>
+              <Route path="trade/*" element={<TradeApp />}>
+                <Route path=":tradeId" element={<TradeDetail />} />
+              </Route>
+              <Route path="mypage" element={<MyPageApp />} />
+            </>
+          ) : null}
         </Route>
         <Route path="/login" element={<LoginApp />} />
         <Route path="/signup" element={<SignUpApp />} />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
   );
