@@ -4,9 +4,7 @@ import { useState } from "react";
 import { postTokenData } from "../../api/postData";
 import { CommunityWriteData } from "../../types/Types";
 
-const CommunityWrite: React.FC<{ onBackToMain: () => void }> = ({
-  onBackToMain,
-}) => {
+const CommunityWrite = () => {
   const [writeData, setWriteData] = useState<CommunityWriteData>({
     title: "",
     contents: "",
@@ -52,6 +50,10 @@ const CommunityWrite: React.FC<{ onBackToMain: () => void }> = ({
       alert("글 등록이 완료되었습니다.");
       navigate("/");
     }
+  };
+
+  const handleBackClick = () => {
+    navigate("/community");
   };
 
   return (
@@ -104,7 +106,7 @@ const CommunityWrite: React.FC<{ onBackToMain: () => void }> = ({
           </div>
         </div>
         <div className="button-zip">
-          <button onClick={onBackToMain}>취소</button>
+          <button onClick={handleBackClick}>취소</button>
           <button onClick={handleSubmit}>등록</button>
         </div>
       </form>

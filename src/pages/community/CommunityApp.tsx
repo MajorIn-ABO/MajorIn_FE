@@ -3,7 +3,6 @@ import CommunityWrite from "../../components/community/CommunityWrite";
 import PopularCommunity from "../../components/community/PopularCommunity";
 import CommunityDetail from "../../components/community/CommunityDetail";
 import styled from "styled-components";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 const CommunityContainer = styled.div`
@@ -15,38 +14,36 @@ const CommunityContainer = styled.div`
 `;
 
 const CommunityApp = () => {
-  const [isWriting, setIsWriting] = useState(false);
-
-  const handleWriteButtonClick = () => {
-    setIsWriting(true);
-  };
-
-  const handleBackToMain = () => {
-    setIsWriting(false);
-  };
   return (
-    <CommunityContainer>
-      {isWriting ? (
-        <>
-          <CommunityWrite onBackToMain={handleBackToMain} />
-          <PopularCommunity />
-        </>
-      ) : (
-        <>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <CommunityMain onWriteButtonClick={handleWriteButtonClick} />
-              }
-            />
-            <Route path="/:contentId" element={<CommunityDetail />} />
-          </Routes>
-          {/* <CommunityMain onWriteButtonClick={handleWriteButtonClick} /> */}
-          <PopularCommunity />
-        </>
-      )}
-    </CommunityContainer>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <CommunityContainer>
+            <CommunityMain />
+            <PopularCommunity />
+          </CommunityContainer>
+        }
+      />
+      <Route
+        path="/:contentId"
+        element={
+          <CommunityContainer>
+            <CommunityDetail />
+            <PopularCommunity />
+          </CommunityContainer>
+        }
+      />
+      <Route
+        path="/write"
+        element={
+          <CommunityContainer>
+            <CommunityWrite />
+            <PopularCommunity />
+          </CommunityContainer>
+        }
+      />
+    </Routes>
   );
 };
 
