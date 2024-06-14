@@ -9,9 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../api/fetchData";
 import { CommunityData } from "../../types/Types";
 
-const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
-  onWriteButtonClick,
-}) => {
+const CommunityMain = () => {
   const [selectedCategory, setSelectedCategory] = useState("전체보기");
   const [communityData, setCommunityData] = useState<CommunityData[]>([]);
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -50,6 +48,10 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
 
   const handleItemClick = (contentId: number) => {
     navigate(`/community/${contentId}`);
+  };
+
+  const handleWriteClick = () => {
+    navigate("/community/write");
   };
 
   return (
@@ -102,7 +104,7 @@ const CommunityMain: React.FC<{ onWriteButtonClick: () => void }> = ({
             우리학교는
           </li>
         </ul>
-        <button onClick={onWriteButtonClick}>
+        <button onClick={handleWriteClick}>
           <PencilIcon />
           글쓰기
         </button>
