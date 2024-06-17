@@ -41,7 +41,7 @@ const TradeAll: React.FC<TradeSearchProps> = ({ searchText }) => {
 
   const navigate = useNavigate();
   const goTradeItemClick = (tradeId: number) => {
-    navigate(`/trade/${tradeId}`);
+    navigate(`/main/trade/${tradeId}`);
   };
 
   return (

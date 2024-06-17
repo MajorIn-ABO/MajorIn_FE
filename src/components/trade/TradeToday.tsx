@@ -20,7 +20,7 @@ const TradeToday = () => {
     fetchBookData();
   }, []);
   const goTradeItemClick = (tradeId: number) => {
-    navigate(`/trade/${tradeId}`);
+    navigate(`/main/trade/${tradeId}`);
   };
 
   return (

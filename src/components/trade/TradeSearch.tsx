@@ -48,7 +48,7 @@ const TradeSearch: React.FC<TradeSearchProps> = ({ onSearchChange }) => {
     setSearchText("");
   };
   const goWrite = () => {
-    navigate("/trade/write");
+    navigate("/main/trade/write");
   };
 
   return (
