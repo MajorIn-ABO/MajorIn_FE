@@ -5,9 +5,41 @@ const API_BASE_URL = "http://3.35.123.253/api";
 export const fetchData = async (endpoint: string) => {
   const storedAuth = localStorage.getItem("auth");
   const auth = storedAuth ? JSON.parse(storedAuth) : null;
-  const majorId = auth ? auth.major_id : null;
+  let majorId = auth ? auth.major_id : null;
+
+  if (!majorId) {
+    const selectedMajorId = localStorage.getItem("selected_major_id");
+    majorId = selectedMajorId ? parseInt(selectedMajorId) : null;
+  }
+
   try {
     const response = await axios.get(`${API_BASE_URL}/${majorId}${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchNoMajorData = async (endpoint: string) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchNoMajorTokenData = async (endpoint: string) => {
+  const storedAuth = localStorage.getItem("auth");
+  const auth = storedAuth ? JSON.parse(storedAuth) : null;
+  const accessToken = auth ? auth.access_token : null;
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error);
