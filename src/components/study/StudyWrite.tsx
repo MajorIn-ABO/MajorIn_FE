@@ -63,6 +63,10 @@ const StudyWrite = () => {
     setHashtags(updatedHashtags);
   };
 
+  const goBack = () => {
+    navigate("/main/study");
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const postData = {
@@ -71,10 +75,8 @@ const StudyWrite = () => {
       hashtags,
     };
 
-    console.log(postData);
     const response = await postTextData("/studys/posts/create/", postData);
     if (response) {
-      console.log("성공");
       alert("글 등록에 성공하였습니다.");
       navigate("/main/study");
     }
@@ -119,7 +121,7 @@ const StudyWrite = () => {
           />
         </div>
         <div className="button">
-          <button>취소</button>
+          <button onClick={goBack}>취소</button>
           <button onClick={handleSubmit}>등록</button>
         </div>
       </form>
