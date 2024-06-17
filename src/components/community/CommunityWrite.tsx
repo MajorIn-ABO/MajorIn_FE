@@ -89,7 +89,7 @@ const CommunityWrite = () => {
             <option value="잡담/수다">잡담/수다</option>
             <option value="인턴리뷰">인턴리뷰</option>
             <option value="대외활동">대외활동</option>
-            <option value="우리학교는">우리학교는</option>
+            <option value="우리학교는">학교이야기</option>
           </select>
         </div>
         <div>
