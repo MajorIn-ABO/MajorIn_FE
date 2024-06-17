@@ -21,7 +21,8 @@ export const useAuth = () => {
     school_name: string,
     major_name: string,
     admission_date: number,
-    user_id: number
+    user_id: number,
+    major_id: number
   ) => {
     setAuth({
       isLoggedIn: true,
@@ -32,6 +33,7 @@ export const useAuth = () => {
       major_name,
       admission_date,
       user_id,
+      major_id,
     });
     localStorage.setItem(
       "auth",
@@ -43,6 +45,7 @@ export const useAuth = () => {
         school_name,
         major_name,
         user_id,
+        major_id,
       })
     );
   };
@@ -57,6 +60,7 @@ export const useAuth = () => {
       major_name: null,
       admission_date: null,
       user_id: null,
+      major_id: null,
     });
     localStorage.removeItem("auth");
     localStorage.removeItem("access_token");
@@ -65,6 +69,7 @@ export const useAuth = () => {
     localStorage.removeItem("school_name");
     localStorage.removeItem("major_name");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("major_id");
     alert("로그아웃 되었습니다.");
     navigate("/login");
     window.location.reload();
