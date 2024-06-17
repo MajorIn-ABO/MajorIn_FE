@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const HomeSearch = () => {
   const navigate = useNavigate();
   const goMain = () => {
-    navigate("/");
+    navigate("/main");
   };
   return (
     <div className="home-search-container">

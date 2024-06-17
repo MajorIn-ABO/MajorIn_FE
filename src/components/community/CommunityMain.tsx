@@ -47,11 +47,11 @@ const CommunityMain = () => {
   };
 
   const handleItemClick = (contentId: number) => {
-    navigate(`/community/${contentId}`);
+    navigate(`/main/community/${contentId}`);
   };
 
   const handleWriteClick = () => {
-    navigate("/community/write");
+    navigate("/main/community/write");
   };
 
   return (

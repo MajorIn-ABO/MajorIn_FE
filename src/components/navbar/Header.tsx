@@ -9,7 +9,7 @@ const Header = () => {
   const { auth, logout } = useAuth();
 
   const goHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   const goLogin = () => {
     navigate("/login");

@@ -21,7 +21,7 @@ const MainStudy = () => {
   }, []);
 
   const handleItemClick = (studyId: number) => {
-    navigate(`/study/${studyId}`);
+    navigate(`/main/study/${studyId}`);
   };
 
   const stripHtmlTags = (htmlString: string) => {

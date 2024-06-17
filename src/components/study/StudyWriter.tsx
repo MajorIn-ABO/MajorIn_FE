@@ -27,11 +27,11 @@ const StudyWriter = () => {
   }
 
   const goBack = () => {
-    navigate("/study");
+    navigate("/main/study");
   };
 
   const goWrite = () => {
-    navigate("/study/write");
+    navigate("/main/study/write");
   };
 
   return (

@@ -29,6 +29,7 @@ export const loginState = atom({
     major_name: null as string | null,
     admission_date: null as number | null,
     user_id: null as number | null,
+    major_id: null as number | null,
   },
 });
 

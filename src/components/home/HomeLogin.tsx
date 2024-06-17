@@ -19,14 +19,14 @@ const HomeLogin = () => {
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
     const loginData = {
       username,
       password,
     };
 
     const response = await postData("/login/", loginData);
-    // console.log("로그인 폼 전달: ", response);
 
     if (response) {
       const data = await response.token;
@@ -37,10 +37,12 @@ const HomeLogin = () => {
         data.school_name,
         data.major_name,
         data.admission_date,
-        data.user_id
+        data.user_id,
+        data.major_id
       );
       alert("로그인에 성공하였습니다.");
-      navigate("/");
+      navigate("/main");
+      window.location.reload();
     }
   };
 
@@ -52,7 +54,7 @@ const HomeLogin = () => {
       <div className="logo">
         <img src={require("../../assets/img/appLogo.png")} alt="logo" />
       </div>
-      <div className="login">
+      <form className="login" onSubmit={handleLogin}>
         <input
           type="text"
           placeholder="아이디"
@@ -67,8 +69,8 @@ const HomeLogin = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <input type="button" value="로그인" onClick={handleLogin} />
-      </div>
+        <input type="submit" value="로그인" onSubmit={handleLogin} />
+      </form>
       <div className="login-bottom">
         <p>아이디 찾기</p>
         <p>패스워드 찾기</p>

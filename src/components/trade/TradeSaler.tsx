@@ -25,10 +25,10 @@ const TradeSaler = () => {
     return <div>해당 컨텐츠를 찾을 수 없습니다.</div>;
   }
   const goBack = () => {
-    navigate("/trade");
+    navigate("/main/trade");
   };
   const goWrite = () => {
-    navigate("/trade/write");
+    navigate("/main/trade/write");
   };
   return (
     <div className="trade-saler-container">

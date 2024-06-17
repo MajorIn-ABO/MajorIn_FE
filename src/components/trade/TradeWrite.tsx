@@ -83,13 +83,13 @@ const TradeWrite: React.FC = () => {
     );
     if (responseData) {
       alert("글 등록이 완료되었습니다.");
-      navigate("/trade");
+      navigate("/main/trade");
     }
   };
 
   const navigate = useNavigate();
   const goBack = () => {
-    navigate("/trade");
+    navigate("/main/trade");
   };
 
   return (
