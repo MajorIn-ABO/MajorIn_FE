@@ -31,8 +31,12 @@ const HomeSearch = () => {
     setSearchKeyword(event.target.value);
   };
 
-  const goMain = (majorId: number) => {
+  const goMain = (majorId: number, majorCategory: string) => {
     localStorage.setItem("selected_major_id", majorId.toString());
+    localStorage.setItem(
+      "selected_major_category_name",
+      majorCategory.toString()
+    );
     navigate("/main");
   };
   return (
@@ -51,7 +55,7 @@ const HomeSearch = () => {
           <div
             key={index}
             className="home-major-list"
-            onClick={() => goMain(item.id)}
+            onClick={() => goMain(item.id, item.major_category_name)}
           >
             <p>{item.major_category_name}</p>
             <span>{item.major}</span>

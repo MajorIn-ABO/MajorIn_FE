@@ -9,7 +9,14 @@ const Header = () => {
   const { auth, logout } = useAuth();
   const storedAuth = localStorage.getItem("auth");
   const localAuth = storedAuth ? JSON.parse(storedAuth) : null;
-  const majorName = localAuth ? localAuth.major_category_name : null;
+  let majorName = localAuth ? localAuth.major_category_name : null;
+
+  if (!majorName) {
+    const selectedMajorName = localStorage.getItem(
+      "selected_major_category_name"
+    );
+    majorName = selectedMajorName ? selectedMajorName : null;
+  }
 
   const goHome = () => {
     navigate("/");

@@ -52,6 +52,7 @@ export const useAuth = () => {
       })
     );
     localStorage.removeItem("selected_major_id");
+    localStorage.removeItem("selected_major_category_name");
   };
 
   const logout = () => {
