@@ -59,10 +59,17 @@ const RouterApp = () => {
     <div>
       <StdLoading />
       <Routes>
-        <Route path="/home" element={<HomeApp />} />
-        <Route path="/" element={<MainLayout />}>
+        <Route
+          path="/"
+          element={
+            auth.isLoggedIn ? <Navigate to="/main" replace /> : <HomeApp />
+          }
+        />
+        <Route path="/main" element={<MainLayout />}>
+          {/* <Route path="/home" element={<HomeApp />} />
+        <Route path="/" element={<MainLayout />}> */}
           <Route index element={<MainApp />} />
-          {auth.isLoggedIn ? (
+          {auth.isLoggedIn && (
             <>
               <Route path="employ/*" element={<EmployApp />}>
                 <Route path=":employId" element={<EmployDetail />} />
@@ -78,7 +85,7 @@ const RouterApp = () => {
               </Route>
               <Route path="mypage" element={<MyPageApp />} />
             </>
-          ) : null}
+          )}
         </Route>
         <Route path="/login" element={<LoginApp />} />
         <Route path="/signup" element={<SignUpApp />} />
