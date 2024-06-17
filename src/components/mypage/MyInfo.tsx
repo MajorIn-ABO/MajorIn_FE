@@ -5,7 +5,7 @@ import { ReactComponent as SchoolIcon } from "../../assets/icon/school.svg";
 import { ReactComponent as EmailIcon } from "../../assets/icon/email.svg";
 import "../../styles/mypage/MyInfo.scss";
 import { useState, useEffect } from "react";
-import { fetchTokenData } from "../../api/fetchData";
+import { fetchNoMajorTokenData } from "../../api/fetchData";
 import { UserInfo } from "../../types/Types";
 
 const MyInfo = () => {
@@ -16,7 +16,7 @@ const MyInfo = () => {
       const storedAuth = localStorage.getItem("auth");
       const auth = storedAuth ? JSON.parse(storedAuth) : null;
       const userId = auth ? auth.user_id : null;
-      const data = await fetchTokenData(`/profile/users/${userId}/`);
+      const data = await fetchNoMajorTokenData(`/profile/users/${userId}/`);
       if (data) {
         setUserData(data);
       }
