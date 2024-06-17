@@ -6,12 +6,12 @@ const MainEmploy = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const goEmployAll = () => {
-    navigate("/employ");
+    navigate("/main/employ");
   };
   const goEmployItemClick = (employId: number) => {
-    navigate(`/employ/${employId}`);
+    navigate(`/main/employ/${employId}`);
   };
-  const isEmployPath = location.pathname !== "/employ";
+  const isEmployPath = location.pathname !== "/main/employ";
 
   return (
     <div>

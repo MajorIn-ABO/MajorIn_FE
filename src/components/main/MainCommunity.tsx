@@ -26,11 +26,11 @@ const MainCommunity = () => {
   }, []);
 
   const goCommunity = () => {
-    navigate("/community");
+    navigate("/main/community");
   };
 
   const handleItemClick = (contentId: number) => {
-    navigate(`/community/${contentId}`);
+    navigate(`/main/community/${contentId}`);
   };
 
   const maskName = (name: string) => {
