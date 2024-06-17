@@ -18,7 +18,7 @@ const PopularStudy = () => {
   }, []);
 
   const handleItemClick = (studyId: number) => {
-    navigate(`/study/${studyId}`);
+    navigate(`/main/study/${studyId}`);
   };
   return (
     <div className="popular-study-container">

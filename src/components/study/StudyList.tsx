@@ -60,11 +60,11 @@ const StudyList: React.FC<StudySearchProps> = ({
   const navigate = useNavigate();
 
   const handleItemClick = (studyId: number) => {
-    navigate(`/study/${studyId}`);
+    navigate(`/main/study/${studyId}`);
   };
 
   const handleStudyWrite = () => {
-    navigate("/study/write");
+    navigate("/main/study/write");
   };
 
   const stripHtmlTags = (htmlString: string) => {

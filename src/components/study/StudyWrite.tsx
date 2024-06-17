@@ -76,7 +76,7 @@ const StudyWrite = () => {
     if (response) {
       console.log("성공");
       alert("글 등록에 성공하였습니다.");
-      navigate("/study");
+      navigate("/main/study");
     }
   };
 
