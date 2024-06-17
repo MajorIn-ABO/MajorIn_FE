@@ -17,7 +17,7 @@ const PopularCommunity = () => {
   }, []);
 
   const handleItemClick = (contentId: number) => {
-    navigate(`/community/${contentId}`);
+    navigate(`/main/community/${contentId}`);
   };
 
   return (

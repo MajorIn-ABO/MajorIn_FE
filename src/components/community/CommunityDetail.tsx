@@ -189,7 +189,7 @@ const CommunityDetail = () => {
   // };
 
   const goCommunity = () => {
-    navigate("/community");
+    navigate("/main/community");
   };
 
   return (
