@@ -131,3 +131,9 @@ export interface UserInfo {
   user_comment_count: number;
   user_bookmark_count: number;
 }
+
+export interface MajorData {
+  id: number;
+  major: string;
+  major_category_name: string;
+}
