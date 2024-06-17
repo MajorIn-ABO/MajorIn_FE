@@ -96,7 +96,8 @@
 }
 
 .modify {
-  display: flex;
+  display: none;
+  // display: flex;
   justify-content: flex-end;
   gap: 3px;
   cursor: pointer;

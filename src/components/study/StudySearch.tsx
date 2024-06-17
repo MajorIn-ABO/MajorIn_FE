@@ -21,7 +21,8 @@ const StudySearch: React.FC<StudySearchProps> = ({
     setSearchText(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (event: React.FormEvent) => {
+    event.preventDefault();
     if (searchText.trim() !== "") {
       setRecentSearches([searchText, ...recentSearches]);
       onSearchChange(searchText);
@@ -67,7 +68,7 @@ const StudySearch: React.FC<StudySearchProps> = ({
           </li>
         </ul>
       </div>
-      <div className="study-search">
+      <form className="study-search" onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="관심 스터디를 검색하세요."
@@ -75,8 +76,10 @@ const StudySearch: React.FC<StudySearchProps> = ({
           onChange={handleInputChange}
           onSubmit={handleSearch}
         />
-        <SearchIcon onClick={handleSearch} />
-      </div>
+        <button type="submit" onSubmit={handleSearch}>
+          <SearchIcon onClick={handleSearch} />
+        </button>
+      </form>
       <div className="recent-search">
         <div>
           <h2>최근 검색어</h2>

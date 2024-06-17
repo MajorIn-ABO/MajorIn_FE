@@ -5,7 +5,7 @@ import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
 import "../../styles/mypage/MyTrade.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchTokenData } from "../../api/fetchData";
+import { fetchNoMajorTokenData } from "../../api/fetchData";
 import { BookData } from "../../types/Types";
 import { postSold } from "../../api/postData";
 
@@ -19,7 +19,9 @@ const MyTrade = () => {
     const storedAuth = localStorage.getItem("auth");
     const auth = storedAuth ? JSON.parse(storedAuth) : null;
     const userId = auth ? auth.user_id : null;
-    const data = await fetchTokenData(`/profile/usedbooktrades/${userId}/`);
+    const data = await fetchNoMajorTokenData(
+      `/profile/usedbooktrades/${userId}/`
+    );
     if (data) {
       setTradeData(data);
     }
@@ -38,7 +40,7 @@ const MyTrade = () => {
 
   const navigate = useNavigate();
   const goTradeItemClick = (tradeId: number) => {
-    navigate(`/trade/${tradeId}`);
+    navigate(`/main/trade/${tradeId}`);
   };
 
   return (

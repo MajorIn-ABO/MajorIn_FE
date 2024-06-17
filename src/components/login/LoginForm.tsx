@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -27,23 +28,32 @@ const LoginForm = () => {
       password,
     };
 
-    const response = await postData("/login/", loginData);
+    try {
+      const response = await postData("/login/", loginData);
 
-    if (response) {
-      const data = await response.token;
-      login(
-        data.access,
-        data.refresh,
-        data.user_name,
-        data.school_name,
-        data.major_name,
-        data.admission_date,
-        data.user_id,
-        data.major_id
+      if (response && response.token) {
+        const data = response.token;
+        login(
+          data.access,
+          data.refresh,
+          data.user_name,
+          data.school_name,
+          data.major_name,
+          data.admission_date,
+          data.user_id,
+          data.major_id,
+          data.major_category_name
+        );
+        // alert("로그인에 성공하였습니다.");
+        navigate("/main");
+        window.location.reload();
+      } else {
+        throw new Error("Invalid response");
+      }
+    } catch (error) {
+      setErrorMessage(
+        "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요."
       );
-      alert("로그인에 성공하였습니다.");
-      navigate("/main");
-      window.location.reload();
     }
   };
 
@@ -79,6 +89,7 @@ const LoginForm = () => {
           <input type="radio" id="login-keep" />
           <label htmlFor="login-keep">로그인 상태 유지</label>
         </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <input type="submit" value="로그인" onSubmit={handleLogin} />
       </form>
       <div className="login-bottom">

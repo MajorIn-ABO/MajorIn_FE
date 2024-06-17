@@ -90,7 +90,11 @@ const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
           >
             <option value="">-- 카테고리를 선택하세요 --</option>
             <option value="IT">IT</option>
-            <option value="경영">경영</option>
+            <option value="경영경제">경영경제</option>
+            <option value="인문사회과학">인문사회과학</option>
+            <option value="공과">공과</option>
+            <option value="자연과학">자연과학</option>
+            <option value="예술대학">예술대학</option>
           </select>
         </div>
       </div>

@@ -23,8 +23,11 @@ const CommunityMain = () => {
         endpoint = `/boards/posts/search/?keyword=${searchKeyword}`;
       }
       const data = await fetchData(endpoint);
-      if (data) {
-        setCommunityData(data.sort((a: any, b: any) => b.id - a.id));
+      // if (data) {
+      //   setCommunityData(data.sort((a: any, b: any) => b.id - a.id));
+      // }
+      if (Array.isArray(data)) {
+        setCommunityData(data.sort((a, b) => b.id - a.id));
       }
     };
 
@@ -42,7 +45,8 @@ const CommunityMain = () => {
     setSearchKeyword(event.target.value);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = (event: React.FormEvent) => {
+    event.preventDefault();
     setIsSearching(true);
   };
 
@@ -56,15 +60,17 @@ const CommunityMain = () => {
 
   return (
     <div className="community-container">
-      <div className="search">
+      <form className="search" onSubmit={handleSearchClick}>
         <input
           type="text"
           placeholder="검색어를 입력해주세요"
           value={searchKeyword}
           onChange={handleSearchInputChange}
         />
-        <SearchIcon onClick={handleSearchClick} />
-      </div>
+        <button type="submit" onSubmit={handleSearchClick}>
+          <SearchIcon onClick={handleSearchClick} />
+        </button>
+      </form>
       <div className="community-filtering">
         <ul>
           <li
@@ -98,10 +104,10 @@ const CommunityMain = () => {
             대외활동
           </li>
           <li
-            onClick={() => setSelectedCategory("우리학교는")}
-            className={selectedCategory === "우리학교는" ? "selected" : ""}
+            onClick={() => setSelectedCategory("학교이야기")}
+            className={selectedCategory === "학교이야기" ? "selected" : ""}
           >
-            우리학교는
+            학교이야기
           </li>
         </ul>
         <button onClick={handleWriteClick}>

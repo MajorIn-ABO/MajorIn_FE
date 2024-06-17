@@ -2,10 +2,10 @@ import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
 import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
 import { ReactComponent as BookIcon } from "../../assets/icon/book-search.svg";
 import "../../styles/trade/TradeWrite.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { useRecoilState } from "recoil";
 import { bookState } from "../../data/recoilAtoms";
-import { fetchData } from "../../api/fetchData";
+import { fetchNoMajorData } from "../../api/fetchData";
 import { BookSearchData } from "../../types/Types";
 
 const BookSearch: React.FC = () => {
@@ -16,7 +16,7 @@ const BookSearch: React.FC = () => {
 
   const fetchSearchData = async (word: string) => {
     const decodedWord = decodeURIComponent(word);
-    const data = await fetchData(
+    const data = await fetchNoMajorData(
       `/usedbooktrades/book/search/?book_title=${decodedWord}`
     );
     setSearchBook(data.book_data_list);
@@ -26,14 +26,15 @@ const BookSearch: React.FC = () => {
     setSearchWord(event.target.value);
   };
 
-  // const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (event.key === "Enter") {
-  //     fetchSearchData(searchWord);
-  //   }
-  // };
-
   const handleSearchClick = () => {
     fetchSearchData(searchWord);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearchClick();
+    }
   };
 
   const handleSelectBook = (
@@ -63,7 +64,7 @@ const BookSearch: React.FC = () => {
           placeholder="판매할 교재의 제목을 검색하세요."
           value={searchWord}
           onChange={handleInputChange}
-          // onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
         />
         <SearchIcon onClick={handleSearchClick} style={{ cursor: "pointer" }} />
       </div>

@@ -6,7 +6,7 @@ import "../../styles/mypage/MyPost.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { StudyData, CommunityData } from "../../types/Types";
-import { fetchTokenData } from "../../api/fetchData";
+import { fetchNoMajorTokenData } from "../../api/fetchData";
 
 const MyPost = () => {
   const [selectedSection, setSelectedSection] = useState("study");
@@ -15,7 +15,7 @@ const MyPost = () => {
   const navigate = useNavigate();
 
   const fetchData = async (endpoint: string) => {
-    const response = await fetchTokenData(endpoint);
+    const response = await fetchNoMajorTokenData(endpoint);
     const data = response ? response.sort((a: any, b: any) => b.id - a.id) : [];
     return data;
   };
@@ -43,11 +43,11 @@ const MyPost = () => {
   };
 
   const handleStudyItemClick = (studyId: number) => {
-    navigate(`/study/${studyId}`);
+    navigate(`/main/study/${studyId}`);
   };
 
   const handleCommunityItemClick = (contentId: number) => {
-    navigate(`/community/${contentId}`);
+    navigate(`/main/community/${contentId}`);
   };
 
   return (

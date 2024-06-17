@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
   width: 100%;
   height: 7vh;
   border-radius: 5px;
@@ -14,6 +14,11 @@ const SearchBox = styled.div`
   align-items: center;
   padding-right: 15px;
   margin-bottom: 20px;
+`;
+
+const SearchButton = styled.button`
+  margin: 0;
+  padding: 0;
 `;
 
 const RegisterBtn = styled.button`
@@ -41,7 +46,8 @@ const TradeSearch: React.FC<TradeSearchProps> = ({ onSearchChange }) => {
     setSearchText(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (event: React.FormEvent) => {
+    event.preventDefault();
     if (searchText.trim() !== "") {
       onSearchChange(searchText);
     }
@@ -53,15 +59,18 @@ const TradeSearch: React.FC<TradeSearchProps> = ({ onSearchChange }) => {
 
   return (
     <div>
-      <SearchBox>
+      <SearchBox onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="제목, 저자, 출판사"
           value={searchText}
           onChange={handleInputChange}
           onSubmit={handleSearch}
+          style={{ width: "100%" }}
         />
-        <SearchIcon onClick={handleSearch} />
+        <SearchButton type="submit" onSubmit={handleSearch}>
+          <SearchIcon onClick={handleSearch} />
+        </SearchButton>
       </SearchBox>
       <RegisterBtn onClick={goWrite}>
         <PencilIcon />책 판매하기

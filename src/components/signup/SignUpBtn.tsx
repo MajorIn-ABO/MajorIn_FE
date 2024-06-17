@@ -23,7 +23,7 @@ const SignUpBtn: React.FC<{ moveToBeforeStep: () => void }> = ({
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(studentData);
+    // console.log(studentData);
     const responseData = await postSignUpData("/users/register/", studentData);
     if (responseData === "성공") {
       setModalMessage("회원가입 성공");

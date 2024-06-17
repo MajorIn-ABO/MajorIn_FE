@@ -7,6 +7,9 @@ import { useAuth } from "../../hooks/useAuth";
 const Header = () => {
   const navigate = useNavigate();
   const { auth, logout } = useAuth();
+  const storedAuth = localStorage.getItem("auth");
+  const localAuth = storedAuth ? JSON.parse(storedAuth) : null;
+  const majorName = localAuth ? localAuth.major_category_name : null;
 
   const goHome = () => {
     navigate("/");
@@ -26,7 +29,7 @@ const Header = () => {
         >
           <Logo onClick={auth.isLoggedIn ? undefined : goHome} />
           <div className="header-name">
-            <p>IT</p>
+            <p>{majorName}</p>
             <p>MajorIn</p>
           </div>
         </div>

@@ -5,11 +5,12 @@ const API_BASE_URL = "http://3.35.123.253/api";
 export const postData = async (endpoint: string, data: any) => {
   try {
     const response = await axios.post(`${API_BASE_URL}${endpoint}`, data);
-    console.log("서버로부터의 응답:", response.data);
+    // console.log("서버로부터의 응답:", response.data);
     return response.data;
-  } catch (error) {
-    console.log(error);
-    console.log(data);
+  } catch (error: any) {
+    // console.log(error);
+    // console.log(data);
+    return error;
   }
 };
 
