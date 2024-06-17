@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 const HomeLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -26,23 +27,32 @@ const HomeLogin = () => {
       password,
     };
 
-    const response = await postData("/login/", loginData);
+    try {
+      const response = await postData("/login/", loginData);
 
-    if (response) {
-      const data = await response.token;
-      login(
-        data.access,
-        data.refresh,
-        data.user_name,
-        data.school_name,
-        data.major_name,
-        data.admission_date,
-        data.user_id,
-        data.major_id
+      if (response) {
+        const data = await response.token;
+        login(
+          data.access,
+          data.refresh,
+          data.user_name,
+          data.school_name,
+          data.major_name,
+          data.admission_date,
+          data.user_id,
+          data.major_id,
+          data.major_category_name
+        );
+        // alert("로그인에 성공하였습니다.");
+        navigate("/main");
+        window.location.reload();
+      } else {
+        throw new Error("Invalid response");
+      }
+    } catch (error) {
+      setErrorMessage(
+        "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요."
       );
-      alert("로그인에 성공하였습니다.");
-      navigate("/main");
-      window.location.reload();
     }
   };
 
@@ -69,6 +79,7 @@ const HomeLogin = () => {
           value={password}
           onChange={handleInputChange}
         />
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <input type="submit" value="로그인" onSubmit={handleLogin} />
       </form>
       <div className="login-bottom">
