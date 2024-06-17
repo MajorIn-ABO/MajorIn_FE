@@ -28,7 +28,6 @@ const LoginForm = () => {
     };
 
     const response = await postData("/login/", loginData);
-    // console.log("로그인 폼 전달: ", response);
 
     if (response) {
       const data = await response.token;
@@ -39,10 +38,11 @@ const LoginForm = () => {
         data.school_name,
         data.major_name,
         data.admission_date,
-        data.user_id
+        data.user_id,
+        data.major_id
       );
       alert("로그인에 성공하였습니다.");
-      navigate("/");
+      navigate("/main");
       window.location.reload();
     }
   };
@@ -51,7 +51,7 @@ const LoginForm = () => {
     navigate("/signup");
   };
   const goHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   return (
     <div className="login-container">
