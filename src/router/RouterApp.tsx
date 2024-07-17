@@ -10,6 +10,7 @@ import CommunityApp from "../pages/community/CommunityApp";
 import CommunityDetail from "../components/community/CommunityDetail";
 import TradeApp from "../pages/trade/TradeApp";
 import TradeDetail from "../components/trade/TradeDetail";
+import MentorApp from "../pages/mentoring/MentorApp";
 import MyPageApp from "../pages/mypage/MyPageApp";
 import LoginApp from "../pages/login/LoginApp";
 import SignUpApp from "../pages/signup/SignUpApp";
@@ -83,6 +84,7 @@ const RouterApp = () => {
               <Route path="trade/*" element={<TradeApp />}>
                 <Route path=":tradeId" element={<TradeDetail />} />
               </Route>
+              <Route path="mentoring/*" element={<MentorApp />} />
               <Route path="mypage" element={<MyPageApp />} />
             </>
           )}
