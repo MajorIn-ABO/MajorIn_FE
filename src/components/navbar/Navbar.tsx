@@ -6,6 +6,7 @@ import { ReactComponent as HomeIcon } from "../../assets/icon/home.svg";
 import { ReactComponent as StudyIcon } from "../../assets/icon/study.svg";
 import { ReactComponent as CommunityIcon } from "../../assets/icon/community.svg";
 import { ReactComponent as BookIcon } from "../../assets/icon/book.svg";
+import { ReactComponent as MentoringIcon } from "../../assets/icon/mentoring.svg";
 import { ReactComponent as MypageIcon } from "../../assets/icon/mypage.svg";
 import { useAuth } from "../../hooks/useAuth";
 import { useRecoilValue } from "recoil";
@@ -129,6 +130,18 @@ const Navbar = () => {
               fill={location.pathname === "/main/trade" ? "#1b1c3a" : "#9b9b9b"}
             />
             <p>중고거래</p>
+          </StyledLink>
+          <StyledLink
+            to="/main/mentoring"
+            onClick={(e) => handleClick(e, "/main/mentoring")}
+            className={location.pathname === "/main/mentoring" ? "active" : ""}
+          >
+            <MentoringIcon
+              fill={
+                location.pathname === "/main/mentoring" ? "#1b1c3a" : "#9b9b9b"
+              }
+            />
+            <p>멘토링</p>
           </StyledLink>
           <StyledLink
             to="/main/mypage"
