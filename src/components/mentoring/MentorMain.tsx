@@ -6,6 +6,9 @@ const MentorMain = () => {
   const goMentorAll = () => {
     navigate("/main/mentoring/all");
   };
+  const goMentorWrite = () => {
+    navigate("/main/mentoring/mentor");
+  };
   return (
     <div className="mentor-main-container">
       <div className="mentor-main-top">
@@ -28,7 +31,7 @@ const MentorMain = () => {
             자신만의 경험, 지식, 노하우를 바탕으로 도움이 필요한 멘티들을 위해
             멘토가 되어주세요.
           </p>
-          <button>멘토 등록하러 가기</button>
+          <button onClick={goMentorWrite}>멘토 등록하러 가기</button>
         </div>
         <div className="mentee-apply">
           <h1>멘티 신청</h1>
