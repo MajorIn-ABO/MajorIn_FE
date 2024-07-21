@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# MAJOR:IN
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align=center>
+	<h3>메이저인 : 학과 중심 커뮤니티</h3><br />
+  	<h4>대학교 중심이 아닌 학과 중심의 정보 공유 및 네트워킹 창구를 만들어 유사 학과 전공생들 간의 교류를 활성화하는 웹서비스이다.
+학교간 소통 공간은 존재하나 학과별 소통 공간이 부재하다. 실시한 설문조사에 의하면 타 대학과의 네트워킹 및 교류가 부족하며 커뮤니티에 전공과 관련된 정보가 아닌 무분별한 정보가 많다. 또한, 전과생과 편입생에게 학과 관련 정보를 제공하고, 타 커뮤니티에서 제한된 타 대학과의 전공별 중고 서적 거래를 원활하게 하기 위해 메이저인 서비스가 필요하다. 학업이나 대인 관계에 어려움을 겪거나 정서적으로 고립된 대학생들을 위한 "맞춤형 지원 서비스"가 필요하며, 정서적 고립 집단은 일반 집단에 비해 자신에 대한 이해가 적으므로 "맞춤형 멘토링"을 추천하는 "챗봇 서비스" 도입하였다.
 
-## Available Scripts
+</h4>
+  <p>팀원 : 장현정[FE], 조자영[BE], 김예진[AI]</p><br />
+	<p>🔧Tools & Languages🔧</p>
+</div>
+<div align="center">
+	TypeScript, ReactJS, SCSS, Styled-Components, Recoil, Github Actions, AWS S3
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
+##  <b>아키텍처 설계도</b> 
+<img width="329" src="https://github.com/user-attachments/assets/5d14a1d0-2745-4cd8-971f-51d2b960cd00" alt="" />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##  <b>User Flow</b> 
+<img width="529" src="https://github.com/user-attachments/assets/5d8e9da1-3a54-4d25-ac35-f24fdc369955" alt="" />
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<br /><br />
+##  <b>핵심 기능 소개</b> <br />
+### ⭐️ 메인페이지
+- 스터디 인기글, 커뮤니티 인기글, 채용 공고 확인
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ⭐️ 스터디 페이지
+- 스터디, 공모전 모집글 확인 가능
+- "글쓰기" 버튼을 이용해 직접 모집글 작성 가능
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ⭐️ 커뮤니티 페이지
+- 카테고리별로 게시판 게시글 확인
+- "글쓰기" 버튼을 이용해 직접 게시글 작성 가능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ⭐️ 중고거래 페이지
+- 구매를 원하는 전공 서적 교재 검색 가능
+- "책 판매하기" 버튼을 통해 직접 판매 교재 등록 가능
 
-### `npm run eject`
+### ⭐️ 멘토링 페이지
+- 멘토링 신청을 통해 직접 멘토링 프로그램 등록 가능
+- 멘티 신청을 통해 챗봇과의 대화 후 자신에게 필요한 멘토링 프로그램 추천 받음
+- 멘티 신청서 작성 후 멘토링 프로그램 이용 가능
+- 일정 기간 지난 후 멘토링 프로그램 후기 등록
+- 멘토는 신청서 열람 후 수락 여부 판단 가능
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### ⭐️ 마이페이지
+- 자신이 작성한 게시글을 메뉴별로 열람 가능
+- 좋아요, 댓글을 단 게시글 확인 가능
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ⭐️ 로그인 및 회원가입
+- 학생증 파일 업로드 후 학생증 여부 판단 및 학적 정보 텍스트 추출 진행
+- 추가 정보 입력 후 회원가입 진행
+- 로그인 성공시 회원가입시 부여된 게시판으로만 접근 가능
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
