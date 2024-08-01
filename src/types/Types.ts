@@ -137,3 +137,25 @@ export interface MajorData {
   major: string;
   major_category_name: string;
 }
+
+export interface MentorWriteData {
+  title: string;
+  mentoring_category: string;
+  description: string;
+  place_type: string;
+  period: string;
+  day: [];
+  mentee_num: number;
+}
+
+export interface MentoringData {
+  title: string;
+  mentoring_category: string;
+  description: string;
+  place_type: string;
+  period: string;
+  day: [];
+  mentee_num: number;
+  status: string;
+  user_name: string;
+}
