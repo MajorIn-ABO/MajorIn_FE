@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as CloseIcon } from "../../assets/icon/close.svg";
 import { ReactComponent as StarIcon } from "../../assets/icon/review-star.svg";
 import "../../styles/mentoring/MentorAll.scss";
+import { fetchNoMajorTokenData } from "../../api/fetchData";
+import { MentoringData } from "../../types/Types";
 
 const data = [
   {
@@ -43,9 +45,24 @@ const data = [
 ];
 
 const MentorAll = () => {
+  const [mentoringData, setMentoringData] = useState<MentoringData[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recommendation, setRecommendation] = useState("");
   const [rating, setRating] = useState(0);
+
+  const fetchUserData = async () => {
+    const storedAuth = localStorage.getItem("auth");
+    const auth = storedAuth ? JSON.parse(storedAuth) : null;
+    const userId = auth ? auth.user_id : null;
+    const data = await fetchNoMajorTokenData(`/profile/mentorings/${userId}/`);
+    if (data) {
+      setMentoringData(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -68,19 +85,22 @@ const MentorAll = () => {
       <div className="mentor">
         <h1>"멘토"로 참여중인 프로그램</h1>
         <div className="container">
-          {data.map((item, index) => (
+          {mentoringData.map((item, index) => (
             <div className="mentoring-content" key={index}>
               <div className="img-box">
-                <img src={item.img} alt="user" />
+                <img
+                  src={
+                    "https://watermark.lovepik.com/photo/20211202/large/lovepik-foreign-teacher-smiles-and-writes-a-blackboard-picture_501383572.jpg"
+                  }
+                  alt="user"
+                />
               </div>
               <div className="content-box">
                 <div>
-                  <h1>👩🏻‍🏫&nbsp;{item.name}</h1>
+                  <h1>👩🏻‍🏫&nbsp;{item.user_name}</h1>
                   <h2>{item.title}</h2>
-                  <p>{item.content}</p>
-                  <span>
-                    신청인원 | {item.apply_count} / {item.max} 명
-                  </span>
+                  <p>{item.description}</p>
+                  <span>신청인원 | / {item.mentee_num} 명</span>
                 </div>
                 <div className="button">
                   <button>확정</button>
