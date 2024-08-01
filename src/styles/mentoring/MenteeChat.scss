@@ -70,10 +70,19 @@
           color: #1b1c3a;
           border-radius: 10px;
           padding: 5px 10px;
+          margin-bottom: 5px;
+        }
+        .balloon {
+          background: #d9d9d9;
+          color: #1b1c3a;
+          border-radius: 10px;
+          padding: 5px 10px;
+          margin-bottom: 5px;
+          position: relative;
         }
       }
 
-      .gpt-message::after {
+      .balloon::after {
         content: "";
         position: absolute;
         top: 50%;

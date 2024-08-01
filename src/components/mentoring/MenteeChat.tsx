@@ -7,6 +7,7 @@ import axios from "axios";
 interface ChatMessage {
   sender: "me" | "gpt";
   text: string;
+  question: string;
   time: string;
 }
 
@@ -29,7 +30,7 @@ const MenteeChat = () => {
 
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { sender: "me", text: message, time: currentTime },
+        { sender: "me", text: message, time: currentTime, question: "" },
       ]);
       const userMessage = message;
       setMessage("");
@@ -59,8 +60,9 @@ const MenteeChat = () => {
             ...prevMessages,
             {
               sender: "gpt",
-              text: response.data.chat_response,
+              text: response.data.gpt_response,
               time: replyTime,
+              question: response.data.question,
             },
           ]);
         } else {
@@ -97,7 +99,10 @@ const MenteeChat = () => {
                   </>
                 ) : (
                   <>
-                    <p>{msg.text}</p>
+                    <div>
+                      <p>{msg.text}</p>
+                      <p className="balloon">{msg.question}</p>
+                    </div>
                     <span className="message-time">{msg.time}</span>
                   </>
                 )}
