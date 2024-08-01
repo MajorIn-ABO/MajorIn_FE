@@ -9,6 +9,9 @@ const MentorMain = () => {
   const goMentorWrite = () => {
     navigate("/main/mentoring/mentor");
   };
+  const goMenteeChat = () => {
+    navigate("/main/mentoring/chat");
+  };
   return (
     <div className="mentor-main-container">
       <div className="mentor-main-top">
@@ -40,7 +43,7 @@ const MentorMain = () => {
             학습, 대인관계, 학교생활, 취업상담 등 도움이 필요한 분야의 멘토링을
             신청하세요.
           </p>
-          <button>나에게 맞는 멘토링 신청하기</button>
+          <button onClick={goMenteeChat}>나에게 맞는 멘토링 신청하기</button>
         </div>
       </div>
     </div>
