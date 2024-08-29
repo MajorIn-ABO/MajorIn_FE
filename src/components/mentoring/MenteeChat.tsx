@@ -3,6 +3,7 @@ import Gif from "../../assets/img/gif.gif";
 import "../../styles/mentoring/MenteeChat.scss";
 import { useState } from "react";
 import axios from "axios";
+import { postTextData } from "../../api/postData";
 
 interface ChatMessage {
   sender: "me" | "gpt";
@@ -36,17 +37,9 @@ const MenteeChat = () => {
       setMessage("");
 
       try {
-        const storedAuth = localStorage.getItem("auth");
-        const auth = storedAuth ? JSON.parse(storedAuth) : null;
-        const accessToken = auth ? auth.access_token : null;
-        const response = await axios.post(
-          "http://3.35.123.253/api/mentorings/chat_with_gpt/",
-          { message: userMessage },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
+        const response = await postTextData(
+          "/mentorings/chat_with_gpt/",
+          userMessage
         );
 
         if (response.status === 200) {
