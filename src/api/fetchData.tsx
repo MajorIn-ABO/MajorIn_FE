@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://3.35.123.253/api";
+const API_BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 export const fetchData = async (endpoint: string) => {
   const storedAuth = localStorage.getItem("auth");
