@@ -26,6 +26,11 @@ jobs:
         with:
           node-version: "18.17.0" # 사용 중인 Node.js 버전 설정
 
+      - name: .env setting
+        run: |
+          echo "REACT_APP_SERVER_URL=${{ secrets.REACT_APP_SERVER_URL }}" >> .env
+          echo "REACT_APP_AI_URL=${{ secrets.REACT_APP_AI_URL }}" >> .env
+
       - name: Install Dependencies # 의존 파일 설치
         run: npm install
 
