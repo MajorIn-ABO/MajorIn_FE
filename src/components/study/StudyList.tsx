@@ -1,11 +1,11 @@
-import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import "../../styles/study/StudyList.scss";
+import PencilIcon from "@/assets/icon/pencil.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import "@/styles/study/StudyList.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchData } from "../../api/fetchData";
-import { StudyData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { StudyData } from "@/types/Types";
 
 interface StudySearchProps {
   selectedFilter: string;

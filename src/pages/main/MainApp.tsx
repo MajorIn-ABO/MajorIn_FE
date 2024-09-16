@@ -1,6 +1,6 @@
-import MainCommunity from "../../components/main/MainCommunity";
-import MainEmploy from "../../components/main/MainEmploy";
-import MainStudy from "../../components/main/MainStudy";
+import MainCommunity from "@/components/main/MainCommunity";
+import MainEmploy from "@/components/main/MainEmploy";
+import MainStudy from "@/components/main/MainStudy";
 import styled from "styled-components";
 
 const MainContainer = styled.div`

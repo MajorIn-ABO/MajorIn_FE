@@ -1,9 +1,9 @@
-import StudySearch from "../../components/study/StudySearch";
-import StudyList from "../../components/study/StudyList";
-import PopularStudy from "../../components/study/PopularStudy";
-import StudyDetail from "../../components/study/StudyDetail";
-import StudyWriter from "../../components/study/StudyWriter";
-import StudyWrite from "../../components/study/StudyWrite";
+import StudySearch from "@/components/study/StudySearch";
+import StudyList from "@/components/study/StudyList";
+import PopularStudy from "@/components/study/PopularStudy";
+import StudyDetail from "@/components/study/StudyDetail";
+import StudyWriter from "@/components/study/StudyWriter";
+import StudyWrite from "@/components/study/StudyWrite";
 import styled from "styled-components";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";

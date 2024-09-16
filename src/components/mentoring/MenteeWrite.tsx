@@ -1,4 +1,4 @@
-import "../../styles/mentoring/MentorWrite.scss";
+import "@/styles/mentoring/MentorWrite.scss";
 
 const MenteeWrite = () => {
   return (

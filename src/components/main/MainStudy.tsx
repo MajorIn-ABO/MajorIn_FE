@@ -1,11 +1,10 @@
-// import { ReactComponent as CalendarIcon } from "../../assets/icon/calender.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import "../../styles/main/MainStudy.scss";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import "@/styles/main/MainStudy.scss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchData } from "../../api/fetchData";
-import { StudyData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { StudyData } from "@/types/Types";
 
 const MainStudy = () => {
   const [studyData, setStudyData] = useState<StudyData[]>([]);
@@ -40,10 +39,7 @@ const MainStudy = () => {
           <div className="study-box" key={index}>
             <div className="study-top">
               <div>
-                <img
-                  src={require("../../assets/img/dku-logo.png")}
-                  alt="logo"
-                />
+                <img src={require("@/assets/img/dku-logo.png")} alt="logo" />
                 <p>
                   {item.school_name} {item.major_name}{" "}
                   {String(item.admission_date).slice(-2)}학번

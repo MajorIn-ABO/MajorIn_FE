@@ -1,17 +1,17 @@
-import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
-import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
-import { ReactComponent as DamageIcon } from "../../assets/icon/damage.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
-import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
-import "../../styles/study/StudyDetail.scss";
-import "../../styles/trade/TradeDetail.scss";
+import PriceIcon from "@/assets/icon/price.svg?react";
+import SalerIcon from "@/assets/icon/saler.svg?react";
+import DamageIcon from "@/assets/icon/damage.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import UserIcon from "@/assets/icon/user.svg?react";
+import SendIcon from "@/assets/icon/send.svg?react";
+import ReplyIcon from "@/assets/icon/reply.svg?react";
+import "@/styles/study/StudyDetail.scss";
+import "@/styles/trade/TradeDetail.scss";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { BookData, CommentData } from "../../types/Types";
-import { fetchData } from "../../api/fetchData";
-import { postSold, postTextData } from "../../api/postData";
+import { BookData, CommentData } from "@/types/Types";
+import { fetchData } from "@/api/fetchData";
+import { postSold, postTextData } from "@/api/postData";
 
 const TradeDetail = () => {
   const { tradeId } = useParams();

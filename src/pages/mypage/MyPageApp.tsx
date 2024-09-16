@@ -1,6 +1,6 @@
-import MyPost from "../../components/mypage/MyPost";
-import MyTrade from "../../components/mypage/MyTrade";
-import MyInfo from "../../components/mypage/MyInfo";
+import MyPost from "@/components/mypage/MyPost";
+import MyTrade from "@/components/mypage/MyTrade";
+import MyInfo from "@/components/mypage/MyInfo";
 import styled from "styled-components";
 
 const MyPageContainer = styled.div`

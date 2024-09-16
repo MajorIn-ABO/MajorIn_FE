@@ -1,5 +1,5 @@
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
-import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
+import SearchIcon from "@/assets/icon/search.svg?react";
+import PencilIcon from "@/assets/icon/pencil.svg?react";
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

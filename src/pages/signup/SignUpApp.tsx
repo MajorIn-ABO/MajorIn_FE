@@ -1,9 +1,9 @@
-import SignupHeader from "../../components/signup/SignupHeader";
-import StdCertify from "../../components/signup/StdCertify";
-import SchoolInfo from "../../components/signup/SchoolInfo";
-import StdInfo from "../../components/signup/StdInfo";
-import AgreeTerm from "../../components/signup/AgreeTerm";
-import SignUpBtn from "../../components/signup/SignUpBtn";
+import SignupHeader from "@/components/signup/SignupHeader";
+import StdCertify from "@/components/signup/StdCertify";
+import SchoolInfo from "@/components/signup/SchoolInfo";
+import StdInfo from "@/components/signup/StdInfo";
+import AgreeTerm from "@/components/signup/AgreeTerm";
+import SignUpBtn from "@/components/signup/SignUpBtn";
 import { useState } from "react";
 import styled from "styled-components";
 

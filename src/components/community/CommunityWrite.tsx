@@ -1,8 +1,8 @@
-import "../../styles/community/CommunityWrite.scss";
+import "@/styles/community/CommunityWrite.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { postTokenData } from "../../api/postData";
-import { CommunityWriteData } from "../../types/Types";
+import { postTokenData } from "@/api/postData";
+import { CommunityWriteData } from "@/types/Types";
 
 const CommunityWrite = () => {
   const [writeData, setWriteData] = useState<CommunityWriteData>({

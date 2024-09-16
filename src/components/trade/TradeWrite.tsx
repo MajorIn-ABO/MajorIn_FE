@@ -1,10 +1,10 @@
-import { ReactComponent as ImgIcon } from "../../assets/icon/img-search.svg";
+import ImgIcon from "@/assets/icon/img-search.svg?react";
 import BookSearch from "./BookSearch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { bookState } from "../../data/recoilAtoms";
+import { bookState } from "@/data/recoilAtoms";
 import { useRecoilState } from "recoil";
-import { postTokenData } from "../../api/postData";
+import { postTokenData } from "@/api/postData";
 
 const TradeWrite: React.FC = () => {
   const [damage, setDamage] = useState<string>("");

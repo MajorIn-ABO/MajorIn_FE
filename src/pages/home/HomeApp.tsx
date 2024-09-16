@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import HomeIntroduce from "../../components/home/HomeIntroduce";
-import HomeLogin from "../../components/home/HomeLogin";
-import HomeSearch from "../../components/home/HomeSearch";
+import HomeIntroduce from "@/components/home/HomeIntroduce";
+import HomeLogin from "@/components/home/HomeLogin";
+import HomeSearch from "@/components/home/HomeSearch";
 
 const HomeContainer = styled.div`
   width: 100%;

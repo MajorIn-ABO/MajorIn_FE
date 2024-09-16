@@ -1,9 +1,9 @@
-import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
-import Gif from "../../assets/img/gif.gif";
-import "../../styles/mentoring/MenteeChat.scss";
+import SendIcon from "@/assets/icon/send.svg?react";
+import Gif from "@/assets/img/gif.gif";
+import "@/styles/mentoring/MenteeChat.scss";
 import { useState } from "react";
 import axios from "axios";
-import { postTextData } from "../../api/postData";
+import { postTextData } from "@/api/postData";
 
 interface ChatMessage {
   sender: "me" | "gpt";

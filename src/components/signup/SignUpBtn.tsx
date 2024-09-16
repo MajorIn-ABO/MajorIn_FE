@@ -1,8 +1,8 @@
-import "../../styles/signup/SignUpBtn.scss";
+import "@/styles/signup/SignUpBtn.scss";
 import styled from "styled-components";
 import { useRecoilValue, useResetRecoilState } from "recoil";
-import { studentDataState } from "../../data/recoilAtoms";
-import { postSignUpData } from "../../api/postData";
+import { studentDataState } from "@/data/recoilAtoms";
+import { postSignUpData } from "@/api/postData";
 import { useState } from "react";
 import Modal from "./Modal";
 

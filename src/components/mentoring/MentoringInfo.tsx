@@ -1,4 +1,4 @@
-import "../../styles/mentoring/MentoringInfo.scss";
+import "@/styles/mentoring/MentoringInfo.scss";
 
 const MentoringInfo = () => {
   return (

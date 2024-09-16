@@ -1,8 +1,9 @@
-import "../../styles/home/HomeLogin.scss";
+import AppLogo from "@/assets/img/appLogo.png";
+import "@/styles/home/HomeLogin.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { postData } from "../../api/postData";
-import { useAuth } from "../../hooks/useAuth";
+import { postData } from "@/api/postData";
+import { useAuth } from "@/hooks/useAuth";
 
 const HomeLogin = () => {
   const [username, setUsername] = useState("");
@@ -62,7 +63,7 @@ const HomeLogin = () => {
   return (
     <div className="home-login-container">
       <div className="logo">
-        <img src={require("../../assets/img/appLogo.png")} alt="logo" />
+        <img src={AppLogo} alt="logo" />
       </div>
       <form className="login" onSubmit={handleLogin}>
         <input

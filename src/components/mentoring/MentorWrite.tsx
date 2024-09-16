@@ -1,7 +1,7 @@
-import "../../styles/mentoring/MentorWrite.scss";
-import { MentorWriteData } from "../../types/Types";
+import "@/styles/mentoring/MentorWrite.scss";
+import { MentorWriteData } from "@/types/Types";
 import { useState } from "react";
-import { postTextData } from "../../api/postData";
+import { postTextData } from "@/api/postData";
 import { useNavigate } from "react-router-dom";
 
 const MentorWrite = () => {

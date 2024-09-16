@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from "../../assets/icon/logo.svg";
+import Logo from "@/assets/icon/logo.svg?react";
 import { useNavigate, Outlet } from "react-router-dom";
 
 const SignupHeader = () => {

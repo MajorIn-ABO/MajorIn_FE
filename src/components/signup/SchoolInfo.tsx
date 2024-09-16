@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { postData } from "../../api/postData";
+import { postData } from "@/api/postData";
 import { useRecoilState } from "recoil";
-import { studentDataState } from "../../data/recoilAtoms";
-import "../../styles/signup/SchoolInfo.scss";
+import { studentDataState } from "@/data/recoilAtoms";
+import "@/styles/signup/SchoolInfo.scss";
 
 const SchoolInfo: React.FC<{ moveToNextStep: () => void }> = ({
   moveToNextStep,

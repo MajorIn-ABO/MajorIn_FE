@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchData } from "../../api/fetchData";
-import { CommunityData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { CommunityData } from "@/types/Types";
 
 const PopularCommunity = () => {
   const [communityData, setCommunityData] = useState<CommunityData[]>([]);
@@ -28,7 +28,7 @@ const PopularCommunity = () => {
           <li key={index} onClick={() => handleItemClick(item.id)}>
             <p>{item.title}</p>
             <div>
-              <img src={require("../../assets/img/dku-logo.png")} alt="logo" />
+              <img src={require("@/assets/img/dku-logo.png")} alt="logo" />
               <p>
                 {item.school_name} {item.major_name}{" "}
                 {String(item.admission_date).slice(-2)}학번

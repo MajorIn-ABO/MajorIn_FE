@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import data, { EmployData } from "../../data/EmployData";
-import "../../styles/employ/EmployDetail.scss";
+import data, { EmployData } from "@/data/EmployData";
+import "@/styles/employ/EmployDetail.scss";
 
 const EmployDetail = () => {
   const { employId } = useParams();

@@ -1,16 +1,16 @@
-import { ReactComponent as MedalIcon } from "../../assets/icon/medal.svg";
-import { ReactComponent as IconOne } from "../../assets/icon/number1.svg";
-import { ReactComponent as IconTwo } from "../../assets/icon/number2.svg";
-import { ReactComponent as IconThree } from "../../assets/icon/number3.svg";
-import { ReactComponent as IconFour } from "../../assets/icon/number4.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
-import "../../styles/main/MainCommunity.scss";
+import MedalIcon from "@/assets/icon/medal.svg?react";
+import IconOne from "@/assets/icon/number1.svg?react";
+import IconTwo from "@/assets/icon/number2.svg?react";
+import IconThree from "@/assets/icon/number3.svg?react";
+import IconFour from "@/assets/icon/number4.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import ScrapIcon from "@/assets/icon/scrap-color.svg?react";
+import "@/styles/main/MainCommunity.scss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchData } from "../../api/fetchData";
-import { CommunityData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { CommunityData } from "@/types/Types";
 
 const MainCommunity = () => {
   const [communityData, setCommunityData] = useState<CommunityData[]>([]);

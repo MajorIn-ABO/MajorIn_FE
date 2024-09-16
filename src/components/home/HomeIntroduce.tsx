@@ -1,3 +1,5 @@
+import Group79 from "@/assets/img/Group 79.png";
+import Group80 from "@/assets/img/Group 80.png";
 import styled from "styled-components";
 
 const IntroduceImg = styled.img`
@@ -8,8 +10,8 @@ const IntroduceImg = styled.img`
 const HomeIntroduce = () => {
   return (
     <div>
-      <IntroduceImg src={require("../../assets/img/Group 79.png")} alt="img" />
-      <IntroduceImg src={require("../../assets/img/Group 80.png")} alt="img" />
+      <IntroduceImg src={Group79} alt="img" />
+      <IntroduceImg src={Group80} alt="img" />
     </div>
   );
 };

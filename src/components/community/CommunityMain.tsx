@@ -1,13 +1,13 @@
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
-import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
-import "../../styles/community/CommunityMain.scss";
+import SearchIcon from "@/assets/icon/search.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import ScrapIcon from "@/assets/icon/scrap-color.svg?react";
+import PencilIcon from "@/assets/icon/pencil.svg?react";
+import "@/styles/community/CommunityMain.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchData } from "../../api/fetchData";
-import { CommunityData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { CommunityData } from "@/types/Types";
 
 const CommunityMain = () => {
   const [selectedCategory, setSelectedCategory] = useState("전체보기");

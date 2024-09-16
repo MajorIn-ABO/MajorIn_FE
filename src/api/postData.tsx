@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_SERVER_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_SERVER_URL;
 
 export const postData = async (endpoint: string, data: any) => {
   try {

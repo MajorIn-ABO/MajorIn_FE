@@ -1,9 +1,9 @@
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
-import "../../styles/home/HomeSearch.scss";
+import SearchIcon from "@/assets/icon/search.svg?react";
+import "@/styles/home/HomeSearch.scss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchNoMajorData } from "../../api/fetchData";
-import { MajorData } from "../../types/Types";
+import { fetchNoMajorData } from "@/api/fetchData";
+import { MajorData } from "@/types/Types";
 
 const HomeSearch = () => {
   const [majorData, setMajorData] = useState<MajorData[]>([]);

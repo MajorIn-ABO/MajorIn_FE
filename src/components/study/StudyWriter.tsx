@@ -1,11 +1,11 @@
-import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import "../../styles/study/StudyWriter.scss";
+import PencilIcon from "@/assets/icon/pencil.svg?react";
+import UserIcon from "@/assets/icon/user.svg?react";
+import "@/styles/study/StudyWriter.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { StudyData } from "../../types/Types";
-import { fetchTokenData } from "../../api/fetchData";
-// import data, { StudyData } from "../../data/StudyData";
+import { StudyData } from "@/types/Types";
+import { fetchTokenData } from "@/api/fetchData";
+// import data, { StudyData } from "@/data/StudyData";
 
 const StudyWriter = () => {
   const navigate = useNavigate();

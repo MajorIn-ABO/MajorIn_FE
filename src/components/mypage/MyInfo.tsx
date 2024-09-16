@@ -1,12 +1,12 @@
-import { ReactComponent as SettingIcon } from "../../assets/icon/setting.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as PersonIcon } from "../../assets/icon/user2.svg";
-import { ReactComponent as SchoolIcon } from "../../assets/icon/school.svg";
-import { ReactComponent as EmailIcon } from "../../assets/icon/email.svg";
-import "../../styles/mypage/MyInfo.scss";
+import SettingIcon from "@/assets/icon/setting.svg?react";
+import UserIcon from "@/assets/icon/user.svg?react";
+import PersonIcon from "@/assets/icon/user2.svg?react";
+import SchoolIcon from "@/assets/icon/school.svg?react";
+import EmailIcon from "@/assets/icon/email.svg?react";
+import "@/styles/mypage/MyInfo.scss";
 import { useState, useEffect } from "react";
-import { fetchNoMajorTokenData } from "../../api/fetchData";
-import { UserInfo } from "../../types/Types";
+import { fetchNoMajorTokenData } from "@/api/fetchData";
+import { UserInfo } from "@/types/Types";
 
 const MyInfo = () => {
   const [userData, setUserData] = useState<UserInfo | null>(null);

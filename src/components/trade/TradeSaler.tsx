@@ -1,10 +1,10 @@
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as PencilIcon } from "../../assets/icon/pencil.svg";
-import "../../styles/trade/TradeSaler.scss";
+import UserIcon from "@/assets/icon/user.svg?react";
+import PencilIcon from "@/assets/icon/pencil.svg?react";
+import "@/styles/trade/TradeSaler.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchData } from "../../api/fetchData";
-import { BookData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { BookData } from "@/types/Types";
 
 const TradeSaler = () => {
   const navigate = useNavigate();

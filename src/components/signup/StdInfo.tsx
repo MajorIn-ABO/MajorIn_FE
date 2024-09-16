@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../../styles/signup/StdInfo.scss";
+import "@/styles/signup/StdInfo.scss";
 import { useRecoilState } from "recoil";
-import { studentDataState } from "../../data/recoilAtoms";
+import { studentDataState } from "@/data/recoilAtoms";
 
 const StdInfo = () => {
   const [studentData, setStudentData] = useRecoilState(studentDataState);

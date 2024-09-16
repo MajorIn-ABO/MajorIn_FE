@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
-import Spinner from "../../assets/img/spin.gif";
-// import Spinner from "../../assets/img/spin-ball.gif";
-import { loadingState } from "../../data/recoilAtoms";
+import Spinner from "@/assets/img/spin.gif";
+// import Spinner from "@/assets/img/spin-ball.gif";
+import { loadingState } from "@/data/recoilAtoms";
 import styled from "styled-components";
 
 const SpinnerOverlay = styled.div`

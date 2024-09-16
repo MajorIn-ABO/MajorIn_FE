@@ -1,6 +1,6 @@
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
+import SearchIcon from "@/assets/icon/search.svg?react";
 import { useState } from "react";
-import "../../styles/study/StudySearch.scss";
+import "@/styles/study/StudySearch.scss";
 
 interface StudySearchProps {
   selectedFilter: string;

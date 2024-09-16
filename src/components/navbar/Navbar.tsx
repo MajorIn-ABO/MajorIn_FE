@@ -1,16 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import "../../styles/navbar/Navbar.scss";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as HomeIcon } from "../../assets/icon/home.svg";
-import { ReactComponent as StudyIcon } from "../../assets/icon/study.svg";
-import { ReactComponent as CommunityIcon } from "../../assets/icon/community.svg";
-import { ReactComponent as BookIcon } from "../../assets/icon/book.svg";
-import { ReactComponent as MentoringIcon } from "../../assets/icon/mentoring.svg";
-import { ReactComponent as MypageIcon } from "../../assets/icon/mypage.svg";
-import { useAuth } from "../../hooks/useAuth";
+import "@/styles/navbar/Navbar.scss";
+import UserIcon from "@/assets/icon/user.svg?react";
+import HomeIcon from "@/assets/icon/home.svg?react";
+import StudyIcon from "@/assets/icon/study.svg?react";
+import CommunityIcon from "@/assets/icon/community.svg?react";
+import BookIcon from "@/assets/icon/book.svg?react";
+import MentoringIcon from "@/assets/icon/mentoring.svg?react";
+import MypageIcon from "@/assets/icon/mypage.svg?react";
+import { useAuth } from "@/hooks/useAuth";
 import { useRecoilValue } from "recoil";
-import { loginState } from "../../data/recoilAtoms";
+import { loginState } from "@/data/recoilAtoms";
 
 const StyledLink = styled(Link)`
   text-decoration: none;

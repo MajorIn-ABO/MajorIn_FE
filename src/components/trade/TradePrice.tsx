@@ -1,5 +1,5 @@
-import { ReactComponent as MoneyIcon } from "../../assets/icon/money-wings.svg";
-import "../../styles/trade/TradePrice.scss";
+import MoneyIcon from "@/assets/icon/money-wings.svg?react";
+import "@/styles/trade/TradePrice.scss";
 
 const TradePrice = () => {
   return (
