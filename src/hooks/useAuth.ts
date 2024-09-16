@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { loginState } from "../data/recoilAtoms";
+import { loginState } from "@/data/recoilAtoms";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
