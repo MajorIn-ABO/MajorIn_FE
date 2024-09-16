@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_AI_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_AI_URL;
 
 export const postStudentCard = async (file: File) => {
   const formData = new FormData();
