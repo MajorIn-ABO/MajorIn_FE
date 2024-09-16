@@ -1,12 +1,12 @@
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
-import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
-import { ReactComponent as BookIcon } from "../../assets/icon/book-search.svg";
-import "../../styles/trade/TradeWrite.scss";
+import SearchIcon from "@/assets/icon/search.svg?react";
+import PriceIcon from "@/assets/icon/price.svg?react";
+import BookIcon from "@/assets/icon/book-search.svg?react";
+import "@/styles/trade/TradeWrite.scss";
 import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { useRecoilState } from "recoil";
-import { bookState } from "../../data/recoilAtoms";
-import { fetchNoMajorData } from "../../api/fetchData";
-import { BookSearchData } from "../../types/Types";
+import { bookState } from "@/data/recoilAtoms";
+import { fetchNoMajorData } from "@/api/fetchData";
+import { BookSearchData } from "@/types/Types";
 
 const BookSearch: React.FC = () => {
   const [selectedBook, setSelectedBook] = useState<BookSearchData | null>(null);

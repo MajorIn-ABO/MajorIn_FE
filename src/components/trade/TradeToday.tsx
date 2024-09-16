@@ -1,12 +1,12 @@
-import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
-import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as BookIcon } from "../../assets/icon/nobook.svg";
-import "../../styles/trade/TradeToday.scss";
+import PriceIcon from "@/assets/icon/price.svg?react";
+import SalerIcon from "@/assets/icon/saler.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import BookIcon from "@/assets/icon/nobook.svg?react";
+import "@/styles/trade/TradeToday.scss";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchData } from "../../api/fetchData";
-import { BookData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { BookData } from "@/types/Types";
 
 const TradeToday = () => {
   const navigate = useNavigate();

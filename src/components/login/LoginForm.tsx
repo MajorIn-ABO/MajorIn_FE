@@ -1,9 +1,9 @@
-import { ReactComponent as LogoIcon } from "../../assets/icon/logo2.svg";
-import "../../styles/login/LoginForm.scss";
+import LogoIcon from "@/assets/icon/logo2.svg?react";
+import "@/styles/login/LoginForm.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { postData } from "../../api/postData";
-import { useAuth } from "../../hooks/useAuth";
+import { postData } from "@/api/postData";
+import { useAuth } from "@/hooks/useAuth";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

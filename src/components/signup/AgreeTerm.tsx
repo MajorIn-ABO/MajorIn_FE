@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import AgreeFirst from "../../data/AgreeFirst";
-import "../../styles/signup/AgreeTerm.scss";
+import AgreeFirst from "@/data/AgreeFirst";
+import "@/styles/signup/AgreeTerm.scss";
 
 const AgreeTerm = () => {
   const [allChecked, setAllChecked] = useState(false);

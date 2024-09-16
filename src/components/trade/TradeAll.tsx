@@ -1,11 +1,11 @@
-import { ReactComponent as PriceIcon } from "../../assets/icon/price.svg";
-import { ReactComponent as SalerIcon } from "../../assets/icon/saler.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import "../../styles/trade/TradeAll.scss";
+import PriceIcon from "@/assets/icon/price.svg?react";
+import SalerIcon from "@/assets/icon/saler.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import "@/styles/trade/TradeAll.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchData } from "../../api/fetchData";
-import { BookData } from "../../types/Types";
+import { fetchData } from "@/api/fetchData";
+import { BookData } from "@/types/Types";
 
 interface TradeSearchProps {
   searchText: string;

@@ -1,6 +1,6 @@
-import "../../styles/main/MainEmploy.scss";
+import "@/styles/main/MainEmploy.scss";
 import { useNavigate, useLocation } from "react-router-dom";
-import data, { EmployData } from "../../data/EmployData";
+import data, { EmployData } from "@/data/EmployData";
 
 const MainEmploy = () => {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
 // 학생증 인증 컴포넌트
 import { useState, ChangeEvent } from "react";
-import { ReactComponent as ImgIcon } from "../../assets/icon/img-search.svg";
-import "../../styles/signup/StdCertify.scss";
-import { postStudentCard } from "../../api/postStudentCard";
+import ImgIcon from "@/assets/icon/img-search.svg?react";
+import "@/styles/signup/StdCertify.scss";
+import { postStudentCard } from "@/api/postStudentCard";
 import { useSetRecoilState } from "recoil";
-import { studentDataState, loadingState } from "../../data/recoilAtoms";
+import { studentDataState, loadingState } from "@/data/recoilAtoms";
 
 const StdCertify = () => {
   const [selectedImage, setSelectedImage] = useState<

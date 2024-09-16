@@ -1,15 +1,15 @@
-// import data, { StudyData } from "../../data/StudyData";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
-import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
-import "../../styles/study/StudyDetail.scss";
+// import data, { StudyData } from "@/data/StudyData";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import UserIcon from "@/assets/icon/user.svg?react";
+import SendIcon from "@/assets/icon/send.svg?react";
+import ReplyIcon from "@/assets/icon/reply.svg?react";
+import "@/styles/study/StudyDetail.scss";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { StudyData, CommentData } from "../../types/Types";
-import { fetchData, fetchTokenData } from "../../api/fetchData";
-import { postTextData } from "../../api/postData";
+import { StudyData, CommentData } from "@/types/Types";
+import { fetchData, fetchTokenData } from "@/api/fetchData";
+import { postTextData } from "@/api/postData";
 
 const StudyDetail = () => {
   const { studyId } = useParams();

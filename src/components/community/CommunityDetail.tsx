@@ -1,17 +1,17 @@
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
-import { ReactComponent as GoodIcon } from "../../assets/icon/good.svg";
-import { ReactComponent as BadIcon } from "../../assets/icon/bad.svg";
-import { ReactComponent as UserIcon } from "../../assets/icon/user.svg";
-import { ReactComponent as ReplyIcon } from "../../assets/icon/reply.svg";
-import { ReactComponent as SendIcon } from "../../assets/icon/send.svg";
-import "../../styles/community/CommunityDetail.scss";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import ScrapIcon from "@/assets/icon/scrap-color.svg?react";
+import GoodIcon from "@/assets/icon/good.svg?react";
+import BadIcon from "@/assets/icon/bad.svg?react";
+import UserIcon from "@/assets/icon/user.svg?react";
+import ReplyIcon from "@/assets/icon/reply.svg?react";
+import SendIcon from "@/assets/icon/send.svg?react";
+import "@/styles/community/CommunityDetail.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { CommunityData, CommentData } from "../../types/Types";
-import { fetchData, fetchTokenData } from "../../api/fetchData";
-import { postTextData } from "../../api/postData";
+import { CommunityData, CommentData } from "@/types/Types";
+import { fetchData, fetchTokenData } from "@/api/fetchData";
+import { postTextData } from "@/api/postData";
 
 const CommunityDetail = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { ReactComponent as CloseIcon } from "../../assets/icon/close.svg";
-import { ReactComponent as StarIcon } from "../../assets/icon/review-star.svg";
-import "../../styles/mentoring/MentorAll.scss";
-import { fetchNoMajorTokenData } from "../../api/fetchData";
-import { MentoringData } from "../../types/Types";
+import CloseIcon from "@/assets/icon/close.svg?react";
+import StarIcon from "@/assets/icon/review-star.svg?react";
+import "@/styles/mentoring/MentorAll.scss";
+import { fetchNoMajorTokenData } from "@/api/fetchData";
+import { MentoringData } from "@/types/Types";
 
 const data = [
   {

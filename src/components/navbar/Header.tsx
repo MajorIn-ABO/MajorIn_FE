@@ -1,8 +1,8 @@
-import "../../styles/navbar/Header.scss";
-import { ReactComponent as Logo } from "../../assets/icon/logo.svg";
-import { ReactComponent as SearchIcon } from "../../assets/icon/search.svg";
+import "@/styles/navbar/Header.scss";
+import Logo from "@/assets/icon/logo.svg?react";
+import SearchIcon from "@/assets/icon/search.svg?react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "../../styles/study/StudyWrite.scss";
+import "@/styles/study/StudyWrite.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postTextData } from "../../api/postData";
+import { postTextData } from "@/api/postData";
 
 const StudyWrite = () => {
   const modules = {

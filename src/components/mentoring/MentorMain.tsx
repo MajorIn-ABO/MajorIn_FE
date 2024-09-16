@@ -1,4 +1,7 @@
-import "../../styles/mentoring/MentorMain.scss";
+import Mentoring1 from "@/assets/img/mentoring1.png";
+import Mentoring2 from "@/assets/img/mentoring2.png";
+import Mentoring3 from "@/assets/img/mentoring3.png";
+import "@/styles/mentoring/MentorMain.scss";
 import { useNavigate } from "react-router-dom";
 
 const MentorMain = () => {
@@ -15,7 +18,7 @@ const MentorMain = () => {
   return (
     <div className="mentor-main-container">
       <div className="mentor-main-top">
-        <img src={require("../../assets/img/mentoring1.png")} alt="img" />
+        <img src={Mentoring1} alt="img" />
         <h1>
           메이저인에서 <br />
           나에게 맞는 멘토링을 찾아보세요.
@@ -29,7 +32,7 @@ const MentorMain = () => {
       <div className="mentor-main-bottom">
         <div className="mento-apply">
           <h1>멘토 등록</h1>
-          <img src={require("../../assets/img/mentoring2.png")} alt="img" />
+          <img src={Mentoring2} alt="img" />
           <p>
             자신만의 경험, 지식, 노하우를 바탕으로 도움이 필요한 멘티들을 위해
             멘토가 되어주세요.
@@ -38,7 +41,7 @@ const MentorMain = () => {
         </div>
         <div className="mentee-apply">
           <h1>멘티 신청</h1>
-          <img src={require("../../assets/img/mentoring3.png")} alt="img" />
+          <img src={Mentoring3} alt="img" />
           <p>
             학습, 대인관계, 학교생활, 취업상담 등 도움이 필요한 분야의 멘토링을
             신청하세요.

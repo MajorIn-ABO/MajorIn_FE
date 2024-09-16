@@ -1,12 +1,12 @@
-import { ReactComponent as SettingIcon } from "../../assets/icon/setting.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icon/chat-color.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icon/like-color.svg";
-import { ReactComponent as ScrapIcon } from "../../assets/icon/scrap-color.svg";
-import "../../styles/mypage/MyPost.scss";
+import SettingIcon from "@/assets/icon/setting.svg?react";
+import ChatIcon from "@/assets/icon/chat-color.svg?react";
+import LikeIcon from "@/assets/icon/like-color.svg?react";
+import ScrapIcon from "@/assets/icon/scrap-color.svg?react";
+import "@/styles/mypage/MyPost.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { StudyData, CommunityData } from "../../types/Types";
-import { fetchNoMajorTokenData } from "../../api/fetchData";
+import { StudyData, CommunityData } from "@/types/Types";
+import { fetchNoMajorTokenData } from "@/api/fetchData";
 
 const MyPost = () => {
   const [selectedSection, setSelectedSection] = useState("study");
