@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3 # 최신 버전으로 업데이트
         with:
-          node-version: "18.17.0" # 사용 중인 Node.js 버전 설정
+          node-version: "18.20.4" # 사용 중인 Node.js 버전 설정
 
       - name: .env setting
         run: |
@@ -50,4 +50,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://majorin
+            dist build s3://majorin
