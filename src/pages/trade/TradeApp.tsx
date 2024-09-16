@@ -1,10 +1,10 @@
-import TradeSearch from "../../components/trade/TradeSearch";
-import TradeToday from "../../components/trade/TradeToday";
-import TradeAll from "../../components/trade/TradeAll";
-import TradePrice from "../../components/trade/TradePrice";
-import TradeDetail from "../../components/trade/TradeDetail";
-import TradeSaler from "../../components/trade/TradeSaler";
-import TradeWrite from "../../components/trade/TradeWrite";
+import TradeSearch from "@/components/trade/TradeSearch";
+import TradeToday from "@/components/trade/TradeToday";
+import TradeAll from "@/components/trade/TradeAll";
+import TradePrice from "@/components/trade/TradePrice";
+import TradeDetail from "@/components/trade/TradeDetail";
+import TradeSaler from "@/components/trade/TradeSaler";
+import TradeWrite from "@/components/trade/TradeWrite";
 import styled from "styled-components";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";

@@ -1,7 +1,7 @@
-import CommunityMain from "../../components/community/CommunityMain";
-import CommunityWrite from "../../components/community/CommunityWrite";
-import PopularCommunity from "../../components/community/PopularCommunity";
-import CommunityDetail from "../../components/community/CommunityDetail";
+import CommunityMain from "@/components/community/CommunityMain";
+import CommunityWrite from "@/components/community/CommunityWrite";
+import PopularCommunity from "@/components/community/PopularCommunity";
+import CommunityDetail from "@/components/community/CommunityDetail";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import LoginForm from "../../components/login/LoginForm";
+import LoginForm from "@/components/login/LoginForm";
 import styled from "styled-components";
 
 const LoginContainer = styled.div`

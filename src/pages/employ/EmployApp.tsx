@@ -1,5 +1,5 @@
-import MainEmploy from "../../components/main/MainEmploy";
-import EmployDetail from "../../components/employ/EmployDetail";
+import MainEmploy from "@/components/main/MainEmploy";
+import EmployDetail from "@/components/employ/EmployDetail";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
